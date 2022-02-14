@@ -1,5 +1,7 @@
 package fr.iut.speedjumper.monde;
 
+import androidx.annotation.NonNull;
+
 import fr.iut.speedjumper.logique.Dimension;
 import fr.iut.speedjumper.logique.Position2D;
 
@@ -111,13 +113,18 @@ public class ArrierePlan {
 
     @Override
     public int hashCode() {
-        return 7 * zindex + position.hashCode();
+        final int premier = 31;
+        int resultat = 1;
+        resultat = premier * resultat + ((position == null) ? 0 : position.hashCode());
+        resultat = premier * resultat + zindex ^ (zindex >>> 16);
+        return resultat;
     }
 
     /**
      * retourne une chaine pour afficher le contenu des données de l'objet
      * @return
      */
+    @NonNull
     @Override
     public String toString() {
         return "[" + zindex + "] " + vitesseDefilement + "v, " + position.toString()

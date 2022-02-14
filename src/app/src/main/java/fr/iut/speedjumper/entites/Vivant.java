@@ -1,5 +1,7 @@
 package fr.iut.speedjumper.entites;
 
+import androidx.annotation.NonNull;
+
 import java.util.Objects;
 
 import fr.iut.speedjumper.comportement.Comportement;
@@ -16,41 +18,18 @@ public abstract class Vivant extends Entite {
     private final int pointsDeViesInitiaux;
     private int pointsDeVie;
     private int degats;
-    private Direction direction;
 
-    /**
-     * Constructeur de cette classe. Initialise les parametre necessaire
-     * @param position position 2D de l'entite vivante
-     * @param collision collision de cette entite
-     * @param dimension dimension de cette entite
-     * @param comportement comportement de l'entite
-     * @param velocite vitesse de l'entite
-     * @param degats degat  de l'entite
-     * @param pointsDeVie nombre de point de vie de l'entite
-     * @throws IllegalArgumentException
-     */
-    public Vivant(Position2D position, Rectangle collision, Dimension dimension, Comportement comportement,
-                  double velocite, int degats, int pointsDeVie) throws IllegalArgumentException {
-        super(position, collision, dimension, comportement, velocite);
+    public Vivant(Position2D position, Rectangle collision, Dimension dimension, double velocite,
+                  int degats, int pointsDeVie) throws IllegalArgumentException {
+        super(position, collision, dimension, velocite);
         this.pointsDeVie = pointsDeVie <= 0 ? POINTS_DE_VIE_PAR_DEFAUT : pointsDeVie;
         pointsDeViesInitiaux = pointsDeVie;
         this.degats = degats;
-        direction = Direction.DROITE;
     }
 
-    /**
-     * Autre constructeur de la classe
-     * @param position position 2D de l'entite vivante
-     * @param collision collision de cette entite
-     * @param dimension dimension de cette entite
-     * @param comportement comportement de l'entite
-     * @param velocite vitesse de l'entite
-     * @param degats degat  de l'entite
-     * @throws IllegalArgumentException
-     */
-    public Vivant(Position2D position, Rectangle collision, Dimension dimension, Comportement comportement,
-                  double velocite, int degats) throws IllegalArgumentException {
-        this(position, collision, dimension, comportement, velocite, degats, POINTS_DE_VIE_PAR_DEFAUT);
+    public Vivant(Position2D position, Rectangle collision, Dimension dimension, double velocite,
+                  int degats) throws IllegalArgumentException {
+        this(position, collision, dimension, velocite, degats, POINTS_DE_VIE_PAR_DEFAUT);
     }
 
     /**
@@ -67,22 +46,6 @@ public abstract class Vivant extends Entite {
      */
     public void setPointsDeVie(int pointsDeVie) {
         this.pointsDeVie = pointsDeVie;
-    }
-
-    /**
-     * retourne la direction
-     * @return
-     */
-    public Direction getDirection() {
-        return direction;
-    }
-
-    /**
-     * modifie la direction
-     * @param direction nouvelle direction
-     */
-    public void setDirection(Direction direction) {
-        this.direction = direction;
     }
 
     /**
@@ -111,22 +74,26 @@ public abstract class Vivant extends Entite {
     }
 
     public boolean equals(Vivant vivant) {
-        return pointsDeVie == vivant.getPointsDeVie()
-                && direction == vivant.getDirection()
+        return super.equals(vivant)
                 && degats == vivant.getDegats()
-                && super.equals(vivant);
+                && pointsDeViesInitiaux == vivant.getPointsDeViesInitiaux();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), pointsDeVie, direction, degats);
+        final int premier = 31;
+        int resultat = 1;
+        resultat = premier * resultat + super.hashCode();
+        resultat = premier * resultat + degats ^ (degats >>> 16);
+        resultat = premier * resultat + pointsDeViesInitiaux ^ (pointsDeViesInitiaux >>> 16);
+        return resultat;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return super.toString()
                 + "\n" + pointsDeVie + "\u2764"
-                + "\n" + degats + "\u2764 degats, "
-                + "\nDirection : " + direction;
+                + "\n" + degats + "\u2764 degats";
     }
 }

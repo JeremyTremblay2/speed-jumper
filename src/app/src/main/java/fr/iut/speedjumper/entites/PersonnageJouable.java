@@ -1,5 +1,8 @@
 package fr.iut.speedjumper.entites;
 
+import androidx.annotation.NonNull;
+
+import fr.iut.speedjumper.actions.collisionneurs.VisiteurCollisions;
 import fr.iut.speedjumper.comportement.Comportement;
 import fr.iut.speedjumper.logique.Dimension;
 import fr.iut.speedjumper.logique.Position2D;
@@ -12,44 +15,38 @@ import fr.iut.speedjumper.logique.Score;
 public class PersonnageJouable extends Vivant {
     private Score score;
 
-    /**
-     * Constructeur de la classe personnageJouable
-     * @param position position du personnage
-     * @param collision rectangle de colision du personnage
-     * @param dimension dimension du personnage
-     * @param comportement comportement du personnage
-     * @param velocite valocite du personnage
-     * @param degats degat du personnage
-     * @param pointsDeVie pv du personnage
-     * @throws IllegalArgumentException
-     */
-    public PersonnageJouable(Position2D position, Rectangle collision, Dimension dimension, Comportement comportement,
+    public PersonnageJouable(Position2D position, Rectangle collision, Dimension dimension,
                              double velocite, int degats, int pointsDeVie) throws IllegalArgumentException {
-        super(position, collision, dimension, comportement, velocite, degats, pointsDeVie);
-        score = new Score();
+        super(position, collision, dimension, velocite, degats, pointsDeVie);
     }
 
-    /**
-     * Autre constructeur du personnage
-     * @param position position du personnage
-     * @param collision rectangle de colision du personnage
-     * @param dimension dimension du personnage
-     * @param comportement comportement du personnage
-     * @param velocite valocite du personnage
-     * @param degats degat du personnage
-     * @throws IllegalArgumentException
-     */
-    public PersonnageJouable(Position2D position, Rectangle collision, Dimension dimension, Comportement comportement,
+    public PersonnageJouable(Position2D position, Rectangle collision, Dimension dimension,
                              double velocite, int degats) throws IllegalArgumentException {
-        super(position, collision, dimension, comportement, velocite, degats);
+        super(position, collision, dimension, velocite, degats);
     }
 
-    /**
-     * retourne le score du personnage
-     * @return
-     */
     public Score getScore() {
         return score;
+    }
+
+    @Override
+    public void miseAJour(double temps) {
+        //Ne fait rien ici.
+    }
+
+    @Override
+    public void accepte(VisiteurCollisions visiteur, ObjetInteractif objet) {
+        visiteur.visite(this, objet);
+    }
+
+    @Override
+    public void accepte(VisiteurCollisions visiteur, PersonnageJouable joueur) {
+        visiteur.visite(this, joueur);
+    }
+
+    @Override
+    public void accepte(VisiteurCollisions visiteur, Ennemi ennemi) {
+        visiteur.visite(this, ennemi);
     }
 
     @Override
@@ -62,14 +59,19 @@ public class PersonnageJouable extends Vivant {
 
     public boolean equals(PersonnageJouable personnageJouable) {
         return super.equals(personnageJouable)
-                && score == personnageJouable.getScore();
+                && score.equals(personnageJouable.getScore());
     }
 
     @Override
     public int hashCode() {
-        return super.hashCode() + score.hashCode();
+        final int premier = 31;
+        int resultat = 1;
+        resultat = premier * resultat + super.hashCode();
+        resultat = premier * resultat + ((score == null) ? 0 : score.hashCode());
+        return resultat;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return super.toString() + ", " + score;

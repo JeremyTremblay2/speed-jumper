@@ -1,5 +1,6 @@
-package fr.iut.speedjumper.actions;
+package fr.iut.speedjumper.actions.deplaceurs;
 
+import fr.iut.speedjumper.actions.collisionneurs.CollisionneurCarte;
 import fr.iut.speedjumper.entites.Entite;
 import fr.iut.speedjumper.jeu.BoucleDeJeu;
 import fr.iut.speedjumper.logique.Direction;
@@ -82,8 +83,8 @@ public class Deplaceur {
                 entite.getCollision().getDimension());
 
         if (nouvellePosition.getX() >= 0 && nouvellePosition.getY() >= 0
-                && nouvellePosition.getX() <= carteCourante.getDimension().getLargeur() * carteCourante.getDimensionTuiles().getLargeur()
-                && nouvellePosition.getY() <= carteCourante.getDimension().getHauteur() * carteCourante.getDimensionTuiles().getHauteur()) {
+                && nouvellePosition.getX() <= carteCourante.getDimensionCarte().getLargeur() * carteCourante.getDimensionTuiles().getLargeur()
+                && nouvellePosition.getY() <= carteCourante.getDimensionCarte().getHauteur() * carteCourante.getDimensionTuiles().getHauteur()) {
             if (!collisionneur.collisionne(nouvelleCollision, carteCourante)) {
                 entite.setPosition(nouvellePosition);
                 detectionVide(entite);

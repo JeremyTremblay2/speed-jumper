@@ -1,5 +1,7 @@
 package fr.iut.speedjumper.logique;
 
+import androidx.annotation.NonNull;
+
 import java.util.Objects;
 
 /**
@@ -68,9 +70,14 @@ public class Dimension {
 
     @Override
     public int hashCode() {
-        return Objects.hash(largeur, hauteur);
+        final int premier = 31;
+        int resultat = 1;
+        resultat = premier * resultat + Double.valueOf(largeur).hashCode();
+        resultat = premier * resultat + Double.valueOf(hauteur).hashCode();
+        return resultat;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return largeur + "x" + hauteur;

@@ -1,6 +1,6 @@
 package fr.iut.speedjumper.logique;
 
-import java.util.Objects;
+import androidx.annotation.NonNull;
 
 /**
  * Cette classe est le modele  pour l'action Attaque
@@ -73,9 +73,15 @@ public class Attaque {
 
     @Override
     public int hashCode() {
-        return Objects.hash(collision, duree, degats);
+        final int premier = 31;
+        int resultat = 1;
+        resultat = premier * resultat + ((collision == null) ? 0 : collision.hashCode());
+        resultat = premier * resultat + Float.valueOf(duree).hashCode();
+        resultat = premier * resultat + degats ^ (degats >>> 16);
+        return resultat;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return collision.toString() + ", " + degats + "\u2764 " + duree + "s";

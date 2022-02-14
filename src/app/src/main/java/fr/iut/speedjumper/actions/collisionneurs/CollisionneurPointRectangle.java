@@ -1,4 +1,4 @@
-package fr.iut.speedjumper.actions;
+package fr.iut.speedjumper.actions.collisionneurs;
 
 import fr.iut.speedjumper.logique.Position2D;
 import fr.iut.speedjumper.logique.Rectangle;

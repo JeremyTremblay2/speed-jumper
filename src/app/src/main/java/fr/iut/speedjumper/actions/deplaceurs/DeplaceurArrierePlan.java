@@ -1,4 +1,4 @@
-package fr.iut.speedjumper.actions;
+package fr.iut.speedjumper.actions.deplaceurs;
 
 import fr.iut.speedjumper.logique.Direction;
 import fr.iut.speedjumper.logique.Position2D;

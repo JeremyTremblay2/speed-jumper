@@ -1,8 +1,6 @@
 package fr.iut.speedjumper.logique;
 
-import fr.iut.speedjumper.entites.Piece;
-
-import java.util.Objects;
+import androidx.annotation.NonNull;
 
 /**
  * Classe du score d'un joueur
@@ -45,12 +43,11 @@ public class Score implements Comparable<Score> {
         return pseudo;
     }
 
-    /**
-     * Methode pour augmenter le score d'un joueur par rapport aux pièces
-     * @param piece valeur du score a rajouter
-     */
-    public void augmenterScore(Piece piece) {
-        score += piece.getValeur();
+    public void changerScore(int valeur) {
+        score += valeur;
+        if (score < 0) {
+            score = 0;
+        }
     }
 
     /**
@@ -76,9 +73,14 @@ public class Score implements Comparable<Score> {
 
     @Override
     public int hashCode() {
-        return Objects.hash(score);
+        final int premier = 31;
+        int resultat = 1;
+        resultat = premier * resultat + ((pseudo == null) ? 0 : pseudo.hashCode());
+        resultat = premier * resultat + score ^ (score >>> 16);
+        return resultat;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return pseudo + " : " + score + " points.";

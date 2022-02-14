@@ -1,4 +1,4 @@
-package fr.iut.speedjumper.actions;
+package fr.iut.speedjumper.actions.collisionneurs;
 
 import fr.iut.speedjumper.logique.Rectangle;
 import fr.iut.speedjumper.monde.Carte2D;
@@ -39,15 +39,15 @@ public class CollisionneurCarte {
 
         Rectangle collisionTuileRelative, collisionTuileAbsolue;
 
-        double largeurCarte = carte.getDimension().getLargeur();
-        double hauteurCarte = carte.getDimension().getHauteur();
+        double largeurCarte = carte.getDimensionCarte().getLargeur();
+        double hauteurCarte = carte.getDimensionCarte().getHauteur();
 
         if (coinInferieur >= hauteurCarte || coinInferieur < 0
                 || coinSuperieur >= hauteurCarte || coinSuperieur < 0
                 || coinDroite >= largeurCarte || coinDroite < 0
                 || coinGauche >= largeurCarte || coinGauche < 0) {
             System.out.println("COLLISION EXTERIEUR MAP");
-            System.out.println(carte.getDimension());
+            System.out.println(carte.getDimensionCarte());
             return true;
         }
 

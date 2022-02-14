@@ -30,10 +30,10 @@ public class CameraCarteTuiles extends Camera2D {
         if (carte == null) {
             throw new IllegalArgumentException("La carte donnée à la caméra est nulle.");
         }
-        if (carte.getDimension().getLargeur() < zoneVisuelle.getLargeur()
-                || carte.getDimension().getHauteur() < zoneVisuelle.getHauteur()) {
+        if (carte.getDimensionCarte().getLargeur() < zoneVisuelle.getLargeur()
+                || carte.getDimensionCarte().getHauteur() < zoneVisuelle.getHauteur()) {
             throw new IllegalArgumentException("La zone visuelle de la caméra (" + zoneVisuelle + ") ne peut pas "
-                    + "être plus grande que les dimensions de la carte : " + carte.getDimension());
+                    + "être plus grande que les dimensions de la carte : " + carte.getDimensionCarte());
         }
         vision = new Tuile[(int) zoneVisuelle.getHauteur()][(int) zoneVisuelle.getLargeur()];
         changeCarte(carte);
@@ -71,13 +71,13 @@ public class CameraCarteTuiles extends Camera2D {
      * @throws IllegalArgumentException
      */
     public void changeCarte(Carte2D carte) throws IllegalArgumentException {
-        if (carte == null || carte.getDimension().getLargeur() == 0) {
+        if (carte == null || carte.getDimensionCarte().getLargeur() == 0) {
             throw new IllegalArgumentException("La carte passée en paramètre de la caméra ne peut pas être nulle ou vide.");
         }
         carteCourante = carte;
 
-        largeurCarte = carteCourante.getDimension().getLargeur();
-        hauteurCarte = carteCourante.getDimension().getHauteur();
+        largeurCarte = carteCourante.getDimensionCarte().getLargeur();
+        hauteurCarte = carteCourante.getDimensionCarte().getHauteur();
         largeurTuile = carteCourante.getDimensionTuiles().getLargeur();
         hauteurTuile = carteCourante.getDimensionTuiles().getHauteur();
         miseAJour();

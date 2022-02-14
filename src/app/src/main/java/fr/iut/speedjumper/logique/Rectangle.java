@@ -1,5 +1,7 @@
 package fr.iut.speedjumper.logique;
 
+import androidx.annotation.NonNull;
+
 import java.util.Objects;
 
 /**
@@ -70,27 +72,11 @@ public class Rectangle {
     }
 
     /**
-     * setter de la position du rectangle
-     * @param position position 2D
-     */
-    private void setPosition(Position2D position) {
-        this.position = position;
-    }
-
-    /**
      * getter de la dimension du rectangle
      * @return dimension
      */
     public Dimension getDimension() {
         return dimension;
-    }
-
-    /**
-     * setter de la dimension du rectangle
-     * @param dimension dimension du rectangle
-     */
-    private void setDimension(Dimension dimension) {
-        this.dimension = dimension;
     }
 
     @Override
@@ -108,9 +94,14 @@ public class Rectangle {
 
     @Override
     public int hashCode() {
-        return Objects.hash(position, dimension);
+        final int premier = 31;
+        int resultat = 1;
+        resultat = premier * resultat + ((position == null) ? 0 : position.hashCode());
+        resultat = premier * resultat + ((dimension == null) ? 0 : dimension.hashCode());
+        return resultat;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return position.toString() + " " + dimension.toString();

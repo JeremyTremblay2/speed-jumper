@@ -1,5 +1,6 @@
-package fr.iut.speedjumper.actions;
+package fr.iut.speedjumper.actions.deplaceurs;
 
+import fr.iut.speedjumper.actions.Simulation;
 import fr.iut.speedjumper.entites.Entite;
 import fr.iut.speedjumper.logique.Direction;
 import fr.iut.speedjumper.monde.Carte2D;

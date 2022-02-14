@@ -1,5 +1,7 @@
 package fr.iut.speedjumper.monde;
 
+import androidx.annotation.NonNull;
+
 import fr.iut.speedjumper.logique.Dimension;
 import fr.iut.speedjumper.logique.Rectangle;
 
@@ -67,14 +69,6 @@ public class Tuile implements Comparable<Tuile> {
     }
 
     /**
-     * retourne le numero de la tuile
-     * @return numero de la tuile
-     */
-    public static int getNombreTuiles() {
-        return nombreTuiles;
-    }
-
-    /**
      * Methode pour comparer deux tuiles entre elles
      * @param o objet ici une tuile
      * @return retourne un boolean en fonction de la correspondance entre les tuiles
@@ -102,13 +96,17 @@ public class Tuile implements Comparable<Tuile> {
      */
     @Override
     public int hashCode() {
-        return 7 * idTuile;
+        final int premier = 31;
+        int resultat = 1;
+        resultat = premier * resultat + idTuile ^ (idTuile >>> 16);
+        return resultat;
     }
 
     /**
      * Affiche les données d'une tuile
      * @return
      */
+    @NonNull
     @Override
     public String toString() {
         return "[" + idTuile + "]" + collision + " " + dimension.toString();

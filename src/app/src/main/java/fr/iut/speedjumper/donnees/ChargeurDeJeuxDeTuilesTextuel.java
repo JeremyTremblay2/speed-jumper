@@ -1,14 +1,14 @@
 package fr.iut.speedjumper.donnees;
 
-import com.jeremyantoine.speedjumper.logique.Dimension;
-import com.jeremyantoine.speedjumper.logique.Rectangle;
-import com.jeremyantoine.speedjumper.monde.Tuile;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import fr.iut.speedjumper.logique.Dimension;
+import fr.iut.speedjumper.logique.Rectangle;
+import fr.iut.speedjumper.monde.Tuile;
 
 
 /**

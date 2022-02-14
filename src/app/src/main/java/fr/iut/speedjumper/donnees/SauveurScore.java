@@ -1,8 +1,8 @@
 package fr.iut.speedjumper.donnees;
 
-import com.jeremyantoine.speedjumper.monde.Niveau;
-
 import java.util.List;
+
+import fr.iut.speedjumper.monde.Niveau;
 
 /**
  * Interface permettant de sauvegarder les scores

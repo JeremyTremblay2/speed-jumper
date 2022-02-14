@@ -1,6 +1,6 @@
 package fr.iut.speedjumper.entrees;
 
-import fr.iut.speedjumper.actions.AdaptateurDeplaceur;
+import fr.iut.speedjumper.actions.deplaceurs.AdaptateurDeplaceur;
 import fr.iut.speedjumper.entites.Entite;
 import fr.iut.speedjumper.logique.Direction;
 import fr.iut.speedjumper.monde.Niveau;

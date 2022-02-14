@@ -1,13 +1,13 @@
 package fr.iut.speedjumper.donnees;
 
-import com.jeremyantoine.speedjumper.utilitaire.InvalidFormatException;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import fr.iut.speedjumper.utilitaire.InvalidFormatException;
 
 /**
  * Classe permettant de charger depuis un fichier CSV des tuiles

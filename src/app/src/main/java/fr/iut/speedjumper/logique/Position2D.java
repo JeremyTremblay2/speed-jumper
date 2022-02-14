@@ -1,5 +1,7 @@
 package fr.iut.speedjumper.logique;
 
+import androidx.annotation.NonNull;
+
 import java.util.Objects;
 
 /**
@@ -27,6 +29,11 @@ public class Position2D {
         return y;
     }
 
+    public void ajouterPosition(Position2D position) {
+        x += position.x;
+        y += position.y;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -42,9 +49,14 @@ public class Position2D {
 
     @Override
     public int hashCode() {
-        return 7 * Objects.hash(x, y);
+        final int premier = 31;
+        int resultat = 1;
+        resultat = premier * resultat + Double.valueOf(x).hashCode();
+        resultat = premier * resultat + Double.valueOf(y).hashCode();
+        return resultat;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "{" + x + "; " + y + "}";

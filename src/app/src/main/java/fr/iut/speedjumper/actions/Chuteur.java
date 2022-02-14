@@ -1,5 +1,6 @@
 package fr.iut.speedjumper.actions;
 
+import fr.iut.speedjumper.actions.collisionneurs.CollisionneurCarte;
 import fr.iut.speedjumper.entites.Entite;
 import fr.iut.speedjumper.jeu.BoucleDeJeu;
 import fr.iut.speedjumper.logique.Position2D;

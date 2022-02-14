@@ -1,12 +1,12 @@
 package fr.iut.speedjumper.donnees;
 
-import com.jeremyantoine.speedjumper.logique.Score;
-import com.jeremyantoine.speedjumper.monde.Niveau;
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
+
+import fr.iut.speedjumper.logique.Score;
+import fr.iut.speedjumper.monde.Niveau;
 
 /**
  * classe pour sauvegarder les scores
@@ -20,16 +20,19 @@ public class SauveurScoreTexte implements SauveurScore {
      */
     @Override
     public void sauvegarde(List<Niveau> lesNiveaux, String chemin) {
-        try (FileWriter writer = new FileWriter(chemin)) {
-            BufferedWriter buffer = new BufferedWriter(writer);
-            for(Niveau niv : lesNiveaux){
-                buffer.write("N : " + niv.getNumeroNiveau());
-                for(Score score : niv.lesScoresProperty()){
+        try (FileWriter ecriveur = new FileWriter(chemin)) {
+            BufferedWriter buffer = new BufferedWriter(ecriveur);
+            for(Niveau niveau : lesNiveaux){
+                buffer.write("N : " + niveau.getNumeroNiveau());
+                for(Score score : niveau.getLesScores()){
                     buffer.write(score.getPseudo() + " : " + score.getScore());
                 }
             }
         }
         catch (IOException e) {
+            e.printStackTrace();
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
     }

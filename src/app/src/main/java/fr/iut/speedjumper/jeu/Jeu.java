@@ -59,6 +59,6 @@ public class Jeu implements Observateur {
     }
 
     @Override
-    public void miseAjour() {
+    public void miseAJour() {
     }
 }

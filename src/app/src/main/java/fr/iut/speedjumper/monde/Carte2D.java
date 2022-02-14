@@ -1,5 +1,10 @@
 package fr.iut.speedjumper.monde;
 
+import androidx.annotation.NonNull;
+
+import java.util.Arrays;
+import java.util.Collections;
+
 import fr.iut.speedjumper.logique.Dimension;
 
 /**
@@ -8,9 +13,9 @@ import fr.iut.speedjumper.logique.Dimension;
 public class Carte2D {
     private static int nombreCarte = 0;
     private final int idCarte;
-    private final Dimension dimensionTuiles;
-    private final Dimension dimension;
-    private final Tuile[][] lesTuiles;
+    private Dimension dimensionTuiles;
+    private Dimension dimensionCarte;
+    private Tuile[][] lesTuiles;
 
     /**
      * Constructeur de la carte
@@ -28,7 +33,7 @@ public class Carte2D {
         this.dimensionTuiles = dimensionTuiles;
         verificationDimensionsTuiles(tuiles);
         lesTuiles = tuiles;
-        this.dimension = new Dimension(lesTuiles[0].length, lesTuiles.length);
+        this.dimensionCarte = new Dimension(lesTuiles[0].length, lesTuiles.length);
         idCarte = nombreCarte;
         nombreCarte++;
     }
@@ -37,8 +42,8 @@ public class Carte2D {
      * retourne la dimension des tuiles
      * @return
      */
-    public Dimension getDimension() {
-        return dimension;
+    public Dimension getDimensionCarte() {
+        return dimensionCarte;
     }
 
     /**
@@ -94,22 +99,26 @@ public class Carte2D {
 
     @Override
     public int hashCode() {
-        return 7 * idCarte;
+        final int premier = 31;
+        int resultat = 1;
+        resultat = premier * resultat + idCarte ^ (idCarte >>> 16);
+        return resultat;
     }
 
     /**
      * Affiche les données de la classe
      * @return
      */
+    @NonNull
     @Override
     public String toString() {
-        double largeur = dimension.getLargeur();
-        double hauteur = dimension.getHauteur();
+        double largeur = dimensionCarte.getLargeur();
+        double hauteur = dimensionCarte.getHauteur();
 
         StringBuilder chaine = new StringBuilder("[");
         chaine.append(idCarte);
         chaine.append("] ");
-        chaine.append(dimension);
+        chaine.append(dimensionCarte);
         chaine.append(" : \n");
 
         for (int x = 0; x < hauteur; x++) {

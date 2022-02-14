@@ -65,7 +65,7 @@ public class TableauJeu {
     public void setNiveauCourant(int niveau) {
         niveauCourant = lesNiveaux.get(niveau);
         joueur.setPointsDeVie(joueur.getPointsDeViesInitiaux());
-        joueur.setPosition(niveauCourant.getPointsDepart());
+        joueur.setPosition(niveauCourant.getPointDepart());
     }
 
     /**

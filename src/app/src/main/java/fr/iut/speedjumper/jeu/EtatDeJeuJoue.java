@@ -5,8 +5,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import fr.iut.speedjumper.actions.Chuteur;
-import fr.iut.speedjumper.actions.CollisionneurAABB;
-import fr.iut.speedjumper.actions.CollisionneurPointRectangle;
+import fr.iut.speedjumper.actions.collisionneurs.CollisionneurAABB;
+import fr.iut.speedjumper.actions.collisionneurs.CollisionneurPointRectangle;
 import fr.iut.speedjumper.entites.Entite;
 import fr.iut.speedjumper.entites.Vivant;
 import fr.iut.speedjumper.entrees.Commande;
@@ -84,7 +84,7 @@ public class EtatDeJeuJoue extends EtatDeJeu {
         new Thread(chuteur).start();
 
         double positionPersonnageY = joueur.getPosition().getY() / niveauCourant.getCarte().getDimensionTuiles().getHauteur();
-        if (positionPersonnageY >= niveauCourant.getCarte().getDimension().getHauteur() - 1) {
+        if (positionPersonnageY >= niveauCourant.getCarte().getDimensionCarte().getHauteur() - 1) {
             joueur.setPointsDeVie(0);
         }
     }
