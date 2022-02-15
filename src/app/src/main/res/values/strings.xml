@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Speed Jumper</string>
+    <string name="jouer">Jouer</string>
+    <string name="quitter">Quitter</string>
+    <string name="nom_projet">Speed Jumper</string>
 </resources>

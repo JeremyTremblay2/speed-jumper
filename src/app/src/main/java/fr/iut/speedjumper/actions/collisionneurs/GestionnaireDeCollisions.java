@@ -20,9 +20,7 @@ public class GestionnaireDeCollisions implements ObservateurEntite {
         }
         this.tableauJeu = tableauJeu;
         this.visiteur = visiteur;
-        tableauJeu.getNiveauCourant().attacher(this);
-        lesEntites.addAll(tableauJeu.getNiveauCourant().getLesEntites());
-        lesEntites.add(tableauJeu.getJoueur());
+        initialisation();
     }
 
     public void initialisation() {

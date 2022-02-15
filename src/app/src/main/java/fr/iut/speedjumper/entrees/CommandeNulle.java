@@ -13,7 +13,7 @@ public class CommandeNulle implements Commande {
      * @param temps
      */
     @Override
-    public void execute(Entite entite, float temps) {
+    public void execute(Entite entite, double temps) {
         //Ne fait rien
     }
 }

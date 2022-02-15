@@ -3,6 +3,7 @@ package fr.iut.speedjumper.entrees;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.iut.speedjumper.jeu.TableauJeu;
 import fr.iut.speedjumper.monde.Niveau;
 
 /**
@@ -12,21 +13,17 @@ public abstract class GestionnaireActionUtilisateur {
     protected RecuperateurDeTouches recuperateurDeTouches;
     protected List<Touche> lesTouches;
     protected List<Commande> lesCommandes;
+    protected TableauJeu tableauJeu;
     protected boolean pause;
-    protected Niveau niveauCourant;
 
-    public GestionnaireActionUtilisateur(RecuperateurDeTouches recuperateur, Niveau niveau) {
-        if (niveau == null) {
-            throw new IllegalArgumentException("Le niveau passé en paramètre ne peut pas être null.");
+    public GestionnaireActionUtilisateur(RecuperateurDeTouches recuperateur, TableauJeu tableauJeu)
+            throws IllegalArgumentException {
+        if (tableauJeu == null) {
+            throw new IllegalArgumentException("Le tableau de jeu passé en paramètre ne peut pas être null.");
         }
-        niveauCourant = niveau;
+        this.tableauJeu = tableauJeu;
         recuperateurDeTouches = recuperateur;
         lesCommandes = new ArrayList<>();
-        pause = false;
-    }
-
-    public RecuperateurDeTouches getRecuperateurDeTouches() {
-        return recuperateurDeTouches;
     }
 
     public boolean isPause() {
@@ -37,8 +34,8 @@ public abstract class GestionnaireActionUtilisateur {
         this.pause = pause;
     }
 
-    public void setNiveauCourant(Niveau niveauCourant) {
-        this.niveauCourant = niveauCourant;
+    public RecuperateurDeTouches getRecuperateurDeTouches() {
+        return recuperateurDeTouches;
     }
 
     public abstract List<Commande> attribuerAction();

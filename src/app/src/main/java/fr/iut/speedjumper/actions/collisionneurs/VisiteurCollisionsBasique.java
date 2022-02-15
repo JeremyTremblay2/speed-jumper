@@ -18,32 +18,37 @@ public class VisiteurCollisionsBasique extends VisiteurCollisions {
 
     @Override
     public void visite(Ennemi ennemi1, Ennemi ennemi2) {
-
+        //Ne fait rien.
     }
 
     @Override
     public void visite(Ennemi ennemi, ObjetInteractif objet) {
-
+        //Ne fait rien.
     }
 
     @Override
     public void visite(Ennemi ennemi, PersonnageJouable joueur) {
-
+        int vie = joueur.getPointsDeVie() - ennemi.getDegats();
+        if (vie < 0) {
+            vie = 0;
+        }
+        joueur.setPointsDeVie(vie);
     }
 
     @Override
     public void visite(PersonnageJouable joueur, Ennemi ennemi) {
-
+        visite(ennemi, joueur);
     }
 
     @Override
     public void visite(PersonnageJouable joueur, ObjetInteractif objet) {
-
+        objet.appliquerEffets(joueur);
+        tableauJeu.getNiveauCourant().retirerEntite(objet);
     }
 
     @Override
     public void visite(PersonnageJouable joueur1, PersonnageJouable joueur2) {
-
+        //Ne fait rien.
     }
 
     @Override
@@ -53,7 +58,7 @@ public class VisiteurCollisionsBasique extends VisiteurCollisions {
 
     @Override
     public void visite(ObjetInteractif objet1, ObjetInteractif objet2) {
-
+        //Ne fait rien
     }
 
     @Override

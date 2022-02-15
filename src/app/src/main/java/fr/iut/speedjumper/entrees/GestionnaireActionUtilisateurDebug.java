@@ -2,6 +2,7 @@ package fr.iut.speedjumper.entrees;
 
 import java.util.List;
 
+import fr.iut.speedjumper.jeu.TableauJeu;
 import fr.iut.speedjumper.logique.Direction;
 import fr.iut.speedjumper.monde.Niveau;
 
@@ -13,25 +14,15 @@ public class GestionnaireActionUtilisateurDebug extends GestionnaireActionUtilis
     private Commande espace;
     private Commande aucuneAction;
 
-    public GestionnaireActionUtilisateurDebug(RecuperateurDeTouches recuperateur, Niveau niveau)
+    public GestionnaireActionUtilisateurDebug(RecuperateurDeTouches recuperateur, TableauJeu tableauJeu)
             throws IllegalArgumentException {
-        super(recuperateur, niveau);
-        flecheGauche = new CommandeDeplacement(Direction.GAUCHE, niveau);
-        flecheDroite = new CommandeDeplacement(Direction.DROITE, niveau);
-        flecheBas = new CommandeDeplacement(Direction.BAS, niveau);
-        flecheHaut = new CommandeDeplacement(Direction.HAUT, niveau);
-        espace = new CommandeSaut(niveau);
+        super(recuperateur, tableauJeu);
+        flecheGauche = new CommandeDeplacement(Direction.GAUCHE, tableauJeu);
+        flecheDroite = new CommandeDeplacement(Direction.DROITE, tableauJeu);
+        flecheBas = new CommandeDeplacement(Direction.BAS, tableauJeu);
+        flecheHaut = new CommandeDeplacement(Direction.HAUT, tableauJeu);
+        espace = new CommandeSaut(tableauJeu);
         aucuneAction = new CommandeNulle();
-    }
-
-    @Override
-    public void setNiveauCourant(Niveau niveauCourant) {
-        super.setNiveauCourant(niveauCourant);
-        flecheGauche = new CommandeDeplacement(Direction.GAUCHE, niveauCourant);
-        flecheDroite = new CommandeDeplacement(Direction.DROITE, niveauCourant);
-        flecheBas = new CommandeDeplacement(Direction.BAS, niveauCourant);
-        flecheHaut = new CommandeDeplacement(Direction.HAUT, niveauCourant);
-        espace = new CommandeSaut(niveauCourant);
     }
 
     @Override

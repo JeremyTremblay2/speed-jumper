@@ -3,6 +3,7 @@ package fr.iut.speedjumper.actions;
 import fr.iut.speedjumper.actions.collisionneurs.CollisionneurCarte;
 import fr.iut.speedjumper.entites.Entite;
 import fr.iut.speedjumper.jeu.BoucleDeJeu;
+import fr.iut.speedjumper.jeu.TableauJeu;
 import fr.iut.speedjumper.logique.Position2D;
 import fr.iut.speedjumper.logique.Rectangle;
 import fr.iut.speedjumper.monde.Carte2D;
@@ -15,7 +16,7 @@ public class Chuteur implements Simulation, Runnable {
     private static final float HAUTEUR_MAXIMALE_CHUTE = 200;
     private static final float HAUTEUR_CHUTE = 100;
     private static final float DUREE_CHUTE = 5.44f;
-    private Carte2D carteCourante;
+    private TableauJeu tableauJeu;
     private CollisionneurCarte collisionneur;
     private Entite entite;
 
@@ -24,12 +25,12 @@ public class Chuteur implements Simulation, Runnable {
      * @param carteCourante carte courrante
      * @throws IllegalArgumentException
      */
-    public Chuteur(Carte2D carteCourante) throws IllegalArgumentException {
-        if (carteCourante == null) {
-            throw new IllegalArgumentException("Impossible d'instancier un chuteur car la carte passée en paramètre "
-                    + "est nulle.");
+    public Chuteur(TableauJeu tableauJeu) throws IllegalArgumentException {
+        if (tableauJeu == null) {
+            throw new IllegalArgumentException("Impossible d'instancier un chuteur car le tableau de "
+                    + "jeu passé en paramètre est null.");
         }
-        this.carteCourante = carteCourante;
+        this.tableauJeu = tableauJeu;
         collisionneur = new CollisionneurCarte();
     }
 
@@ -70,7 +71,7 @@ public class Chuteur implements Simulation, Runnable {
                     entite.getPosition().getY() + entite.getCollision().getPosition().getY() + 2 * (position - positionPrecedente),
                     entite.getCollision().getDimension());
 
-            if (collisionneur.collisionne(collisionFuture, carteCourante)) {
+            if (collisionneur.collisionne(collisionFuture, tableauJeu.getNiveauCourant().getCarte())) {
                 entite.setChute(false);
                 entite.setSurSol(true);
                 return;

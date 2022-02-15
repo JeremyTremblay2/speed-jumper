@@ -1,6 +1,7 @@
 package fr.iut.speedjumper.jeu;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import fr.iut.speedjumper.comportement.ComportementNull;
@@ -31,12 +32,7 @@ public class TableauJeu {
     private Niveau niveauCourant;
     private Options options;
 
-    /**
-     * Constructeur du tableau de jeu
-     * Creer un nouveau niveau en chargeant des tuiles
-     * @param recuperateur recuperateur de touche pour les déplacements
-     */
-    public TableauJeu(RecuperateurDeTouches recuperateur) {
+    public TableauJeu() {
         gestionnaireDeRessources = new GestionnaireDeRessources(new AdaptateurChargeurDeCarteTiledCSV(","),
                 new ChargeurDeJeuxDeTuilesTextuel(), new ChargeurScoreTextuel());
         initialisation();
@@ -89,7 +85,7 @@ public class TableauJeu {
      * @return
      */
     public List<Niveau> getLesNiveaux() {
-        return lesNiveaux;
+        return Collections.unmodifiableList(lesNiveaux);
     }
 
     /**
@@ -98,6 +94,15 @@ public class TableauJeu {
      */
     public Options getOptions() {
         return options;
+    }
+
+    public void changerNiveau(int niveau) {
+        try {
+            niveauCourant = lesNiveaux.get(niveau);
+        }
+        catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -126,13 +131,14 @@ public class TableauJeu {
                     null,
                     lesScores.get(i) == null ? null : lesScores.get(i),
                     lesPointsDepart.get(i),
-                    lesPointsArrivee.get(i));
+                    lesPointsArrivee.get(i),
+                    300);
             lesNiveaux.add(niveau);
         }
 
         System.out.println(lesCartes.size());
 
-        ChargeurEnnemis chargeurEnnemis = new ChargeurEnnemisStub(lesNiveaux);
+        ChargeurEnnemis chargeurEnnemis = new ChargeurEnnemisStub(this);
         List<List<Entite>> lesEnnemis = chargeurEnnemis.charge(null);
         for (int i = 0; i < lesNiveaux.size(); i++) {
             lesNiveaux.get(i).ajouterEntites(lesEnnemis.get(i));
@@ -145,7 +151,6 @@ public class TableauJeu {
         joueur = new PersonnageJouable(new Position2D(0, 0),
                 new Rectangle(22, 12, 41, 112),
                 new Dimension(85, 128),
-                new ComportementNull(),
                 10,
                 4,
                 3);

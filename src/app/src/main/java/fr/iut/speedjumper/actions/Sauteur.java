@@ -3,9 +3,9 @@ package fr.iut.speedjumper.actions;
 import fr.iut.speedjumper.actions.collisionneurs.CollisionneurCarte;
 import fr.iut.speedjumper.entites.Entite;
 import fr.iut.speedjumper.jeu.BoucleDeJeu;
+import fr.iut.speedjumper.jeu.TableauJeu;
 import fr.iut.speedjumper.logique.Position2D;
 import fr.iut.speedjumper.logique.Rectangle;
-import fr.iut.speedjumper.monde.Carte2D;
 
 public class Sauteur implements Simulation, Runnable {
     private static final float DELTA = 1f / BoucleDeJeu.FPS_CIBLE;
@@ -13,28 +13,19 @@ public class Sauteur implements Simulation, Runnable {
     private static final float HAUTEUR_SAUT = 700;
     private static final float DUREE_SAUT = 0.64f;
     private CollisionneurCarte collisionneur;
-    private Carte2D carteCourante;
-    private double temps;
+    private TableauJeu tableauJeu;
     private Entite entite;
+    private double temps;
 
-    /**
-     * Constructeur de la classe
-     * @param carteCourante
-     * @throws IllegalArgumentException
-     */
-    public Sauteur(Carte2D carteCourante) throws IllegalArgumentException {
-        if (carteCourante == null) {
-            throw new IllegalArgumentException("La carte passée en paramètre ne peut pas être null.");
+    public Sauteur(TableauJeu tableauJeu) throws IllegalArgumentException {
+        if (tableauJeu == null) {
+            throw new IllegalArgumentException("Impossible d'instancier un sauteur car le tableau de "
+                    + "jeu passé en paramètre est null.");
         }
-        this.carteCourante = carteCourante;
+        this.tableauJeu = tableauJeu;
         collisionneur = new CollisionneurCarte();
     }
 
-    /**
-     * methode mettant a jour l'etat de jeu
-     * @param entite entite effectuant l'action
-     * @param temps le temps ou elle le fait
-     */
     @Override
     public void miseAJourEtatDeJeu(Entite entite, double temps) {
         this.entite = entite;
@@ -74,7 +65,7 @@ public class Sauteur implements Simulation, Runnable {
                     entite.getPosition().getY() + entite.getCollision().getPosition().getY() + (position - positionPrecedente),
                     entite.getCollision().getDimension());
 
-            if (collisionneur.collisionne(collisionFuture, carteCourante)) {
+            if (collisionneur.collisionne(collisionFuture, tableauJeu.getNiveauCourant().getCarte())) {
                 entite.setChute(true);
                 return;
             }

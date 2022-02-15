@@ -9,6 +9,7 @@ public class CollisionneurEntites {
             return false;
         }
 
+
         //ici
 
         return false;

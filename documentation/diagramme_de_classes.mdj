@@ -2064,18 +2064,18 @@
 												"$ref": "AAAAAAF+rJg042nyyV0="
 											},
 											"font": "Arial;13;0",
-											"left": 545.998046875,
+											"left": 546.72802734375,
 											"top": 205,
-											"width": 8.6708984375,
+											"width": 7.94091796875,
 											"height": 13,
 											"text": "E",
 											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 540.998046875,
+									"left": 541.72802734375,
 									"top": 200,
-									"width": 18.6708984375,
+									"width": 17.94091796875,
 									"height": 23
 								}
 							],
@@ -11545,9 +11545,9 @@
 										"$ref": "AAAAAAF++UQWJ749Vkw="
 									},
 									"font": "Arial;13;0",
-									"left": 903,
+									"left": 902,
 									"top": 389,
-									"width": 5.05908203125,
+									"width": 6.5,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 25,
@@ -42646,7 +42646,7 @@
 											"top": 305,
 											"width": 299.14599609375,
 											"height": 13,
-											"text": "+joue()",
+											"text": "+lance()",
 											"horizontalAlignment": 0
 										},
 										{
@@ -44379,7 +44379,7 @@
 									"_parent": {
 										"$ref": "AAAAAAF+1Kyvj8DcARM="
 									},
-									"name": "joue"
+									"name": "lance"
 								},
 								{
 									"_type": "UMLOperation",

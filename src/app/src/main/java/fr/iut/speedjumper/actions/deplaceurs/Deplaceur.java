@@ -3,6 +3,7 @@ package fr.iut.speedjumper.actions.deplaceurs;
 import fr.iut.speedjumper.actions.collisionneurs.CollisionneurCarte;
 import fr.iut.speedjumper.entites.Entite;
 import fr.iut.speedjumper.jeu.BoucleDeJeu;
+import fr.iut.speedjumper.jeu.TableauJeu;
 import fr.iut.speedjumper.logique.Direction;
 import fr.iut.speedjumper.logique.Position2D;
 import fr.iut.speedjumper.logique.Rectangle;
@@ -14,19 +15,14 @@ import fr.iut.speedjumper.monde.Carte2D;
 public class Deplaceur {
     private static final float VELOCITE_DANS_LES_AIRS = 1.4f;
     private static final double NOMBRE_PIXEL_VERIFICATION_VIDE = 4;
-    private CollisionneurCarte collisionneur;
-    private Carte2D carteCourante;
     private final double decalagePixelParMouvement;
+    private CollisionneurCarte collisionneur;
+    private TableauJeu tableauJeu;
 
-    /**
-     * Constructeur de la clase
-     * @param carte carte ou a lieu l'action
-     * @throws IllegalArgumentException
-     */
-    public Deplaceur(Carte2D carte) throws IllegalArgumentException {
-        carteCourante = carte;
+    public Deplaceur(TableauJeu tableauJeu) throws IllegalArgumentException {
+        this.tableauJeu = tableauJeu;
         collisionneur = new CollisionneurCarte();
-        decalagePixelParMouvement = carte.getDimensionTuiles().getLargeur() * 0.1;
+        decalagePixelParMouvement = tableauJeu.getNiveauCourant().getCarte().getDimensionTuiles().getLargeur() * 0.1;
     }
 
     /**
@@ -45,6 +41,7 @@ public class Deplaceur {
         }
 
         Position2D nouvellePosition = entite.getPosition();
+        Carte2D carteCourante = tableauJeu.getNiveauCourant().getCarte();
         double increment;
 
         if (entite.isSurSol()) {
@@ -102,7 +99,7 @@ public class Deplaceur {
 
         Rectangle nouvelleCollision = new Rectangle(positionBas, entite.getCollision().getDimension());
 
-        if (!collisionneur.collisionne(nouvelleCollision, carteCourante)) {
+        if (!collisionneur.collisionne(nouvelleCollision, tableauJeu.getNiveauCourant().getCarte())) {
             entite.setSurSol(false);
             entite.setChute(true);
         }

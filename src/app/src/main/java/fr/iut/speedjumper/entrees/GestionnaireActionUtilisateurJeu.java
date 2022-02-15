@@ -5,6 +5,7 @@ package fr.iut.speedjumper.entrees;
  */
 import java.util.List;
 
+import fr.iut.speedjumper.jeu.TableauJeu;
 import fr.iut.speedjumper.logique.Direction;
 import fr.iut.speedjumper.monde.Niveau;
 
@@ -14,37 +15,15 @@ public class GestionnaireActionUtilisateurJeu extends GestionnaireActionUtilisat
     private Commande espace;
     private Commande aucuneAction;
 
-    /**
-     * constructeur de la classe
-     * @param recuperateur recuperateur de touche
-     * @param niveau niveai en cour pour les actions
-     * @throws IllegalArgumentException
-     */
-    public GestionnaireActionUtilisateurJeu(RecuperateurDeTouches recuperateur, Niveau niveau)
+    public GestionnaireActionUtilisateurJeu(RecuperateurDeTouches recuperateur, TableauJeu tableauJeu)
             throws IllegalArgumentException {
-        super(recuperateur, niveau);
-        if (niveau == null) {
-            throw new IllegalArgumentException("Le niveau passé en paramètre ne peut pas être null.");
-        }
-        niveauCourant = niveau;
-        flecheGauche = new CommandeDeplacement(Direction.GAUCHE, niveau);
-        flecheDroite = new CommandeDeplacement(Direction.DROITE, niveau);
-        espace = new CommandeSaut(niveau);
+        super(recuperateur, tableauJeu);
+        flecheGauche = new CommandeDeplacement(Direction.GAUCHE, tableauJeu);
+        flecheDroite = new CommandeDeplacement(Direction.DROITE, tableauJeu);
+        espace = new CommandeSaut(tableauJeu);
         aucuneAction = new CommandeNulle();
     }
 
-    @Override
-    public void setNiveauCourant(Niveau niveauCourant) {
-        super.setNiveauCourant(niveauCourant);
-        flecheGauche = new CommandeDeplacement(Direction.GAUCHE, niveauCourant);
-        flecheDroite = new CommandeDeplacement(Direction.DROITE, niveauCourant);
-        espace = new CommandeSaut(niveauCourant);
-    }
-
-    /**
-     * attribue un action en fonction de la touche pressée
-     * @return
-     */
     @Override
     public List<Commande> attribuerAction() {
         lesTouches = recuperateurDeTouches.detecte();

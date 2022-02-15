@@ -2,6 +2,7 @@ package fr.iut.speedjumper.actions.deplaceurs;
 
 import fr.iut.speedjumper.actions.Simulation;
 import fr.iut.speedjumper.entites.Entite;
+import fr.iut.speedjumper.jeu.TableauJeu;
 import fr.iut.speedjumper.logique.Direction;
 import fr.iut.speedjumper.monde.Carte2D;
 
@@ -11,17 +12,21 @@ import fr.iut.speedjumper.monde.Carte2D;
 public class AdaptateurDeplaceur implements Simulation {
     private Deplaceur deplaceur;
     private Direction direction;
-    private Carte2D carteCourante;
+    private TableauJeu tableauJeu;
 
     /**
      * constructeur de la classe
      * @param direction direction dans laquelle se deplacer
      * @param carteCourante carte ou se deplacer
      */
-    public AdaptateurDeplaceur(Direction direction, Carte2D carteCourante) {
+    public AdaptateurDeplaceur(Direction direction, TableauJeu tableauJeu) throws IllegalArgumentException {
+        if (tableauJeu == null) {
+            throw new IllegalArgumentException("Le tableau de jeu passé en paramètre ne peut pas "
+                    + "être null.");
+        }
         this.direction = direction;
-        this.carteCourante = carteCourante;
-        deplaceur = new Deplaceur(carteCourante);
+        this.tableauJeu = tableauJeu;
+        deplaceur = new Deplaceur(tableauJeu);
     }
 
     /**
@@ -38,22 +43,6 @@ public class AdaptateurDeplaceur implements Simulation {
      */
     public void setDirection(Direction direction) {
         this.direction = direction;
-    }
-
-    /**
-     * retourne la carte courante
-     * @return la carte courrante
-     */
-    public Carte2D getCarteCourante() {
-        return carteCourante;
-    }
-
-    /**
-     * set la carte courrante
-     * @param carteCourante la carte courrante
-     */
-    public void setCarteCourante(Carte2D carteCourante) {
-        this.carteCourante = carteCourante;
     }
 
     /**

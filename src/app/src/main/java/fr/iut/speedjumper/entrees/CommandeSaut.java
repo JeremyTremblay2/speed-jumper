@@ -2,6 +2,7 @@ package fr.iut.speedjumper.entrees;
 
 import fr.iut.speedjumper.actions.Sauteur;
 import fr.iut.speedjumper.entites.Entite;
+import fr.iut.speedjumper.jeu.TableauJeu;
 import fr.iut.speedjumper.monde.Niveau;
 
 /**
@@ -10,13 +11,8 @@ import fr.iut.speedjumper.monde.Niveau;
 public class CommandeSaut implements Commande {
     private Sauteur sauteur;
 
-    /**
-     * Constructeur de la classe
-     * @param niveau niveau courrant
-     * @throws IllegalArgumentException
-     */
-    public CommandeSaut(Niveau niveau) throws IllegalArgumentException {
-        sauteur = new Sauteur(niveau.getCarte());
+    public CommandeSaut(TableauJeu tableauJeu) throws IllegalArgumentException {
+        sauteur = new Sauteur(tableauJeu);
     }
 
     /**
@@ -25,7 +21,7 @@ public class CommandeSaut implements Commande {
      * @param temps temps dans la boucle
      */
     @Override
-    public void execute(Entite entite, float temps) {
+    public void execute(Entite entite, double temps) {
         sauteur.miseAJourEtatDeJeu(entite, temps);
         new Thread(sauteur).start();
     }
