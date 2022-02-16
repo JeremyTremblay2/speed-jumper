@@ -1,16 +1,23 @@
 package fr.iut.speedjumper;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class MyActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.accueil);
+    }
 
-        getAssets().open();
-
+    public void goToReglage(View view){
+        Intent intent = new Intent(this,ReglageActivity.class);
+        startActivity(intent);
     }
 }
+
+

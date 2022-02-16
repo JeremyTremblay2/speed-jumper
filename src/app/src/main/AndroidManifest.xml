@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="fr.iut.speedjumper">
+    package="fr.iut.jeremyguillaume.speedjumper">
 
     <application
         android:allowBackup="true"
@@ -8,6 +8,16 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.SpeedJumper" />
+        android:theme="@style/Theme.Speedjumper" >
+        <activity android:name=".MainActivity"
+            android:parentActivityName=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"></action>
+                <category android:name="android.intent.category.LAUNCHER"></category>
+            </intent-filter>
+        </activity>
+        <activity android:name=".ReglageActivity"/>
+    </application>
 
 </manifest>
