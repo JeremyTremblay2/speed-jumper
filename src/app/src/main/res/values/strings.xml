@@ -3,4 +3,11 @@
     <string name="jouer">Jouer</string>
     <string name="quitter">Quitter</string>
     <string name="nom_projet">Speed Jumper</string>
+    <string name="reglage">Reglage</string>
+    <string name="musique">Musique:</string>
+    <string name="son">Son</string>
+    <string name="valider">Valider</string>
+    <string name="normal">Normal</string>
+    <string name="speed">Speed</string>
+    <string name="ombre">Ombre</string>
 </resources>
