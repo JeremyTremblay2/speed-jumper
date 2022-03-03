@@ -12,7 +12,7 @@
         android:layout_marginTop="184dp"
         android:fontFamily="casual"
         android:text="@string/jouer"
-        android:onClick="naviguerVersFenetreJouer"
+        android:onClick="goToChoixNiveau"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"

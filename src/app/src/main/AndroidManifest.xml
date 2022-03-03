@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".MenuJouer"
+            android:screenOrientation="reverseLandscape"
             android:exported="true"/>
 
 

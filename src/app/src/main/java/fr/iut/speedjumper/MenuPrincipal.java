@@ -7,30 +7,44 @@ import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import fr.iut.speedjumper.R;
+import fr.iut.speedjumper.fragment.fragmentChoixDifficulte;
+import fr.iut.speedjumper.fragment.fragmentChoixNiveau;
 import fr.iut.speedjumper.fragment.fragmentMenu;
 import fr.iut.speedjumper.fragment.fragmentReglage;
 
 public class MenuPrincipal extends AppCompatActivity {
 
-    private int volumeSon;
-    private int volumeMusique;
+    private int volumeSon = 100;
+    private int volumeMusique = 100;
+    private String niveauChoisi;
+    private String difficulteChoisi;
 
     public int getVolumeMusique() {
         return volumeMusique;
     }
-
     public int getVolumeSon() {
         return volumeSon;
+    }
+    public String getNiveauChoisi() {
+        return niveauChoisi;
+    }
+    public String getDifficulteChoisi() {
+        return difficulteChoisi;
     }
 
     public void setVolumeMusique(int volumeMusique) {
         this.volumeMusique = volumeMusique;
     }
-
     public void setVolumeSon(int volumeSon) {
         this.volumeSon = volumeSon;
     }
+    public void setNiveauChoisi(String niveauChoisi) {
+        this.niveauChoisi = niveauChoisi;
+    }
+    public void setDifficulteChoisi(String difficulteChoisi) {
+        this.difficulteChoisi = difficulteChoisi;
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,10 +53,15 @@ public class MenuPrincipal extends AppCompatActivity {
                 .setReorderingAllowed(true)
                 .replace(R.id.fragmentMenu, fragmentMenu.class, null)
                 .commit();
-
     }
 
-    private void naviguerVersFenetreJouer(View view) {
+    public void goToJouer(View view) {
+        /*
+        List<Fragment> lFragennts =getSupportFragmentManager().getFragments();
+        Log.e("test", String.valueOf(lFragennts));
+        getSupportFragmentManager().beginTransaction()
+                .setReorderingAllowed(true)
+                .commit();*/
         Intent intent = new Intent(this, MenuJouer.class);
         startActivity(intent);
     }
@@ -57,6 +76,19 @@ public class MenuPrincipal extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction()
                 .setReorderingAllowed(true)
                 .replace(R.id.fragmentMenu, fragmentReglage.class, null)
+                .commit();
+    }
+
+    public void goToChoixNiveau(View view){
+        getSupportFragmentManager().beginTransaction()
+                .setReorderingAllowed(true)
+                .replace(R.id.fragmentMenu, fragmentChoixNiveau.class, null)
+                .commit();
+    }
+    public void goToChoixDifficulte(View view){
+        getSupportFragmentManager().beginTransaction()
+                .setReorderingAllowed(true)
+                .replace(R.id.fragmentMenu, fragmentChoixDifficulte.class, null)
                 .commit();
     }
 

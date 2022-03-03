@@ -1,7 +1,5 @@
 package fr.iut.speedjumper.jeu;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import fr.iut.speedjumper.actions.Chuteur;
@@ -10,7 +8,6 @@ import fr.iut.speedjumper.actions.collisionneurs.GestionnaireDeCollisions;
 import fr.iut.speedjumper.actions.collisionneurs.VisiteurCollisions;
 import fr.iut.speedjumper.actions.collisionneurs.VisiteurCollisionsBasique;
 import fr.iut.speedjumper.entites.Entite;
-import fr.iut.speedjumper.entites.Vivant;
 import fr.iut.speedjumper.entrees.Commande;
 import fr.iut.speedjumper.entrees.GestionnaireActionUtilisateur;
 import fr.iut.speedjumper.entrees.GestionnaireActionUtilisateurDebug;

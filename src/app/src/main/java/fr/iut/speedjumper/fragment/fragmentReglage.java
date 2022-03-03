@@ -18,8 +18,6 @@ import fr.iut.speedjumper.R;
 public class fragmentReglage extends Fragment {
     private MenuPrincipal activiteParente ;
 
-    private boolean imageDl;
-
     public fragmentReglage() {
         super(R.layout.fragment_reglage);
     }

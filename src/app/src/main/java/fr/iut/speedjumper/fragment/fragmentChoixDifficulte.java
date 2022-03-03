@@ -1,0 +1,56 @@
+package fr.iut.speedjumper.fragment;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+import fr.iut.speedjumper.MenuJouer;
+import fr.iut.speedjumper.MenuPrincipal;
+import fr.iut.speedjumper.R;
+
+public class fragmentChoixDifficulte extends Fragment {
+    private MenuPrincipal activiteParente ;
+    public fragmentChoixDifficulte() {
+        super(R.layout.fragment_choix_difficulte);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        activiteParente= (MenuPrincipal) getContext();
+
+        Button difficulteNormal =(Button) view.findViewById(R.id.difficulteNormal) ;
+        difficulteNormal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                activiteParente.setDifficulteChoisi((String) difficulteNormal.getText());
+                Intent intent = new Intent(activiteParente, MenuJouer.class);
+                startActivity(intent);
+            }
+        });
+        Button difficulteSpeed=(Button) view.findViewById(R.id.difficulteSpeed) ;
+        difficulteSpeed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                activiteParente.setDifficulteChoisi((String) difficulteSpeed.getText());
+                Intent intent = new Intent(activiteParente, MenuJouer.class);
+                startActivity(intent);
+            }
+        });
+        Button difficulteOmbre =(Button) view.findViewById(R.id.difficulteOmbre) ;
+        difficulteOmbre.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                activiteParente.setDifficulteChoisi((String) difficulteOmbre.getText());
+                Intent intent = new Intent(activiteParente, MenuJouer.class);
+                startActivity(intent);
+            }
+        });
+    }
+}
+
