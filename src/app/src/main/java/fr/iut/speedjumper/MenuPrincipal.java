@@ -56,12 +56,6 @@ public class MenuPrincipal extends AppCompatActivity {
     }
 
     public void goToJouer(View view) {
-        /*
-        List<Fragment> lFragennts =getSupportFragmentManager().getFragments();
-        Log.e("test", String.valueOf(lFragennts));
-        getSupportFragmentManager().beginTransaction()
-                .setReorderingAllowed(true)
-                .commit();*/
         Intent intent = new Intent(this, MenuJouer.class);
         startActivity(intent);
     }

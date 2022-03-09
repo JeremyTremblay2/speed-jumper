@@ -3,9 +3,13 @@ package fr.iut.speedjumper;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.OrientationEventListener;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class MenuJouer extends AppCompatActivity {
     OrientationEventListener orientationEventListener;
@@ -28,12 +32,23 @@ public class MenuJouer extends AppCompatActivity {
             }
         };
         orientationEventListener.enable();
+        ConstraintLayout layoutJeu =  (ConstraintLayout) findViewById(R.id.CsLayout);
+        layoutJeu.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                Log.d("test", "Clique recupere");
+            }
+        });
+
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         orientationEventListener.disable();
+        switch("coucou"){
+            case "coucou":
+                Log.d("ohgo","oenoenf");
+        }
     }
 
     @Override

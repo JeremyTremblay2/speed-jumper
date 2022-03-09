@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="152dp"
         android:layout_marginLeft="152dp"
-        android:layout_marginTop="148dp"
+        android:layout_marginTop="16dp"
         android:onClick="goToChoixDifficulte"
         android:text="@string/niveau_1"
         app:layout_constraintStart_toStartOf="parent"

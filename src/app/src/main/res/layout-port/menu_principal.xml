@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:ignore="MissingDefaultResource">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="410dp"
+        android:layout_height="481dp"
+        android:layout_marginBottom="376dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/icone" />
+
     <TextView
         android:id="@+id/nom_jeu"
         android:layout_width="wrap_content"
@@ -28,4 +37,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nom_jeu"
         app:layout_constraintVertical_bias="1.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

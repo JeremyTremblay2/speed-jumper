@@ -22,6 +22,7 @@ public class ChargeurScoreTextuel implements ChargeurScore {
      */
     @Override
     public List<List<Score>> charge(String chemin) {
+
         List<List<Score>> lesScores = new ArrayList<>();
 
         try (BufferedReader lecteur = new BufferedReader(new FileReader(chemin))) {
@@ -39,6 +40,26 @@ public class ChargeurScoreTextuel implements ChargeurScore {
                     scores.add(new Score(score[0], Integer.parseInt(score[1].trim())));
                 }
             }
+            lesScores.remove(0);
+            lesScores.add(scores);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        return lesScores;
+    }
+
+
+
+    public List<List<Score>> charge2(String chemin) {
+
+        List<List<Score>> lesScores = new ArrayList<>();
+
+        try (BufferedReader lecteur = new BufferedReader(new FileReader(chemin))) {
+            String ligne;
+            List<Score> scores = new ArrayList<>();
+
+
             lesScores.remove(0);
             lesScores.add(scores);
         }
