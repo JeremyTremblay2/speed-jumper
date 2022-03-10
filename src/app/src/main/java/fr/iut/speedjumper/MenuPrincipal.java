@@ -1,6 +1,7 @@
 package fr.iut.speedjumper;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 
@@ -88,6 +89,20 @@ public class MenuPrincipal extends AppCompatActivity {
 
     public void quitter(View view) {
         finish();
+    }
+
+    public void setEtudiantEnCours(String niveauChoisi) {
+        if (this.niveauChoisi != niveauChoisi) {
+            if (niveauChoisi != null){
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragmentMenu,fragmentChoixNiveau.class,null)
+                            .setReorderingAllowed(true)
+                            .addToBackStack("Liste des étudiants")
+                            .commit();
+            }
+        }
+        this.niveauChoisi = niveauChoisi;
+
     }
 
 
