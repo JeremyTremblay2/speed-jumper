@@ -1,21 +1,14 @@
-package fr.iut.speedjumper.fragment;
+package fr.iut.speedjumper.adaptateur;
 
-import static androidx.core.content.ContextCompat.startActivity;
-
-import android.content.Intent;
-import android.text.InputFilter;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import fr.iut.speedjumper.MenuJouer;
 import fr.iut.speedjumper.R;
 
 public class CustomAdapter extends RecyclerView.Adapter {

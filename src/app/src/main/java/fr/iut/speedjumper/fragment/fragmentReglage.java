@@ -44,6 +44,7 @@ public class fragmentReglage extends Fragment {
 
         SeekBar volumeSon=(SeekBar)view.findViewById(R.id.reglageSon);
         TextView affichageSon=(TextView) view.findViewById(R.id.valeurSon);
+
         volumeSon.setProgress(activiteParente.getVolumeSon());
         affichageSon.setText(String.valueOf(activiteParente.getVolumeSon()));
 

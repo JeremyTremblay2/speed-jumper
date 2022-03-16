@@ -1,7 +1,6 @@
 package fr.iut.speedjumper.fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -10,11 +9,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
+import fr.iut.speedjumper.adaptateur.CustomAdapter;
 import fr.iut.speedjumper.MenuPrincipal;
 import fr.iut.speedjumper.R;
 
