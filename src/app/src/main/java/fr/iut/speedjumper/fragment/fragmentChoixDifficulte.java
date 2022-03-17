@@ -33,8 +33,7 @@ public class fragmentChoixDifficulte extends Fragment {
             @Override
             public void onClick(View view) {
                 activiteParente.setDifficulteChoisi((String) difficulteNormal.getText());
-                Intent intent = new Intent(activiteParente, MenuJouer.class);
-                startActivity(intent);
+                activiteParente.goToJouer(view);
             }
         });
         Button difficulteSpeed=(Button) view.findViewById(R.id.difficulteSpeed) ;
@@ -42,8 +41,7 @@ public class fragmentChoixDifficulte extends Fragment {
             @Override
             public void onClick(View view) {
                 activiteParente.setDifficulteChoisi((String) difficulteSpeed.getText());
-                Intent intent = new Intent(activiteParente, MenuJouer.class);
-                startActivity(intent);
+                activiteParente.goToJouer(view);
             }
         });
         Button difficulteOmbre =(Button) view.findViewById(R.id.difficulteOmbre) ;
@@ -51,8 +49,7 @@ public class fragmentChoixDifficulte extends Fragment {
             @Override
             public void onClick(View view) {
                 activiteParente.setDifficulteChoisi((String) difficulteOmbre.getText());
-                Intent intent = new Intent(activiteParente, MenuJouer.class);
-                startActivity(intent);
+                activiteParente.goToJouer(view);
             }
         });
     }

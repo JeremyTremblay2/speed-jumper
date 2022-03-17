@@ -45,10 +45,6 @@ public class MenuJouer extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         orientationEventListener.disable();
-        switch("coucou"){
-            case "coucou":
-                Log.d("ohgo","oenoenf");
-        }
     }
 
     @Override

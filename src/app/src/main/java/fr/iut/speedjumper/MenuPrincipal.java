@@ -1,6 +1,7 @@
 package fr.iut.speedjumper;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -8,7 +9,6 @@ import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 
 import fr.iut.speedjumper.donnees.ChargeurReglage;
@@ -69,14 +69,21 @@ public class MenuPrincipal extends AppCompatActivity {
             String[] reglageTab = reglage.split("_");
             setVolumeMusique(Integer.parseInt(reglageTab[0]));
             setVolumeSon(Integer.parseInt(reglageTab[1]));
-            Log.e("test",reglageTab[0]);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+
         getSupportFragmentManager().beginTransaction()
                 .setReorderingAllowed(true)
                 .replace(R.id.fragmentMenu, fragmentMenu.class, null)
                 .commit();
+
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            getSupportFragmentManager().beginTransaction()
+                    .setReorderingAllowed(true)
+                    .replace(R.id.fragmentMenu, fragmentMenu.class, null)
+                    .commit();
+        }
     }
 
     public void goToJouer(View view) {
@@ -103,12 +110,6 @@ public class MenuPrincipal extends AppCompatActivity {
                 .replace(R.id.fragmentMenu, fragmentChoixNiveau.class, null)
                 .commit();
     }
-    public void goToChoixDifficulte(View view){
-        getSupportFragmentManager().beginTransaction()
-                .setReorderingAllowed(true)
-                .replace(R.id.fragmentMenu, fragmentChoixDifficulte.class, null)
-                .commit();
-    }
 
     public void quitter(View view) {
         finish();
@@ -119,7 +120,6 @@ public class MenuPrincipal extends AppCompatActivity {
         super.onStop();
         try {
             laSauvegarde.save(openFileOutput(LES_REGLAGE, MODE_PRIVATE), String.valueOf(volumeMusique)+"_"+String.valueOf(volumeSon));
-            Log.e("test", "reussi");
         } catch (FileNotFoundException e) {
             Log.e(getPackageName(), "Sauvegarde impossible");
         }
