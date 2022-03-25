@@ -3,6 +3,8 @@ package fr.iut.speedjumper.donnees;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,14 +19,13 @@ public class ChargeurScoreTextuel implements ChargeurScore {
 
     /**
      * methode permettant de charger les scores
-     * @param chemin fichier ou sont sauvegarder les scores
      * @return
      */
     @Override
-    public List<List<Score>> charge(String chemin) {
+    public List<List<Score>> charge(InputStream fluxEntree) {
         List<List<Score>> lesScores = new ArrayList<>();
 
-        try (BufferedReader lecteur = new BufferedReader(new FileReader(chemin))) {
+        try (BufferedReader lecteur = new BufferedReader(new InputStreamReader(fluxEntree))) {
             String ligne;
             List<Score> scores = new ArrayList<>();
 

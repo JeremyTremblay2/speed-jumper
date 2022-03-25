@@ -1,5 +1,6 @@
 package fr.iut.speedjumper.donnees;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class ChargeurEnnemisStub implements ChargeurEnnemis {
     }
 
     @Override
-    public List<List<Entite>> charge(String chemin) {
+    public List<List<Entite>> charge(InputStream fluxEntree) {
         List<Entite> niveau = new ArrayList<>();
         lesEnnemis.add(niveau);
 

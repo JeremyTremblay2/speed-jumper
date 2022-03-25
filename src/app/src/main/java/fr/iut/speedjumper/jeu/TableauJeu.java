@@ -32,9 +32,11 @@ public class TableauJeu {
     private Niveau niveauCourant;
     private Options options;
 
-    public TableauJeu() {
-        gestionnaireDeRessources = new GestionnaireDeRessources(new AdaptateurChargeurDeCarteTiledCSV(","),
-                new ChargeurDeJeuxDeTuilesTextuel(), new ChargeurScoreTextuel());
+    public TableauJeu(GestionnaireDeRessources gestionnaireDeRessources) throws IllegalArgumentException {
+        if (gestionnaireDeRessources == null) {
+            throw new IllegalArgumentException("Le gestionnaire de ressource ne peut pas être null.");
+        }
+        this.gestionnaireDeRessources = gestionnaireDeRessources;
         initialisation();
     }
 

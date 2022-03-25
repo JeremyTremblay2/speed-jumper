@@ -1,5 +1,6 @@
 package fr.iut.speedjumper.donnees;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -100,7 +101,7 @@ public class GestionnaireDeRessources {
         Carte2D carte;
         System.out.println(lesTuiles);
         for (String chemin : lesCartesChemins) {
-            carte = chargeurDeCartes.charge(chemin, lesTuiles);
+            carte = chargeurDeCartes.charge(new FileInputStream(chemin), lesTuiles);
             lesCartes.add(carte);
         }
         return lesCartes;
@@ -117,7 +118,7 @@ public class GestionnaireDeRessources {
             InvalidFormatException {
         List<Tuile> tuiles;
         for (String chemin : lesJeuxDeTuiles) {
-            tuiles = chargeurDeTuiles.charge(chemin);
+            tuiles = chargeurDeTuiles.charge(new FileInputStream(chemin));
             lesTuiles.addAll(tuiles);
         }
         return lesTuiles;
@@ -128,6 +129,11 @@ public class GestionnaireDeRessources {
      * @return
      */
     private List<List<Score>> chargeScores() {
-        return chargeurScore.charge(cheminScores);
+        try {
+            return chargeurScore.charge(new FileInputStream(cheminScores));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

@@ -2,6 +2,7 @@ package fr.iut.speedjumper.donnees;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,24 +14,15 @@ import fr.iut.speedjumper.utilitaire.InvalidFormatException;
  * Classe permettant de charger depuis un fichier CSV des tuiles
  */
 public class ChargeurDeCarteTiledCSV {
-    /**
-     * Methode permettant de charger les tuiles
-     * @param cheminFichier
-     * @param separateur
-     * @return
-     * @throws FileNotFoundException
-     * @throws NumberFormatException
-     * @throws ParseException
-     * @throws InvalidFormatException
-     */
-    public int[][] charge(String cheminFichier, String separateur) throws FileNotFoundException,
+
+    public int[][] charge(InputStream fluxEntree, String separateur) throws FileNotFoundException,
             NumberFormatException, ParseException, InvalidFormatException {
         List<Integer> donnees = new ArrayList<>();
         String ligne;
         String[] lesElements;
         int idTuile, nombreColonnes = -1, nombreLignes = 0;
 
-        Scanner fichier = new Scanner(new File(cheminFichier));
+        Scanner fichier = new Scanner(fluxEntree);
         while (fichier.hasNextLine()) {
             ligne = fichier.nextLine().trim();
             lesElements = ligne.split(separateur);

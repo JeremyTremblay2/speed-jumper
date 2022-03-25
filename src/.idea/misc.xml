@@ -3,18 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../../layout/custom_preview.xml" value="0.38333333333333336" />
+        <entry key="../../../../../etud/jetremblay/android/speed-jumper/src/app/src/main/res/layout/jeu.xml" value="0.19739583333333333" />
+        <entry key="../../../../../etud/jetremblay/android/speed-jumper/src/app/src/main/res/layout/menu_debut_niveau.xml" value="0.19739583333333333" />
+        <entry key="../../../../../etud/jetremblay/android/speed-jumper/src/app/src/main/res/layout/menu_defaite.xml" value="0.19739583333333333" />
         <entry key="../../../../../etud/jetremblay/android/speed-jumper/src/app/src/main/res/layout/menu_jouer.xml" value="0.2246376811594203" />
+        <entry key="../../../../../etud/jetremblay/android/speed-jumper/src/app/src/main/res/layout/menu_parametres.xml" value="0.19739583333333333" />
         <entry key="../../../../../etud/jetremblay/android/speed-jumper/src/app/src/main/res/layout/menu_principal.xml" value="0.20380434782608695" />
-        <entry key="app/src/main/res/layout-land/menu_jouer.xml" value="0.30070546737213405" />
-        <entry key="app/src/main/res/layout-land/menu_principal.xml" value="0.25" />
-        <entry key="app/src/main/res/layout-port/fragment_choix_difficulte.xml" value="0.35520833333333335" />
-        <entry key="app/src/main/res/layout-port/fragment_choix_niveau.xml" value="0.35520833333333335" />
-        <entry key="app/src/main/res/layout-port/fragment_menu_principal.xml" value="0.22" />
-        <entry key="app/src/main/res/layout-port/fragment_reglage.xml" value="0.33" />
-        <entry key="app/src/main/res/layout-port/menu_principal.xml" value="0.17274569402228976" />
-        <entry key="app/src/main/res/layout-port/menu_principal2.xml" value="0.35520833333333335" />
-        <entry key="app/src/main/res/layout/menu_jouer.xml" value="0.35520833333333335" />
-        <entry key="app/src/main/res/layout/menu_principal.xml" value="0.25" />
+        <entry key="../../../../../etud/jetremblay/android/speed-jumper/src/app/src/main/res/layout/menu_sauvegarde_score.xml" value="0.19739583333333333" />
       </map>
     </option>
   </component>

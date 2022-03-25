@@ -1,8 +1,11 @@
 package fr.iut.speedjumper.donnees;
 
+import android.content.Context;
+
 import java.net.URL;
 import java.util.*;
 
+import fr.iut.speedjumper.R;
 import fr.iut.speedjumper.logique.Dimension;
 import fr.iut.speedjumper.logique.Position2D;
 
@@ -11,6 +14,7 @@ import fr.iut.speedjumper.logique.Position2D;
  */
 public class CollectionRessources {
     private static CollectionRessources instance;
+    private Context contexte;
 
     private List<String> lesCartes;
     private Map<String, Dimension> lesJeuxDeTuiles;
@@ -28,7 +32,10 @@ public class CollectionRessources {
     /**
      * constructeur de la classe initialisant les différents listes
      */
-    private CollectionRessources() {
+    public CollectionRessources(Context contexte) throws IllegalArgumentException {
+        if (contexte == null) {
+            throw new IllegalArgumentException("Le contexte passé en paramètre ne peut pas être null.");
+        }
         lesJeuxDeTuiles = new HashMap<>();
         lesEntites = new ArrayList<>();
         lesJoueurs = new ArrayList<>();
@@ -47,7 +54,7 @@ public class CollectionRessources {
      */
     public static CollectionRessources getInstance() {
         if (instance == null) {
-            instance = new CollectionRessources();
+            throw new IllegalStateException("La collection de ressource n'a pas encore été initialisée.");
         }
         return instance;
     }

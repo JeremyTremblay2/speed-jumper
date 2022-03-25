@@ -1,8 +1,12 @@
 package fr.iut.speedjumper.donnees;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,14 +31,13 @@ public class ChargeurDeJeuxDeTuilesTextuel implements ChargeurDeJeuxDeTuiles {
 
     /**
      * Methode permettant de charger depuis un chemin la liste de tuiles
-     * @param chemin chemin de l'image
      * @return la liste de tuile
      */
     @Override
-    public List<Tuile> charge(String chemin) {
+    public List<Tuile> charge(InputStream fluxEntree) {
         int nombreTuile = 0, indexTuile;
 
-        try (BufferedReader lecteur = new BufferedReader(new FileReader(chemin))) {
+        try (BufferedReader lecteur = new BufferedReader(new InputStreamReader(fluxEntree))) {
             String ligne;
             ligne = lecteur.readLine();
             String[] uneTuile = ligne.split(DELIMITEUR);

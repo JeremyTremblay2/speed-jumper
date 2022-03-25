@@ -7,6 +7,7 @@ import fr.iut.speedjumper.actions.collisionneurs.CollisionneurPointRectangle;
 import fr.iut.speedjumper.actions.collisionneurs.GestionnaireDeCollisions;
 import fr.iut.speedjumper.actions.collisionneurs.VisiteurCollisions;
 import fr.iut.speedjumper.actions.collisionneurs.VisiteurCollisionsBasique;
+import fr.iut.speedjumper.donnees.GestionnaireDeRessources;
 import fr.iut.speedjumper.entites.Entite;
 import fr.iut.speedjumper.entrees.Commande;
 import fr.iut.speedjumper.entrees.GestionnaireActionUtilisateur;
@@ -32,8 +33,9 @@ public class Jeu extends Sujet implements Observateur {
      * Constructeur de Jeu
      * @param recuperateur recuperateur de touche
      */
-    public Jeu(RecuperateurDeTouches recuperateur) {
-        tableauJeu = new TableauJeu();
+    public Jeu(RecuperateurDeTouches recuperateur, GestionnaireDeRessources gestionnaireDeRessources)
+            throws IllegalArgumentException {
+        tableauJeu = new TableauJeu(gestionnaireDeRessources);
         gestionnaireActions = new GestionnaireActionUtilisateurDebug(recuperateur, tableauJeu);
         VisiteurCollisions visiteur = new VisiteurCollisionsBasique(tableauJeu);
         gestionnaireDeCollisions = new GestionnaireDeCollisions(tableauJeu, visiteur);
@@ -84,6 +86,7 @@ public class Jeu extends Sujet implements Observateur {
         entreeUtilisateur(temps);
 
         gestionEntites(temps);
+        System.out.println(tableauJeu.getNiveauCourant());
 
         /*double positionPersonnageY = joueur.getPosition().getY() / niveauCourant.getCarte().getDimensionTuiles().getHauteur();
         if (positionPersonnageY >= niveauCourant.getCarte().getDimensionCarte().getHauteur() - 1) {

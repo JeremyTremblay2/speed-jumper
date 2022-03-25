@@ -1,6 +1,7 @@
 package fr.iut.speedjumper.donnees;
 
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.text.ParseException;
 import java.util.List;
 
@@ -24,18 +25,11 @@ public class AdaptateurChargeurDeCarteTiledCSV implements ChargeurDeCarteTiled {
         this.separateur = separateur;
     }
 
-    /**
-     * Methode permettant de charger les tuiles et de créer une carte
-     * @param cheminFichier
-     * @param lesTuiles
-     * @return
-     * @throws FileNotFoundException
-     * @throws ParseException
-     */
+
     @Override
-    public Carte2D charge(String cheminFichier, List<Tuile> lesTuiles) throws FileNotFoundException, ParseException,
+    public Carte2D charge(InputStream fluxEntree, List<Tuile> lesTuiles) throws FileNotFoundException, ParseException,
             InvalidFormatException {
-        int[][] identifiantsTuiles = chargeur.charge(cheminFichier, separateur);
+        int[][] identifiantsTuiles = chargeur.charge(fluxEntree, separateur);
         Tuile[][] tuilesCartes = recupereCarte(identifiantsTuiles, lesTuiles);
 
         Dimension dimension = new Dimension(tuilesCartes[0][0].getDimension().getLargeur(),

@@ -7,6 +7,8 @@ import android.view.OrientationEventListener;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.IOException;
+
 public class MenuJouer extends AppCompatActivity {
     OrientationEventListener orientationEventListener;
 
@@ -28,6 +30,12 @@ public class MenuJouer extends AppCompatActivity {
             }
         };
         orientationEventListener.enable();
+        try {
+            getAssets().open("cartes/carte1.csv");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        new CarteComplete(this);
     }
 
     @Override
