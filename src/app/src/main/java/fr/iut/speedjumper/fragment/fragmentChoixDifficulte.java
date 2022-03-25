@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,13 +25,15 @@ public class fragmentChoixDifficulte extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         activiteParente= (MenuPrincipal) getContext();
 
+        TextView Niveau = (TextView) view.findViewById(R.id.niveauChoisi);
+        Niveau.setText(activiteParente.getNiveauChoisi());
+
         Button difficulteNormal =(Button) view.findViewById(R.id.difficulteNormal) ;
         difficulteNormal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 activiteParente.setDifficulteChoisi((String) difficulteNormal.getText());
-                Intent intent = new Intent(activiteParente, MenuJouer.class);
-                startActivity(intent);
+                activiteParente.goToJouer(view);
             }
         });
         Button difficulteSpeed=(Button) view.findViewById(R.id.difficulteSpeed) ;
@@ -38,8 +41,7 @@ public class fragmentChoixDifficulte extends Fragment {
             @Override
             public void onClick(View view) {
                 activiteParente.setDifficulteChoisi((String) difficulteSpeed.getText());
-                Intent intent = new Intent(activiteParente, MenuJouer.class);
-                startActivity(intent);
+                activiteParente.goToJouer(view);
             }
         });
         Button difficulteOmbre =(Button) view.findViewById(R.id.difficulteOmbre) ;
@@ -47,8 +49,7 @@ public class fragmentChoixDifficulte extends Fragment {
             @Override
             public void onClick(View view) {
                 activiteParente.setDifficulteChoisi((String) difficulteOmbre.getText());
-                Intent intent = new Intent(activiteParente, MenuJouer.class);
-                startActivity(intent);
+                activiteParente.goToJouer(view);
             }
         });
     }

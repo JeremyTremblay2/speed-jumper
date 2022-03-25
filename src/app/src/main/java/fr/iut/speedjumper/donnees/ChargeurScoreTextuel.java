@@ -48,4 +48,24 @@ public class ChargeurScoreTextuel implements ChargeurScore {
         }
         return lesScores;
     }
+
+
+
+    public List<List<Score>> charge2(String chemin) {
+
+        List<List<Score>> lesScores = new ArrayList<>();
+
+        try (BufferedReader lecteur = new BufferedReader(new FileReader(chemin))) {
+            String ligne;
+            List<Score> scores = new ArrayList<>();
+
+
+            lesScores.remove(0);
+            lesScores.add(scores);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        return lesScores;
+    }
 }

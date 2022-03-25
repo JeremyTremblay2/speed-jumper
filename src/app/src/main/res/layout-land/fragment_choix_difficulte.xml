@@ -3,15 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="300dp">
 
     <TextView
         android:id="@+id/niveauChoisi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="180dp"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -19,42 +20,47 @@
         android:id="@+id/difficulteNormal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginLeft="64dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
         android:text="@string/normal"
+        app:layout_constraintEnd_toStartOf="@+id/difficulteSpeed"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/niveauChoisi" />
+        app:layout_constraintTop_toBottomOf="@+id/difficulteSpeed" />
 
     <Button
         android:id="@+id/difficulteSpeed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="64dp"
-        android:layout_marginRight="64dp"
+        android:layout_marginTop="112dp"
+        android:layout_marginEnd="320dp"
+        android:layout_marginRight="320dp"
         android:text="@string/speed"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/difficulteNormal" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/difficulteOmbre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginRight="80dp"
         android:text="@string/ombre"
-        app:layout_constraintEnd_toStartOf="@+id/difficulteSpeed"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/difficulteNormal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.976"
+        app:layout_constraintStart_toEndOf="@+id/difficulteSpeed"
         app:layout_constraintTop_toBottomOf="@+id/difficulteSpeed" />
 
     <Button
         android:id="@+id/buttonRetour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="56dp"
         android:onClick="goToChoixNiveau"
         android:text="@string/retour"
-        app:layout_constraintEnd_toEndOf="@+id/difficulteOmbre"
-        app:layout_constraintStart_toStartOf="@+id/difficulteOmbre"
-        app:layout_constraintTop_toBottomOf="@+id/difficulteOmbre" />
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/difficulteSpeed"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/difficulteSpeed"
+        app:layout_constraintTop_toBottomOf="@+id/difficulteSpeed" />
 </androidx.constraintlayout.widget.ConstraintLayout>
