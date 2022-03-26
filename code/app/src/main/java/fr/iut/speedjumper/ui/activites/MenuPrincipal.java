@@ -1,4 +1,4 @@
-package fr.iut.speedjumper.vues;
+package fr.iut.speedjumper.ui.vues;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -14,9 +14,9 @@ import java.io.FileNotFoundException;
 import fr.iut.speedjumper.R;
 import fr.iut.speedjumper.donnees.ChargeurReglage;
 import fr.iut.speedjumper.donnees.SauvegardeReglage;
-import fr.iut.speedjumper.fragment.FragmentChoixNiveau;
-import fr.iut.speedjumper.fragment.FragmentMenu;
-import fr.iut.speedjumper.fragment.FragmentReglage;
+import fr.iut.speedjumper.ui.fragment.FragmentChoixNiveau;
+import fr.iut.speedjumper.ui.fragment.FragmentMenu;
+import fr.iut.speedjumper.ui.fragment.FragmentReglage;
 
 public class MenuPrincipal extends AppCompatActivity {
     public static final String LES_REGLAGE = "lesEtudiants";
