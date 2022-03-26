@@ -1,5 +1,6 @@
 package fr.iut.speedjumper.actions.collisionneurs;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import fr.iut.speedjumper.entites.Entite;
@@ -20,11 +21,11 @@ public class GestionnaireDeCollisions implements ObservateurEntite {
         }
         this.tableauJeu = tableauJeu;
         this.visiteur = visiteur;
+        lesEntites = new HashSet<>();
         initialisation();
     }
 
     public void initialisation() {
-        lesEntites.clear();
         tableauJeu.getNiveauCourant().attacher(this);
         lesEntites.addAll(tableauJeu.getNiveauCourant().getLesEntites());
         lesEntites.add(tableauJeu.getJoueur());

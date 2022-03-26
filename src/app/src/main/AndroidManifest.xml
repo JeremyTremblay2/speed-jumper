@@ -17,7 +17,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".MenuJouer"
+        <activity android:name=".VueMenuJouer"
             android:screenOrientation="reverseLandscape"
             android:exported="true"/>
 

@@ -51,7 +51,7 @@ public class Carte2D {
      * @return
      */
     public Tuile[][] getLesTuiles() {
-        return lesTuiles;
+        return Arrays.copyOf(lesTuiles, lesTuiles.length);
     }
 
     /**

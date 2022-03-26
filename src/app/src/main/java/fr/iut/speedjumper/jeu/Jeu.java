@@ -56,6 +56,10 @@ public class Jeu extends Sujet implements Observateur {
         //Si des chargements particuliers ont lieux ici.
     }
 
+    public TableauJeu getTableauJeu() {
+        return tableauJeu;
+    }
+
     public void lance() {
         boucleDeJeu = new BoucleDeJeu();
         boucleDeJeu.attacher(this);

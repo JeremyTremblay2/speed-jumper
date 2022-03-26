@@ -1,6 +1,5 @@
 package fr.iut.speedjumper.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import fr.iut.speedjumper.MenuJouer;
 import fr.iut.speedjumper.MenuPrincipal;
 import fr.iut.speedjumper.R;
 

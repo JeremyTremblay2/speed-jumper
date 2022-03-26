@@ -37,6 +37,7 @@ public class CollectionRessources {
         lesPointsDepart = new ArrayList<>();
         lesPointsArrivee = new ArrayList<>();
         ajouterDonnees();
+        instance = this;
     }
 
     /**

@@ -13,7 +13,6 @@ import java.io.FileNotFoundException;
 
 import fr.iut.speedjumper.donnees.ChargeurReglage;
 import fr.iut.speedjumper.donnees.SauvegardeReglage;
-import fr.iut.speedjumper.fragment.fragmentChoixDifficulte;
 import fr.iut.speedjumper.fragment.fragmentChoixNiveau;
 import fr.iut.speedjumper.fragment.fragmentMenu;
 import fr.iut.speedjumper.fragment.fragmentReglage;
@@ -85,7 +84,7 @@ public class MenuPrincipal extends AppCompatActivity {
     }
 
     public void goToJouer(View view) {
-        Intent intent = new Intent(this, MenuJouer.class);
+        Intent intent = new Intent(this, VueMenuJouer.class);
         startActivity(intent);
     }
     public void gotoReglage(View view){
