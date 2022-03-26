@@ -1,6 +1,7 @@
 package fr.iut.speedjumper.vues;
 
 import android.content.Context;
+import android.content.Entity;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
@@ -8,20 +9,23 @@ import android.view.ViewGroup;
 
 import androidx.annotation.RequiresApi;
 
+import fr.iut.speedjumper.R;
 import fr.iut.speedjumper.donnees.AdaptateurChargeurDeCarteTiledCSV;
 import fr.iut.speedjumper.donnees.ChargeurDeJeuxDeTuilesTextuel;
 import fr.iut.speedjumper.donnees.ChargeurScoreTextuel;
 import fr.iut.speedjumper.donnees.CollectionRessources;
 import fr.iut.speedjumper.donnees.GestionnaireDeRessources;
+import fr.iut.speedjumper.entites.Entite;
 import fr.iut.speedjumper.entrees.RecuperateurDeTouchesAndroid;
 import fr.iut.speedjumper.jeu.Jeu;
 import fr.iut.speedjumper.jeu.TableauJeu;
 import fr.iut.speedjumper.monde.Carte2D;
+import fr.iut.speedjumper.monde.Niveau;
 
 public class VueNiveau extends ViewGroup {
     private Jeu jeu;
     private TableauJeu tableauJeu;
-    private Carte2D carteCourante;
+    private Niveau niveau;
 
     public VueNiveau(Context context) {
         super(context);
@@ -77,8 +81,12 @@ public class VueNiveau extends ViewGroup {
                 new ChargeurScoreTextuel());
         jeu = new Jeu(new RecuperateurDeTouchesAndroid(this), gestionnaireDeRessources);
         tableauJeu = jeu.getTableauJeu();
-        carteCourante = tableauJeu.getNiveauCourant().getCarte();
+        niveau = tableauJeu.getNiveauCourant();
 
-        addView(new VueCarte(getContext(), jeu));
+        addView(new VueCarte(getContext(), niveau.getCarte()));
+        for (Entite entite : niveau.getLesEntites()) {
+            addView(new VueJoueur(getContext(), entite, R.drawable.slime));
+        }
+        addView(new VueJoueur(getContext(), tableauJeu.getJoueur(), R.drawable.femme));
     }
 }

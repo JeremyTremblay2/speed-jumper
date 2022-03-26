@@ -20,35 +20,31 @@ import fr.iut.speedjumper.monde.Tuile;
 
 public class VueCarte extends ViewGroup {
     private List<VueTuile> lesTuiles;
-    private View vue;
-
-    private Jeu jeu;
-    private TableauJeu tableauJeu;
     private Carte2D carteCourante;
 
-    public VueCarte(Context context, Jeu jeu)
+    public VueCarte(Context context, Carte2D carte)
             throws IllegalArgumentException {
         super(context);
-        initialisation(jeu);
+        initialisation(carte);
     }
 
-    public VueCarte(Context context, @Nullable AttributeSet attrs, Jeu jeu)
+    public VueCarte(Context context, @Nullable AttributeSet attrs, Carte2D carte)
             throws IllegalArgumentException {
         super(context, attrs);
-        initialisation(jeu);
+        initialisation(carte);
     }
 
-    public VueCarte(Context context, @Nullable AttributeSet attrs, int defStyleAttr, Jeu jeu)
+    public VueCarte(Context context, @Nullable AttributeSet attrs, int defStyleAttr, Carte2D carte)
             throws IllegalArgumentException {
         super(context, attrs, defStyleAttr);
-        initialisation(jeu);
+        initialisation(carte);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public VueCarte(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes,
-                    Jeu jeu) throws IllegalArgumentException {
+            Carte2D carte) throws IllegalArgumentException {
         super(context, attrs, defStyleAttr, defStyleRes);
-        initialisation(jeu);
+        initialisation(carte);
     }
 
     @Override
@@ -56,13 +52,20 @@ public class VueCarte extends ViewGroup {
             throws IllegalArgumentException {
         int count = this.getChildCount();
         for (int i = 0; i < count; i++) {
-            int hauteur = i / (int) carteCourante.getDimensionCarte().getHauteur();
-            int largeur = i % (int) carteCourante.getDimensionCarte().getLargeur();
-            Tuile tuile = carteCourante.getTuile(largeur, hauteur);
-            View child = this.getChildAt(i);
-            child.layout((int) (largeur * tuile.getDimension().getLargeur()),
-                    (int) (hauteur * tuile.getDimension().getHauteur()),
-                    child.getMeasuredWidth(), child.getMeasuredHeight());
+            int y = i / (int) carteCourante.getDimensionCarte().getLargeur();
+            int x = i % ((int) carteCourante.getDimensionCarte().getLargeur());
+                Tuile tuile = null;
+                try {
+                    tuile = carteCourante.getTuile(y, x);
+                }
+                catch (IndexOutOfBoundsException e) {
+                    System.out.println(e);
+                }
+                View child = this.getChildAt(i);
+                child.layout((int) (x * tuile.getDimension().getLargeur()),
+                        (int) (y * tuile.getDimension().getHauteur()),
+                        child.getMeasuredWidth(), child.getMeasuredHeight());
+
         }
     }
 
@@ -83,15 +86,14 @@ public class VueCarte extends ViewGroup {
         }
     }
 
-    private void initialisation(Jeu jeu) throws IllegalArgumentException {
-        if (jeu == null) {
-            throw new IllegalArgumentException("Le jeu passé en paramètre ne peut pas être null.");
+    private void initialisation(Carte2D carte) throws IllegalArgumentException {
+        if (carte == null) {
+            throw new IllegalArgumentException("La carte passée en paramètre ne peut pas être nulle.");
         }
-        this.jeu = jeu;
-        carteCourante = jeu.getTableauJeu().getNiveauCourant().getCarte();
-        Log.d("SpeedJumper", "Dans init de carte, avant addView");
+        carteCourante = carte;
         lesTuiles = new ArrayList<>();
 
+        Log.d("SpeedJumper", "Dans init de carte, avant addView");
         Tuile[][] vueCarte = carteCourante.getLesTuiles();
         for (int y = 0; y < vueCarte.length; y++) {
             for (int x = 0; x < vueCarte[y].length; x++) {
