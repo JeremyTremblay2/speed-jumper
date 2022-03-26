@@ -3,6 +3,7 @@ package fr.iut.speedjumper.ui.vues;
 import android.content.Context;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -68,5 +69,7 @@ public class VueJeu extends ViewGroup {
         this.tableauJeu = tableauJeu;
         addView(new VueNiveau(getContext(), tableauJeu.getNiveauCourant()));
         addView(new VueEntite(getContext(), tableauJeu.getJoueur(), R.drawable.femme));
+        View vueBoutons = LayoutInflater.from(getContext()).inflate(R.layout.vue_controles_jeu, null);
+        //addView(vueBoutons);
     }
 }

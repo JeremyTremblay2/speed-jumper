@@ -3,25 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    tools:ignore="MissingDefaultResource">
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/bouton_fleche_saut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_marginStart="48dp"
         android:layout_marginLeft="48dp"
         android:layout_marginBottom="48dp"
         android:contentDescription="@string/gauche"
-        android:minHeight="48dp"
+        android:minHeight="64dp"
+        android:minWidth="64dp"
         android:src="@drawable/fleche_gauche_jeu"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_alignParentEnd="true" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
+        android:id="@+id/bouton_fleche_droite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -30,13 +33,14 @@
         android:layout_marginRight="48dp"
         android:layout_marginBottom="48dp"
         android:contentDescription="@string/saut"
-        android:minHeight="48dp"
+        android:minHeight="64dp"
+        android:minWidth="64dp"
         android:src="@drawable/fleche_saut_jeu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/bouton_fleche_droite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -45,9 +49,10 @@
         android:layout_marginLeft="24dp"
         android:layout_marginBottom="48dp"
         android:contentDescription="@string/droite"
-        android:minHeight="48dp"
+        android:minWidth="64dp"
+        android:minHeight="64dp"
         android:src="@drawable/fleche_droite_jeu"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageButton" />
+        app:layout_constraintStart_toEndOf="@+id/bouton_fleche_gauche" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

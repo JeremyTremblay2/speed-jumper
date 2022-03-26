@@ -3,8 +3,10 @@ package fr.iut.speedjumper.ui.activites;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.OrientationEventListener;
 import android.view.View;
+import android.widget.FrameLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,7 +21,6 @@ import fr.iut.speedjumper.jeu.Jeu;
 import fr.iut.speedjumper.jeu.TableauJeu;
 import fr.iut.speedjumper.observateurs.Observateur;
 import fr.iut.speedjumper.ui.vues.VueJeu;
-import fr.iut.speedjumper.ui.vues.VueNiveau;
 
 public class ActiviteJeu extends AppCompatActivity implements Observateur {
     private OrientationEventListener orientationEventListener;
@@ -31,7 +32,8 @@ public class ActiviteJeu extends AppCompatActivity implements Observateur {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.vue_jeu);
+        setContentView(R.layout.vue_jeu_complete);
+        FrameLayout parent = findViewById(R.id.parent);
 
         orientationEventListener = new OrientationEventListener((Context)this) {
             @Override
@@ -46,16 +48,18 @@ public class ActiviteJeu extends AppCompatActivity implements Observateur {
             }
         };
         orientationEventListener.enable();
+        View vueBoutons = LayoutInflater.from(getApplicationContext()).inflate(R.layout.vue_controles_jeu, null);
 
         collectionRessources = new CollectionRessources(getApplicationContext());
         GestionnaireDeRessources gestionnaireDeRessources = new GestionnaireDeRessources(
                 new AdaptateurChargeurDeCarteTiledCSV(","),
                 new ChargeurDeJeuxDeTuilesTextuel(),
                 new ChargeurScoreTextuel());
-        jeu = new Jeu(new RecuperateurDeTouchesAndroid(null), gestionnaireDeRessources);
+        jeu = new Jeu(new RecuperateurDeTouchesAndroid(vueBoutons), gestionnaireDeRessources);
         tableauJeu = jeu.getTableauJeu();
         vueJeu = new VueJeu(this, tableauJeu);
-        setContentView(vueJeu);
+        parent.addView(vueJeu);
+        parent.addView(vueBoutons);
         jeu.attacher(this);
         jeu.lance();
     }
@@ -74,6 +78,7 @@ public class ActiviteJeu extends AppCompatActivity implements Observateur {
 
     @Override
     public void miseAJour() {
+        Log.d("SpeedJumper", "Passage dans la boucle");
         vueJeu.postInvalidate();
     }
 }
