@@ -14,7 +14,6 @@ import java.util.Locale;
 import fr.iut.speedjumper.logique.Position2D;
 import fr.iut.speedjumper.monde.Tuile;
 
-@SuppressLint("ViewConstructor")
 public class VueTuile extends View {
     private Bitmap image;
     private Tuile tuile;
@@ -28,15 +27,16 @@ public class VueTuile extends View {
         String id = String.format(Locale.getDefault(), "tuile_%d", tuile.getIdTuile());
         int tuileId = getResources().getIdentifier(id, "drawable", context.getPackageName());
         image = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(
-                context.getResources(), tuileId), 20, 20, false);
+                context.getResources(), tuileId), 32, 32, false);
+        Log.d("SpeedJumper", "Création tuile ID " + tuile.getIdTuile());
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
         Log.d("SpeedJumper", "Dans draw de tuile");
+        super.onDraw(canvas);
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         paint.setTextSize(250);
-        canvas.drawBitmap(image, 130, 130, paint);
+        canvas.drawBitmap(image, 0, 0, paint);
     }
 }

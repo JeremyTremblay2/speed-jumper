@@ -41,7 +41,5 @@ public class fragmentChoixNiveau extends Fragment {
         RecyclerView laListView = view.findViewById(R.id.recycleView);
         laListView.setLayoutManager(new LinearLayoutManager(activiteParente));
         laListView.setAdapter(new CustomAdapter(listNiveau));
-
     }
-
 }

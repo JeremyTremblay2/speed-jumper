@@ -2,7 +2,7 @@ package fr.iut.speedjumper.donnees;
 
 import android.content.Context;
 
-import java.net.URL;
+import java.io.InputStream;
 import java.util.*;
 
 import fr.iut.speedjumper.R;
@@ -16,18 +16,13 @@ public class CollectionRessources {
     private static CollectionRessources instance;
     private Context contexte;
 
-    private List<String> lesCartes;
-    private Map<String, Dimension> lesJeuxDeTuiles;
-    private List<String> lesJoueurs;
-    private List<String> lesEntites;
-    private List<String> lesEntitesChemins;
-    private List<String> lesJeuxDeTuilesCollisions;
-    private List<String> lesArrieresPlans;
+    private List<InputStream> lesCartes;
+    private List<InputStream> lesJeuxDeTuilesCollisions;
     private List<Position2D> lesPointsDepart;
     private List<Position2D> lesPointsArrivee;
 
-    private String fichierConfigurationTouches;
-    private String fichierScores;
+    private InputStream fichierConfigurationTouches;
+    private InputStream fichierScores;
 
     /**
      * constructeur de la classe initialisant les différents listes
@@ -36,13 +31,9 @@ public class CollectionRessources {
         if (contexte == null) {
             throw new IllegalArgumentException("Le contexte passé en paramètre ne peut pas être null.");
         }
-        lesJeuxDeTuiles = new HashMap<>();
-        lesEntites = new ArrayList<>();
-        lesJoueurs = new ArrayList<>();
+        this.contexte = contexte;
         lesCartes = new ArrayList<>();
-        lesEntitesChemins = new ArrayList<>();
         lesJeuxDeTuilesCollisions = new ArrayList<>();
-        lesArrieresPlans = new ArrayList<>();
         lesPointsDepart = new ArrayList<>();
         lesPointsArrivee = new ArrayList<>();
         ajouterDonnees();
@@ -63,55 +54,23 @@ public class CollectionRessources {
      * retoune la liste des cartes
      * @return
      */
-    public List<String> getLesCartes() {
+    public List<InputStream> getLesCartes() {
         return lesCartes;
-    }
-
-    /**
-     * retourne la map des jeux de tuiles
-     * @return
-     */
-    public Map<String, Dimension> getLesJeuxDeTuiles() {
-        return lesJeuxDeTuiles;
-    }
-
-    /**
-     * retourne la liste des entites
-     * @return
-     */
-    public List<String> getLesEntites() {
-        return lesEntites;
     }
 
     /**
      * retounr le fichuier de config des touches
      * @return
      */
-    public String getFichierConfigurationTouches() {
+    public InputStream getFichierConfigurationTouches() {
         return fichierConfigurationTouches;
-    }
-
-    /**
-     * retourne la liste des joueurs
-     * @return
-     */
-    public List<String> getLesJoueurs() {
-        return lesJoueurs;
-    }
-
-    /**
-     * retournes les chemins des entitess
-     * @return
-     */
-    public List<String> getLesEntitesChemins() {
-        return lesEntitesChemins;
     }
 
     /**
      * retourne le chemin du fichier de score
      * @return
      */
-    public String getFichierScores() {
+    public InputStream getFichierScores() {
         return fichierScores;
     }
 
@@ -119,17 +78,10 @@ public class CollectionRessources {
      * retourne la liste des collision des tuiles
      * @return
      */
-    public List<String> getLesJeuxDeTuilesCollisions() {
+    public List<InputStream> getLesJeuxDeTuilesCollisions() {
         return lesJeuxDeTuilesCollisions;
     }
 
-    public List<String> getLesArrieresPlans() {
-        return lesArrieresPlans;
-    }
-
-    /**
-     * methode permettant d'ajouter les données dans les lites
-     */
     public List<Position2D> getLesPointsDepart() {
         return lesPointsDepart;
     }
@@ -139,26 +91,15 @@ public class CollectionRessources {
     }
 
     private void ajouterDonnees() {
-        fichierConfigurationTouches = Objects.requireNonNull(CollectionRessources.class.getResource("/touches.txt")).getPath();
-        fichierScores = Objects.requireNonNull(CollectionRessources.class.getResource("/scores.txt")).getPath();
+        fichierConfigurationTouches = Objects.requireNonNull(contexte.getResources().openRawResource(R.raw.touches));
+        fichierScores = Objects.requireNonNull(contexte.getResources().openRawResource(R.raw.scores));
 
-        lesCartes.add(Objects.requireNonNull(CollectionRessources.class.getResource("/cartes/carte1.csv")).getPath());
-        lesCartes.add(Objects.requireNonNull(CollectionRessources.class.getResource("/cartes/carte2.csv")).getPath());
-        lesCartes.add(Objects.requireNonNull(CollectionRessources.class.getResource("/cartes/carte3.csv")).getPath());
-        lesCartes.add(Objects.requireNonNull(CollectionRessources.class.getResource("/cartes/carte4.csv")).getPath());
+        lesCartes.add(Objects.requireNonNull(contexte.getResources().openRawResource(R.raw.carte1)));
+        lesCartes.add(Objects.requireNonNull(contexte.getResources().openRawResource(R.raw.carte2)));
+        lesCartes.add(Objects.requireNonNull(contexte.getResources().openRawResource(R.raw.carte3)));
+        lesCartes.add(Objects.requireNonNull(contexte.getResources().openRawResource(R.raw.carte4)));
 
-        lesJeuxDeTuiles.put(Objects.requireNonNull(CollectionRessources.class.getResource("/images/tilesets/caverne_moussue.png")).toExternalForm(),
-                new Dimension(64, 64));
-
-        lesJeuxDeTuilesCollisions.add(Objects.requireNonNull(CollectionRessources.class.getResource("/tilesets/caverne_moussue.txt")).getPath());
-
-        lesEntites.add(Objects.requireNonNull(CollectionRessources.class.getResource("/images/perso.png")).toExternalForm());
-
-        lesJoueurs.add(Objects.requireNonNull(CollectionRessources.class.getResource("/images/personnages/femme.png")).toExternalForm());
-
-        lesEntites.add(Objects.requireNonNull(CollectionRessources.class.getResource("/images/personnages/slime.png")).toExternalForm());
-
-        lesArrieresPlans.add(Objects.requireNonNull(CollectionRessources.class.getResource("/images/fonds/background.jpg")).toExternalForm());
+        lesJeuxDeTuilesCollisions.add(contexte.getResources().openRawResource(R.raw.caverne_moussue));
 
         lesPointsArrivee.add(new Position2D(512, 320));
         lesPointsArrivee.add(new Position2D(128, 1792));
@@ -169,7 +110,5 @@ public class CollectionRessources {
         lesPointsDepart.add(new Position2D(128, 128));
         lesPointsDepart.add(new Position2D(196, 5660));
         lesPointsDepart.add(new Position2D(256, 1344));
-
-        lesEntitesChemins.add(null);
     }
 }

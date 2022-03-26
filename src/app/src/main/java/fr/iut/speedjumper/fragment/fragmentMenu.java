@@ -20,6 +20,6 @@ public class fragmentMenu extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        activiteParente= (MenuPrincipal) getContext();
+        activiteParente = (MenuPrincipal) getContext();
     }
 }

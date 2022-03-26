@@ -12,7 +12,6 @@ import java.util.List;
 import fr.iut.speedjumper.R;
 
 public class CustomAdapter extends RecyclerView.Adapter {
-
     private List<String> listNiveau;
 
     public CustomAdapter(List<String> dataSet) {
@@ -34,11 +33,8 @@ public class CustomAdapter extends RecyclerView.Adapter {
         ((viewHolder)holder).getLeBouton().setText(etudiantCourant);
     }
 
-
     @Override
     public int getItemCount() {
         return listNiveau.size();
     }
-
-
 }

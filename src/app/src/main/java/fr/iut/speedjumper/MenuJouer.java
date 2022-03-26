@@ -3,15 +3,14 @@ package fr.iut.speedjumper;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.OrientationEventListener;
-import android.view.View;
-import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.io.IOException;
+
+import fr.iut.speedjumper.logique.Dimension;
+import fr.iut.speedjumper.monde.Tuile;
 
 public class MenuJouer extends AppCompatActivity {
     OrientationEventListener orientationEventListener;
@@ -35,11 +34,22 @@ public class MenuJouer extends AppCompatActivity {
         };
         orientationEventListener.enable();
         try {
-            getAssets().open("cartes/carte1.csv");
+            getAssets().open("raw/cartes/carte1.csv");
         } catch (IOException e) {
             e.printStackTrace();
         }
-        new CarteComplete(this);
+        new Tuile(null, new Dimension(20, 20));
+        //new Tuile(null, new Dimension(20, 20));
+        Log.d("SpeedJumper", "Avant création de la vue de tuile");
+        CarteComplete carte = new CarteComplete(this);
+        //VueTuile vueTuile = new VueTuile(getApplicationContext(), new Tuile(null, new Dimension(20, 20)));
+        //setContentView(vueTuile);
+        setContentView(carte);
+        Log.d("SpeedJumper", "Après création de la vue de tuile");
+        //vueTuile.postInvalidate();
+        carte.postInvalidate();
+        Log.d("SpeedJumper", "Après postInvalidate fin du cteur MenuJouer");
+        //new CarteComplete(this);
     }
 
     @Override

@@ -19,9 +19,7 @@ import fr.iut.speedjumper.fragment.fragmentMenu;
 import fr.iut.speedjumper.fragment.fragmentReglage;
 
 public class MenuPrincipal extends AppCompatActivity {
-
     public static final String LES_REGLAGE = "lesEtudiants";
-
     private int volumeSon = 100;
     private int volumeMusique = 100;
     private String niveauChoisi =null;
@@ -138,6 +136,4 @@ public class MenuPrincipal extends AppCompatActivity {
         this.niveauChoisi = niveauChoisi;
 
     }
-
-
 }

@@ -46,35 +46,38 @@ public class CarteComplete extends ViewGroup {
     }
 
     @Override
-    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        for (int i = 0; i < getChildCount(); i++) {
-            View childAt = getChildAt(i);
-            childAt.layout(left, top, left + childAt.getMeasuredWidth(), top + childAt.getMeasuredHeight());
+    protected void onLayout(final boolean changed, final int l, final int t, final int r, final int b) {
+        int count = this.getChildCount();
+        for (int i = 0; i < count; i++) {
+            View child = this.getChildAt(i);
+            child.layout(0, 0, child.getMeasuredWidth(), child.getMeasuredHeight());
         }
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        vue.draw(canvas);
-    }
+    protected void onMeasure(final int widthMeasureSpec, final int heightMeasureSpec) {
+        int parentWidth  = MeasureSpec.getSize(widthMeasureSpec);
+        int parentHeight = MeasureSpec.getSize(heightMeasureSpec);
+        this.setMeasuredDimension(parentWidth, parentHeight);
 
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        /*setMeasuredDimension(getSuggestedMinimumWidth(), getSuggestedMinimumHeight());
-
-        int childWidthMeasureSpec = MeasureSpec.makeMeasureSpec((int) width, MeasureSpec.EXACTLY);
-        int childHeightMeasureSpec = MeasureSpec.makeMeasureSpec((int) height, MeasureSpec.EXACTLY);
-
-        for (int i = 0; i < getChildCount(); i++) {
-            getChildAt(i).measure(childWidthMeasureSpec, childHeightMeasureSpec);
-        }*/
+        int count = this.getChildCount();
+        for (int i = 0; i < count; i++) {
+            View child = this.getChildAt(i);
+            this.measureChild(
+                    child,
+                    MeasureSpec.makeMeasureSpec(parentWidth, MeasureSpec.EXACTLY),
+                    MeasureSpec.makeMeasureSpec(parentHeight, MeasureSpec.EXACTLY));
+        }
     }
 
     private void init(Context context) {
-        Log.d("SpeedJumper", "Dans init");
-        vue = new VueTuile(context, new Tuile(null, new Dimension(20, 20)));
+        Log.d("SpeedJumper", "Dans init de carte, avant addView");
+        vue = new VueTuile(context, new Tuile(null, new Dimension(32, 32)));
+        vue.postInvalidate();
+        addView(vue);
+        Log.d("SpeedJumper", "Dans init de carte, après addView");
+        vue.postInvalidate();
+
         /*gestionnaireDeJeu = new GestionnaireDeJeu(
                 new RecuperateurDeTouchesAndroid(this),
                 new GestionnaireDeRessources(

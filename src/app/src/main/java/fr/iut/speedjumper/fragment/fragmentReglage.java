@@ -25,7 +25,7 @@ public class fragmentReglage extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        activiteParente= (MenuPrincipal) getContext();
+        activiteParente = (MenuPrincipal) getContext();
 
         view.findViewById(R.id.bouton_retour).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,13 +37,13 @@ public class fragmentReglage extends Fragment {
             }
         });
 
-        SeekBar volumeMusique=(SeekBar) view.findViewById(R.id.reglageMusique);
-        TextView affichageMusique=(TextView) view.findViewById(R.id.valeurMusique);
+        SeekBar volumeMusique = view.findViewById(R.id.reglageMusique);
+        TextView affichageMusique = view.findViewById(R.id.valeurMusique);
         volumeMusique.setProgress(activiteParente.getVolumeMusique());
         affichageMusique.setText(String.valueOf(activiteParente.getVolumeMusique()));
 
-        SeekBar volumeSon=(SeekBar)view.findViewById(R.id.reglageSon);
-        TextView affichageSon=(TextView) view.findViewById(R.id.valeurSon);
+        SeekBar volumeSon = view.findViewById(R.id.reglageSon);
+        TextView affichageSon = view.findViewById(R.id.valeurSon);
 
         volumeSon.setProgress(activiteParente.getVolumeSon());
         affichageSon.setText(String.valueOf(activiteParente.getVolumeSon()));

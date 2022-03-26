@@ -2,6 +2,7 @@ package fr.iut.speedjumper.donnees;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,9 +20,9 @@ public class GestionnaireDeRessources {
     private ChargeurDeJeuxDeTuiles chargeurDeTuiles;
     private ChargeurScore chargeurScore;
 
-    private List<String> lesCartesChemins;
-    private List<String> lesJeuxDeTuiles;
-    private String cheminScores;
+    private List<InputStream> lesCartesChemins;
+    private List<InputStream> lesJeuxDeTuiles;
+    private InputStream cheminScores;
 
     private List<Carte2D> lesCartes;
     private List<Tuile> lesTuiles;
@@ -100,8 +101,8 @@ public class GestionnaireDeRessources {
             InvalidFormatException {
         Carte2D carte;
         System.out.println(lesTuiles);
-        for (String chemin : lesCartesChemins) {
-            carte = chargeurDeCartes.charge(new FileInputStream(chemin), lesTuiles);
+        for (InputStream chemin : lesCartesChemins) {
+            carte = chargeurDeCartes.charge(chemin, lesTuiles);
             lesCartes.add(carte);
         }
         return lesCartes;
@@ -117,8 +118,8 @@ public class GestionnaireDeRessources {
     private List<Tuile> chargeTuiles() throws FileNotFoundException, ParseException,
             InvalidFormatException {
         List<Tuile> tuiles;
-        for (String chemin : lesJeuxDeTuiles) {
-            tuiles = chargeurDeTuiles.charge(new FileInputStream(chemin));
+        for (InputStream chemin : lesJeuxDeTuiles) {
+            tuiles = chargeurDeTuiles.charge(chemin);
             lesTuiles.addAll(tuiles);
         }
         return lesTuiles;
@@ -129,11 +130,6 @@ public class GestionnaireDeRessources {
      * @return
      */
     private List<List<Score>> chargeScores() {
-        try {
-            return chargeurScore.charge(new FileInputStream(cheminScores));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return chargeurScore.charge(cheminScores);
     }
 }
