@@ -1,4 +1,4 @@
-package fr.iut.speedjumper;
+package fr.iut.speedjumper.vues;
 
 public class VueMenuDebutNiveau {
 }

@@ -10,14 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SpeedJumper">
 
-        <activity android:name=".MenuPrincipal"
+        <activity android:name=".vues.MenuPrincipal"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".VueMenuJouer"
+        <activity android:name=".vues.VueMenuJouer"
             android:screenOrientation="reverseLandscape"
             android:exported="true"/>
 

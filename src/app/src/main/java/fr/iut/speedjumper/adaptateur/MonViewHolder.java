@@ -5,13 +5,13 @@ import android.widget.LinearLayout;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import fr.iut.speedjumper.MenuPrincipal;
+import fr.iut.speedjumper.vues.MenuPrincipal;
 import fr.iut.speedjumper.R;
-import fr.iut.speedjumper.fragment.fragmentChoixDifficulte;
+import fr.iut.speedjumper.fragment.FragmentChoixDifficulte;
 
-public class viewHolder extends RecyclerView.ViewHolder {
+public class MonViewHolder extends RecyclerView.ViewHolder {
     private final Button leBouton;
-    public viewHolder(LinearLayout leLayout) {
+    public MonViewHolder(LinearLayout leLayout) {
         super(leLayout);
         leBouton = itemView.findViewById(R.id.buttonNiveau);
     }
@@ -24,7 +24,7 @@ public class viewHolder extends RecyclerView.ViewHolder {
             ((MenuPrincipal)leBouton.getContext()).setNiveauChoisi(niveauCourant);
             ((MenuPrincipal)leBouton.getContext()).getSupportFragmentManager().beginTransaction()
                     .setReorderingAllowed(true)
-                    .replace(R.id.fragmentMenu, fragmentChoixDifficulte.class, null)
+                    .replace(R.id.fragmentMenu, FragmentChoixDifficulte.class, null)
                     .commit();
         });
     }

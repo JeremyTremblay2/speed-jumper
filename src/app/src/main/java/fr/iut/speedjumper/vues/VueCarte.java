@@ -1,7 +1,6 @@
-package fr.iut.speedjumper;
+package fr.iut.speedjumper.vues;
 
 import android.content.Context;
-import android.graphics.Paint;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -14,16 +13,8 @@ import androidx.annotation.RequiresApi;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.iut.speedjumper.donnees.AdaptateurChargeurDeCarteTiledCSV;
-import fr.iut.speedjumper.donnees.ChargeurDeJeuxDeTuilesTextuel;
-import fr.iut.speedjumper.donnees.ChargeurScoreTextuel;
-import fr.iut.speedjumper.donnees.CollectionRessources;
-import fr.iut.speedjumper.donnees.GestionnaireDeRessources;
-import fr.iut.speedjumper.entrees.RecuperateurDeTouchesAndroid;
-import fr.iut.speedjumper.jeu.GestionnaireDeJeu;
 import fr.iut.speedjumper.jeu.Jeu;
 import fr.iut.speedjumper.jeu.TableauJeu;
-import fr.iut.speedjumper.logique.Dimension;
 import fr.iut.speedjumper.monde.Carte2D;
 import fr.iut.speedjumper.monde.Tuile;
 

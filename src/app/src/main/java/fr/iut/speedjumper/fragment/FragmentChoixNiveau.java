@@ -12,14 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import fr.iut.speedjumper.adaptateur.CustomAdapter;
-import fr.iut.speedjumper.MenuPrincipal;
+import fr.iut.speedjumper.vues.MenuPrincipal;
 import fr.iut.speedjumper.R;
 
-public class fragmentChoixNiveau extends Fragment {
+public class FragmentChoixNiveau extends Fragment {
     private MenuPrincipal activiteParente ;
     //private List<String> listNiveau;
 
-    public fragmentChoixNiveau() {
+    public FragmentChoixNiveau() {
         super(R.layout.fragment_choix_niveau);
     }
 

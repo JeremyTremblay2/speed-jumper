@@ -7,13 +7,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import fr.iut.speedjumper.MenuPrincipal;
+import fr.iut.speedjumper.vues.MenuPrincipal;
 import fr.iut.speedjumper.R;
 
-public class fragmentMenu extends Fragment {
+public class FragmentMenu extends Fragment {
     private MenuPrincipal activiteParente ;
 
-    public fragmentMenu() {
+    public FragmentMenu() {
         super(R.layout.fragment_menu_principal);
     }
 

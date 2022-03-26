@@ -23,14 +23,14 @@ public class CustomAdapter extends RecyclerView.Adapter {
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         LinearLayout leLayout =(LinearLayout) LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.cellule_niveau, viewGroup, false);
-        return new viewHolder(leLayout);
+        return new MonViewHolder(leLayout);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
-        String etudiantCourant = listNiveau.get(position);
-        ((viewHolder)holder).setNiveauCourant(etudiantCourant);
-        ((viewHolder)holder).getLeBouton().setText(etudiantCourant);
+        String niveauCourant = listNiveau.get(position);
+        ((MonViewHolder)holder).setNiveauCourant(niveauCourant);
+        ((MonViewHolder)holder).getLeBouton().setText(niveauCourant);
     }
 
     @Override

@@ -9,12 +9,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import fr.iut.speedjumper.MenuPrincipal;
+import fr.iut.speedjumper.vues.MenuPrincipal;
 import fr.iut.speedjumper.R;
 
-public class fragmentChoixDifficulte extends Fragment {
+public class FragmentChoixDifficulte extends Fragment {
     private MenuPrincipal activiteParente ;
-    public fragmentChoixDifficulte() {
+    public FragmentChoixDifficulte() {
         super(R.layout.fragment_choix_difficulte);
     }
 

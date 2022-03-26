@@ -9,13 +9,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import fr.iut.speedjumper.MenuPrincipal;
+import fr.iut.speedjumper.vues.MenuPrincipal;
 import fr.iut.speedjumper.R;
 
-public class fragmentReglage extends Fragment {
+public class FragmentReglage extends Fragment {
     private MenuPrincipal activiteParente ;
 
-    public fragmentReglage() {
+    public FragmentReglage() {
         super(R.layout.fragment_reglage);
     }
 
@@ -29,7 +29,7 @@ public class fragmentReglage extends Fragment {
             public void onClick(View view) {
                 activiteParente.getSupportFragmentManager().beginTransaction()
                         .setReorderingAllowed(true)
-                        .replace(R.id.fragmentMenu, fragmentMenu.class, null)
+                        .replace(R.id.fragmentMenu, FragmentMenu.class, null)
                         .commit();
             }
         });

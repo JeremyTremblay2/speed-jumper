@@ -1,4 +1,4 @@
-package fr.iut.speedjumper;
+package fr.iut.speedjumper.vues;
 
 import android.content.Context;
 import android.os.Build;
@@ -17,7 +17,6 @@ import fr.iut.speedjumper.entrees.RecuperateurDeTouchesAndroid;
 import fr.iut.speedjumper.jeu.Jeu;
 import fr.iut.speedjumper.jeu.TableauJeu;
 import fr.iut.speedjumper.monde.Carte2D;
-import fr.iut.speedjumper.monde.Tuile;
 
 public class VueNiveau extends ViewGroup {
     private Jeu jeu;

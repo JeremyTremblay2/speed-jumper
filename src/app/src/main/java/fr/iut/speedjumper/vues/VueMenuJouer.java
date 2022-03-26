@@ -1,4 +1,4 @@
-package fr.iut.speedjumper;
+package fr.iut.speedjumper.vues;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,10 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.IOException;
 
-import fr.iut.speedjumper.donnees.CollectionRessources;
+import fr.iut.speedjumper.R;
 import fr.iut.speedjumper.jeu.Jeu;
-import fr.iut.speedjumper.logique.Dimension;
-import fr.iut.speedjumper.monde.Tuile;
 
 public class VueMenuJouer extends AppCompatActivity {
     private OrientationEventListener orientationEventListener;
@@ -41,18 +39,10 @@ public class VueMenuJouer extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        new Tuile(null, new Dimension(20, 20));
-        //new Tuile(null, new Dimension(20, 20));
         Log.d("SpeedJumper", "Avant création de la vue de tuile");
         VueNiveau niveau = new VueNiveau(this);
-        //VueTuile vueTuile = new VueTuile(getApplicationContext(), new Tuile(null, new Dimension(20, 20)));
-        //setContentView(vueTuile);
         setContentView(niveau);
-        Log.d("SpeedJumper", "Après création de la vue de tuile");
-        //vueTuile.postInvalidate();
         niveau.postInvalidate();
-        Log.d("SpeedJumper", "Après postInvalidate fin du cteur MenuJouer");
-        //new CarteComplete(this);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package fr.iut.speedjumper;
+package fr.iut.speedjumper.vues;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

@@ -1,4 +1,4 @@
-package fr.iut.speedjumper;
+package fr.iut.speedjumper.vues;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -11,11 +11,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.FileNotFoundException;
 
+import fr.iut.speedjumper.R;
 import fr.iut.speedjumper.donnees.ChargeurReglage;
 import fr.iut.speedjumper.donnees.SauvegardeReglage;
-import fr.iut.speedjumper.fragment.fragmentChoixNiveau;
-import fr.iut.speedjumper.fragment.fragmentMenu;
-import fr.iut.speedjumper.fragment.fragmentReglage;
+import fr.iut.speedjumper.fragment.FragmentChoixNiveau;
+import fr.iut.speedjumper.fragment.FragmentMenu;
+import fr.iut.speedjumper.fragment.FragmentReglage;
 
 public class MenuPrincipal extends AppCompatActivity {
     public static final String LES_REGLAGE = "lesEtudiants";
@@ -72,13 +73,13 @@ public class MenuPrincipal extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction()
                 .setReorderingAllowed(true)
-                .replace(R.id.fragmentMenu, fragmentMenu.class, null)
+                .replace(R.id.fragmentMenu, FragmentMenu.class, null)
                 .commit();
 
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             getSupportFragmentManager().beginTransaction()
                     .setReorderingAllowed(true)
-                    .replace(R.id.fragmentMenu, fragmentMenu.class, null)
+                    .replace(R.id.fragmentMenu, FragmentMenu.class, null)
                     .commit();
         }
     }
@@ -90,21 +91,21 @@ public class MenuPrincipal extends AppCompatActivity {
     public void gotoReglage(View view){
         getSupportFragmentManager().beginTransaction()
                 .setReorderingAllowed(true)
-                .replace(R.id.fragmentMenu, fragmentReglage.class, null)
+                .replace(R.id.fragmentMenu, FragmentReglage.class, null)
                 .commit();
     }
 
     public void gotoMenu(View view){
         getSupportFragmentManager().beginTransaction()
                 .setReorderingAllowed(true)
-                .replace(R.id.fragmentMenu, fragmentMenu.class, null)
+                .replace(R.id.fragmentMenu, FragmentMenu.class, null)
                 .commit();
     }
 
     public void goToChoixNiveau(View view){
         getSupportFragmentManager().beginTransaction()
                 .setReorderingAllowed(true)
-                .replace(R.id.fragmentMenu, fragmentChoixNiveau.class, null)
+                .replace(R.id.fragmentMenu, FragmentChoixNiveau.class, null)
                 .commit();
     }
 
@@ -120,19 +121,5 @@ public class MenuPrincipal extends AppCompatActivity {
         } catch (FileNotFoundException e) {
             Log.e(getPackageName(), "Sauvegarde impossible");
         }
-    }
-
-    public void setEtudiantEnCours(String niveauChoisi) {
-        if (this.niveauChoisi != niveauChoisi) {
-            if (niveauChoisi != null){
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.fragmentMenu,fragmentChoixNiveau.class,null)
-                            .setReorderingAllowed(true)
-                            .addToBackStack("Liste des étudiants")
-                            .commit();
-            }
-        }
-        this.niveauChoisi = niveauChoisi;
-
     }
 }
