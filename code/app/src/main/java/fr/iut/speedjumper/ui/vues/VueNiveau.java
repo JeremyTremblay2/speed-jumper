@@ -1,4 +1,4 @@
-package fr.iut.speedjumper.vues;
+package fr.iut.speedjumper.ui.vues;
 
 import android.content.Context;
 import android.os.Build;
@@ -9,45 +9,36 @@ import android.view.ViewGroup;
 import androidx.annotation.RequiresApi;
 
 import fr.iut.speedjumper.R;
-import fr.iut.speedjumper.donnees.AdaptateurChargeurDeCarteTiledCSV;
-import fr.iut.speedjumper.donnees.ChargeurDeJeuxDeTuilesTextuel;
-import fr.iut.speedjumper.donnees.ChargeurScoreTextuel;
-import fr.iut.speedjumper.donnees.CollectionRessources;
-import fr.iut.speedjumper.donnees.GestionnaireDeRessources;
 import fr.iut.speedjumper.entites.Entite;
 import fr.iut.speedjumper.entites.PersonnageJouable;
-import fr.iut.speedjumper.entrees.RecuperateurDeTouchesAndroid;
-import fr.iut.speedjumper.jeu.Jeu;
-import fr.iut.speedjumper.jeu.TableauJeu;
 import fr.iut.speedjumper.monde.Niveau;
 
 public class VueNiveau extends ViewGroup {
     private Niveau niveau;
-    private PersonnageJouable joueur;
 
-    public VueNiveau(Context context, Niveau niveau, PersonnageJouable joueur)
+    public VueNiveau(Context context, Niveau niveau)
             throws IllegalArgumentException {
         super(context);
-        initialisation(niveau, joueur);
+        initialisation(niveau);
     }
 
-    public VueNiveau(Context context, AttributeSet attrs, Niveau niveau, PersonnageJouable joueur)
+    public VueNiveau(Context context, AttributeSet attrs, Niveau niveau)
             throws IllegalArgumentException {
         super(context, attrs);
-        initialisation(niveau, joueur);
+        initialisation(niveau);
     }
 
-    public VueNiveau(Context context, AttributeSet attrs, int defStyleAttr, Niveau niveau,
-                     PersonnageJouable joueur) throws IllegalArgumentException {
+    public VueNiveau(Context context, AttributeSet attrs, int defStyleAttr, Niveau niveau)
+            throws IllegalArgumentException {
         super(context, attrs, defStyleAttr);
-        initialisation(niveau, joueur);
+        initialisation(niveau);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public VueNiveau(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes,
-                     Niveau niveau, PersonnageJouable joueur) throws IllegalArgumentException {
+                     Niveau niveau) throws IllegalArgumentException {
         super(context, attrs, defStyleAttr, defStyleRes);
-        initialisation(niveau, joueur);
+        initialisation(niveau);
     }
 
     @Override
@@ -75,17 +66,15 @@ public class VueNiveau extends ViewGroup {
         }
     }
 
-    private void initialisation(Niveau niveau, PersonnageJouable joueur) {
-        if (niveau == null || joueur == null) {
-            throw new NullPointerException("Le niveau ou le joueur passé en paramètre est null.");
+    private void initialisation(Niveau niveau) {
+        if (niveau == null) {
+            throw new NullPointerException("Le niveau ou passé en paramètre ne peut pasêtre null.");
         }
-        this.joueur = joueur;
         this.niveau = niveau;
 
         addView(new VueCarte(getContext(), niveau.getCarte()));
         for (Entite entite : niveau.getLesEntites()) {
             addView(new VueEntite(getContext(), entite, R.drawable.slime));
         }
-        addView(new VueEntite(getContext(), joueur, R.drawable.femme));
     }
 }

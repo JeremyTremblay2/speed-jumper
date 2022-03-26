@@ -5,9 +5,9 @@ import android.widget.LinearLayout;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import fr.iut.speedjumper.vues.MenuPrincipal;
+import fr.iut.speedjumper.ui.activites.MenuPrincipal;
 import fr.iut.speedjumper.R;
-import fr.iut.speedjumper.fragment.FragmentChoixDifficulte;
+import fr.iut.speedjumper.ui.fragment.FragmentChoixDifficulte;
 
 public class MonViewHolder extends RecyclerView.ViewHolder {
     private final Button leBouton;

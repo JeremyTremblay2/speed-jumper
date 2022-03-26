@@ -1,9 +1,8 @@
-package fr.iut.speedjumper.vues;
+package fr.iut.speedjumper.ui.vues;
 
 import android.content.Context;
 import android.os.Build;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -13,8 +12,6 @@ import androidx.annotation.RequiresApi;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.iut.speedjumper.jeu.Jeu;
-import fr.iut.speedjumper.jeu.TableauJeu;
 import fr.iut.speedjumper.monde.Carte2D;
 import fr.iut.speedjumper.monde.Tuile;
 

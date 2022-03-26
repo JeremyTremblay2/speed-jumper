@@ -9,9 +9,9 @@ public class RecuperateurDeTouchesAndroid extends RecuperateurDeTouches {
     private View vue;
 
      public RecuperateurDeTouchesAndroid(View vue) throws IllegalArgumentException {
-         if (vue == null) {
+         /*if (vue == null) {
              throw new IllegalArgumentException("La vue passée en paramètre ne peut pas être nulle.");
-         }
+         }*/
          this.vue = vue;
          initialisation();
      }

@@ -1,4 +1,4 @@
-package fr.iut.speedjumper.vues;
+package fr.iut.speedjumper.ui.vues;
 
 import android.content.Context;
 import android.graphics.Bitmap;

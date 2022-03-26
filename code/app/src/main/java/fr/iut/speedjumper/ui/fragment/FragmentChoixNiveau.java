@@ -1,4 +1,4 @@
-package fr.iut.speedjumper.fragment;
+package fr.iut.speedjumper.ui.fragment;
 
 import android.os.Bundle;
 import android.view.View;
@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import fr.iut.speedjumper.adaptateur.CustomAdapter;
-import fr.iut.speedjumper.vues.MenuPrincipal;
+import fr.iut.speedjumper.ui.activites.MenuPrincipal;
 import fr.iut.speedjumper.R;
 
 public class FragmentChoixNiveau extends Fragment {

@@ -1,4 +1,4 @@
-package fr.iut.speedjumper.ui.vues;
+package fr.iut.speedjumper.ui.activites;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -85,7 +85,7 @@ public class MenuPrincipal extends AppCompatActivity {
     }
 
     public void goToJouer(View view) {
-        Intent intent = new Intent(this, VueMenuJouer.class);
+        Intent intent = new Intent(this, MenuJouer.class);
         startActivity(intent);
     }
     public void gotoReglage(View view){
