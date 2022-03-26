@@ -16,6 +16,7 @@ import fr.iut.speedjumper.donnees.GestionnaireDeRessources;
 import fr.iut.speedjumper.entrees.RecuperateurDeTouchesAndroid;
 import fr.iut.speedjumper.jeu.Jeu;
 import fr.iut.speedjumper.jeu.TableauJeu;
+import fr.iut.speedjumper.ui.vues.VueJeu;
 import fr.iut.speedjumper.ui.vues.VueNiveau;
 
 public class MenuJouer extends AppCompatActivity {
@@ -50,9 +51,9 @@ public class MenuJouer extends AppCompatActivity {
                 new ChargeurScoreTextuel());
         jeu = new Jeu(new RecuperateurDeTouchesAndroid(null), gestionnaireDeRessources);
         tableauJeu = jeu.getTableauJeu();
-        VueNiveau niveau = new VueNiveau(this, tableauJeu.getNiveauCourant());
-        setContentView(niveau);
-        niveau.postInvalidate();
+        VueJeu vueJeu = new VueJeu(this, tableauJeu);
+        setContentView(vueJeu);
+        vueJeu.postInvalidate();
     }
 
     @Override
@@ -64,6 +65,7 @@ public class MenuJouer extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        jeu.ferme();
     }
 
     @Override

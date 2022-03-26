@@ -48,7 +48,6 @@ public class VueTuile extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        Log.d("SpeedJumper", "Dans draw de tuile");
         super.onDraw(canvas);
         canvas.drawBitmap(image, 0, 0, paint);
     }
@@ -60,8 +59,6 @@ public class VueTuile extends View {
         this.tuile = tuile;
         String id = String.format(Locale.getDefault(), "tuile_%d", tuile.getIdTuile());
         int tuileId = getResources().getIdentifier(id, "drawable", getContext().getPackageName());
-        Log.d("SpeedJumper", "Création tuile ID " + id);
-        Log.d("SpeedJumper", "Contexte : " + getContext());
         image = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(
                 getContext().getResources(), tuileId), (int) tuile.getDimension().getLargeur(),
                 (int) tuile.getDimension().getHauteur(), false);

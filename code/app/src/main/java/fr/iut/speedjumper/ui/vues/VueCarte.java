@@ -45,7 +45,7 @@ public class VueCarte extends ViewGroup {
     }
 
     @Override
-    protected void onLayout(final boolean changed, final int l, final int t, final int r, final int b)
+    protected void onLayout(boolean changed, int l, int t, int r, int b)
             throws IllegalArgumentException {
         int count = this.getChildCount();
         for (int i = 0; i < count; i++) {

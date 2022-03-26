@@ -50,7 +50,6 @@ public class VueEntite extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        Log.d("SpeedJumper", "Dans draw de entite");
         super.onDraw(canvas);
         canvas.drawBitmap(image, (int) entite.getPosition().getX(),
                 (int) entite.getPosition().getY(), paint);
