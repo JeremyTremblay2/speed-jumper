@@ -13,4 +13,7 @@
     <string name="niveau_1">Niveau 1</string>
     <string name="menujouer">MenuJouer</string>
     <string name="retour">Retour</string>
+    <string name="gauche">GAUCHE</string>
+    <string name="droite">DROITE</string>
+    <string name="saut">SAUT</string>
 </resources>

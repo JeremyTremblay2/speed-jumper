@@ -5,7 +5,7 @@ import android.widget.LinearLayout;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import fr.iut.speedjumper.ui.activites.MenuPrincipal;
+import fr.iut.speedjumper.ui.activites.ActiviteMenuPrincipal;
 import fr.iut.speedjumper.R;
 import fr.iut.speedjumper.ui.fragment.FragmentChoixDifficulte;
 
@@ -21,8 +21,8 @@ public class MonViewHolder extends RecyclerView.ViewHolder {
 
     public void setNiveauCourant(String niveauCourant) {
         leBouton.setOnClickListener(v -> {
-            ((MenuPrincipal)leBouton.getContext()).setNiveauChoisi(niveauCourant);
-            ((MenuPrincipal)leBouton.getContext()).getSupportFragmentManager().beginTransaction()
+            ((ActiviteMenuPrincipal)leBouton.getContext()).setNiveauChoisi(niveauCourant);
+            ((ActiviteMenuPrincipal)leBouton.getContext()).getSupportFragmentManager().beginTransaction()
                     .setReorderingAllowed(true)
                     .replace(R.id.fragmentMenu, FragmentChoixDifficulte.class, null)
                     .commit();

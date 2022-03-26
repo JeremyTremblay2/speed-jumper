@@ -18,7 +18,7 @@ import fr.iut.speedjumper.ui.fragment.FragmentChoixNiveau;
 import fr.iut.speedjumper.ui.fragment.FragmentMenu;
 import fr.iut.speedjumper.ui.fragment.FragmentReglage;
 
-public class MenuPrincipal extends AppCompatActivity {
+public class ActiviteMenuPrincipal extends AppCompatActivity {
     public static final String LES_REGLAGE = "lesEtudiants";
     private int volumeSon = 100;
     private int volumeMusique = 100;
@@ -85,7 +85,7 @@ public class MenuPrincipal extends AppCompatActivity {
     }
 
     public void goToJouer(View view) {
-        Intent intent = new Intent(this, MenuJouer.class);
+        Intent intent = new Intent(this, ActiviteJeu.class);
         startActivity(intent);
     }
     public void gotoReglage(View view){

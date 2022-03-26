@@ -9,11 +9,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import fr.iut.speedjumper.ui.activites.MenuPrincipal;
+import fr.iut.speedjumper.ui.activites.ActiviteMenuPrincipal;
 import fr.iut.speedjumper.R;
 
 public class FragmentReglage extends Fragment {
-    private MenuPrincipal activiteParente ;
+    private ActiviteMenuPrincipal activiteParente ;
 
     public FragmentReglage() {
         super(R.layout.fragment_reglage);
@@ -22,7 +22,7 @@ public class FragmentReglage extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        activiteParente = (MenuPrincipal) getContext();
+        activiteParente = (ActiviteMenuPrincipal) getContext();
 
         view.findViewById(R.id.bouton_retour).setOnClickListener(new View.OnClickListener() {
             @Override

@@ -102,12 +102,12 @@ public class CollectionRessources {
 
         lesJeuxDeTuilesCollisions.add(contexte.getResources().openRawResource(R.raw.caverne_moussue));
 
-        lesPointsArrivee.add(new Position2D(512, 320));
+        lesPointsArrivee.add(new Position2D(1280, 256));
         lesPointsArrivee.add(new Position2D(128, 1792));
         lesPointsArrivee.add(new Position2D(128, 448));
         lesPointsArrivee.add(new Position2D(6336, 320));
 
-        lesPointsDepart.add(new Position2D(128, 1664));
+        lesPointsDepart.add(new Position2D(320, 704));
         lesPointsDepart.add(new Position2D(128, 128));
         lesPointsDepart.add(new Position2D(196, 5660));
         lesPointsDepart.add(new Position2D(256, 1344));

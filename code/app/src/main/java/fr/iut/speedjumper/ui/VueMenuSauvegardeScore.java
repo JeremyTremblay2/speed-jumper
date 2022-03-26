@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import fr.iut.speedjumper.R;
-import fr.iut.speedjumper.ui.activites.MenuJouer;
+import fr.iut.speedjumper.ui.activites.ActiviteJeu;
 
 public class VueMenuSauvegardeScore extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -18,7 +18,7 @@ public class VueMenuSauvegardeScore extends AppCompatActivity {
     }
 
     private void naviguerVersFenetreJouer(View view) {
-        Intent intent = new Intent(this, MenuJouer.class);
+        Intent intent = new Intent(this, ActiviteJeu.class);
         startActivity(intent);
     }
 }

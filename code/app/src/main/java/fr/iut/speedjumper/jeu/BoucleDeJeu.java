@@ -48,7 +48,7 @@ public class BoucleDeJeu extends Sujet implements Runnable {
             ecoule = tempsCourant - tempsDerniereIteration;
             if (ecoule >= NOMBRE_NANOSECONDES_AVANT_NOTIFICATION) {
                 tempsEcoule = ecoule;
-                //Platform.runLater(this::notifier);
+                notifier();
                 tempsDerniereIteration = tempsCourant;
             }
         }

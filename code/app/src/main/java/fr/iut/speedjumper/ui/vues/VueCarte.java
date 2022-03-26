@@ -52,12 +52,7 @@ public class VueCarte extends ViewGroup {
             int y = i / (int) carteCourante.getDimensionCarte().getLargeur();
             int x = i % ((int) carteCourante.getDimensionCarte().getLargeur());
                 Tuile tuile = null;
-                try {
-                    tuile = carteCourante.getTuile(y, x);
-                }
-                catch (IndexOutOfBoundsException e) {
-                    System.out.println(e);
-                }
+                tuile = carteCourante.getTuile(y, x);
                 View child = this.getChildAt(i);
                 child.layout((int) (x * tuile.getDimension().getLargeur()),
                         (int) (y * tuile.getDimension().getHauteur()),

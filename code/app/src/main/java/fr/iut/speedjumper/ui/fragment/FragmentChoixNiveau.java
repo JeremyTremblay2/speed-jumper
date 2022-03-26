@@ -12,11 +12,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import fr.iut.speedjumper.adaptateur.CustomAdapter;
-import fr.iut.speedjumper.ui.activites.MenuPrincipal;
+import fr.iut.speedjumper.ui.activites.ActiviteMenuPrincipal;
 import fr.iut.speedjumper.R;
 
 public class FragmentChoixNiveau extends Fragment {
-    private MenuPrincipal activiteParente ;
+    private ActiviteMenuPrincipal activiteParente ;
     //private List<String> listNiveau;
 
     public FragmentChoixNiveau() {
@@ -37,7 +37,7 @@ public class FragmentChoixNiveau extends Fragment {
         listNiveau.add("Niveau 9");
         listNiveau.add("Niveau 10");
         super.onViewCreated(view, savedInstanceState);
-        activiteParente= (MenuPrincipal) getContext();
+        activiteParente= (ActiviteMenuPrincipal) getContext();
         RecyclerView laListView = view.findViewById(R.id.recycleView);
         laListView.setLayoutManager(new LinearLayoutManager(activiteParente));
         laListView.setAdapter(new CustomAdapter(listNiveau));

@@ -9,11 +9,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import fr.iut.speedjumper.ui.activites.MenuPrincipal;
+import fr.iut.speedjumper.ui.activites.ActiviteMenuPrincipal;
 import fr.iut.speedjumper.R;
 
 public class FragmentChoixDifficulte extends Fragment {
-    private MenuPrincipal activiteParente ;
+    private ActiviteMenuPrincipal activiteParente ;
     public FragmentChoixDifficulte() {
         super(R.layout.fragment_choix_difficulte);
     }
@@ -21,7 +21,7 @@ public class FragmentChoixDifficulte extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        activiteParente= (MenuPrincipal) getContext();
+        activiteParente= (ActiviteMenuPrincipal) getContext();
 
         TextView Niveau = (TextView) view.findViewById(R.id.niveauChoisi);
         Niveau.setText(activiteParente.getNiveauChoisi());

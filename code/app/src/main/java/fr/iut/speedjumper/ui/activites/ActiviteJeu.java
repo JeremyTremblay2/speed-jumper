@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.OrientationEventListener;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,19 +17,21 @@ import fr.iut.speedjumper.donnees.GestionnaireDeRessources;
 import fr.iut.speedjumper.entrees.RecuperateurDeTouchesAndroid;
 import fr.iut.speedjumper.jeu.Jeu;
 import fr.iut.speedjumper.jeu.TableauJeu;
+import fr.iut.speedjumper.observateurs.Observateur;
 import fr.iut.speedjumper.ui.vues.VueJeu;
 import fr.iut.speedjumper.ui.vues.VueNiveau;
 
-public class MenuJouer extends AppCompatActivity {
+public class ActiviteJeu extends AppCompatActivity implements Observateur {
     private OrientationEventListener orientationEventListener;
     private TableauJeu tableauJeu;
     private CollectionRessources collectionRessources;
     private Jeu jeu;
+    private View vueJeu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.menu_jouer);
+        setContentView(R.layout.vue_jeu);
 
         orientationEventListener = new OrientationEventListener((Context)this) {
             @Override
@@ -51,9 +54,10 @@ public class MenuJouer extends AppCompatActivity {
                 new ChargeurScoreTextuel());
         jeu = new Jeu(new RecuperateurDeTouchesAndroid(null), gestionnaireDeRessources);
         tableauJeu = jeu.getTableauJeu();
-        VueJeu vueJeu = new VueJeu(this, tableauJeu);
+        vueJeu = new VueJeu(this, tableauJeu);
         setContentView(vueJeu);
-        vueJeu.postInvalidate();
+        jeu.attacher(this);
+        jeu.lance();
     }
 
     @Override
@@ -63,14 +67,13 @@ public class MenuJouer extends AppCompatActivity {
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        jeu.ferme();
-    }
-
-    @Override
     protected void onResume() {
         super.onResume();
         orientationEventListener.enable();
+    }
+
+    @Override
+    public void miseAJour() {
+        vueJeu.postInvalidate();
     }
 }

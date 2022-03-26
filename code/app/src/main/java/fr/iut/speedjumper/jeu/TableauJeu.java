@@ -113,6 +113,7 @@ public class TableauJeu {
     private void initialisation() {
         List<Carte2D> lesCartes = new ArrayList<>();
         List<List<Score>> lesScores = new ArrayList<>();
+        options = new Options(true, 10, 10);
         Niveau niveau;
 
         try {
@@ -138,17 +139,11 @@ public class TableauJeu {
             lesNiveaux.add(niveau);
         }
 
-        System.out.println(lesCartes.size());
-
         ChargeurEnnemis chargeurEnnemis = new ChargeurEnnemisStub(this);
         List<List<Entite>> lesEnnemis = chargeurEnnemis.charge(null);
         for (int i = 0; i < lesNiveaux.size(); i++) {
             lesNiveaux.get(i).ajouterEntites(lesEnnemis.get(i));
         }
-
-        niveauCourant = lesNiveaux.get(0);
-
-        options = new Options(true, 10, 10);
 
         joueur = new PersonnageJouable(new Position2D(0, 0),
                 new Rectangle(22, 12, 41, 112),
@@ -156,5 +151,7 @@ public class TableauJeu {
                 10,
                 4,
                 3);
+
+        setNiveauCourant(0);
     }
 }

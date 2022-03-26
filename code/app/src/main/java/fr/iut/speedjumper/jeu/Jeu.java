@@ -90,7 +90,6 @@ public class Jeu extends Sujet implements Observateur {
         entreeUtilisateur(temps);
 
         gestionEntites(temps);
-        System.out.println(tableauJeu.getNiveauCourant());
 
         /*double positionPersonnageY = joueur.getPosition().getY() / niveauCourant.getCarte().getDimensionTuiles().getHauteur();
         if (positionPersonnageY >= niveauCourant.getCarte().getDimensionCarte().getHauteur() - 1) {
@@ -112,10 +111,11 @@ public class Jeu extends Sujet implements Observateur {
 
     private void gestionEntites(double temps) {
         List<Entite> lesEntites = tableauJeu.getNiveauCourant().getLesEntites();
-        lesEntites.add(tableauJeu.getJoueur());
+        //lesEntites.add(tableauJeu.getJoueur());
         for (Entite entite : lesEntites) {
             chuteur.miseAJourEtatDeJeu(entite, temps);
             entite.miseAJour(temps);
         }
+        chuteur.miseAJourEtatDeJeu(tableauJeu.getJoueur(), temps);
     }
 }
