@@ -25,7 +25,7 @@ public class FragmentChoixNiveau extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        ArrayList<String> listNiveau = new ArrayList<String>();
+        ArrayList<String> listNiveau = new ArrayList<>();
         listNiveau.add("Niveau 1");
         listNiveau.add("Niveau 2");
         listNiveau.add("Niveau 3");

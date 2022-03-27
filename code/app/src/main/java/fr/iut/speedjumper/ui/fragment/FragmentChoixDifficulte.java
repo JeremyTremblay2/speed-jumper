@@ -24,32 +24,23 @@ public class FragmentChoixDifficulte extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         activiteParente = (ActiviteMenuPrincipal) getContext();
 
-        TextView Niveau = (TextView) view.findViewById(R.id.niveauChoisi);
+        TextView Niveau = view.findViewById(R.id.niveauChoisi);
         Niveau.setText(activiteParente.getNiveauChoisi());
 
-        Button difficulteNormal =(Button) view.findViewById(R.id.difficulteNormal) ;
-        difficulteNormal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                activiteParente.setDifficulteChoisi((String) difficulteNormal.getText());
-                activiteParente.goToJouer(view);
-            }
+        Button difficulteNormal = view.findViewById(R.id.difficulteNormal);
+        difficulteNormal.setOnClickListener(view1 -> {
+            activiteParente.setDifficulteChoisi((String) difficulteNormal.getText());
+            activiteParente.goToJouer(view1);
         });
-        Button difficulteSpeed = (Button) view.findViewById(R.id.difficulteSpeed) ;
-        difficulteSpeed.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                activiteParente.setDifficulteChoisi((String) difficulteSpeed.getText());
-                activiteParente.goToJouer(view);
-            }
+        Button difficulteSpeed = view.findViewById(R.id.difficulteSpeed);
+        difficulteSpeed.setOnClickListener(view13 -> {
+            activiteParente.setDifficulteChoisi((String) difficulteSpeed.getText());
+            activiteParente.goToJouer(view13);
         });
-        Button difficulteOmbre =(Button) view.findViewById(R.id.difficulteOmbre) ;
-        difficulteOmbre.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                activiteParente.setDifficulteChoisi((String) difficulteOmbre.getText());
-                activiteParente.goToJouer(view);
-            }
+        Button difficulteOmbre = view.findViewById(R.id.difficulteOmbre);
+        difficulteOmbre.setOnClickListener(view12 -> {
+            activiteParente.setDifficulteChoisi((String) difficulteOmbre.getText());
+            activiteParente.goToJouer(view12);
         });
     }
 }

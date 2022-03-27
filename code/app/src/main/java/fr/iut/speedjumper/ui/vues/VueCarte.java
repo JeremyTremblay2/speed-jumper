@@ -23,7 +23,6 @@ import fr.iut.speedjumper.monde.Tuile;
 
 public class VueCarte extends ViewGroup {
     private Map<Tuile, Bitmap> lesImages;
-    private List<VueTuile> lesTuiles;
     private Carte2D carteCourante;
 
     public VueCarte(Context context, Carte2D carte)
@@ -91,7 +90,6 @@ public class VueCarte extends ViewGroup {
             throw new IllegalArgumentException("La carte passée en paramètre ne peut pas être nulle.");
         }
         carteCourante = carte;
-        lesTuiles = new ArrayList<>();
         lesImages = new HashMap<>();
 
         Tuile[][] vueCarte = carteCourante.getLesTuiles();

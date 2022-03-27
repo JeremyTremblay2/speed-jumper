@@ -1,10 +1,13 @@
 package fr.iut.speedjumper.ui.activites;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -86,10 +89,19 @@ public class ActiviteMenuPrincipal extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("RtlHardcoded")
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Toast t = Toast.makeText(getApplicationContext(), "A bientôt !",
+                Toast.LENGTH_LONG);
+        t.setGravity(Gravity.BOTTOM | Gravity.RIGHT, 0, 0);
+        t.show();
+    }
+
     public void goToJouer(View view) {
         Intent intent = new Intent(this, ActiviteJeu.class);
         int numeroNiveau = Integer.parseInt(niveauChoisi.substring(niveauChoisi.length() - 1));
-        Log.d("SpeedJumper", "NUMERO NIVEAU AVANT TP : " + numeroNiveau);
         intent.putExtra(NUMERO_NIVEAU, numeroNiveau);
         startActivity(intent);
     }

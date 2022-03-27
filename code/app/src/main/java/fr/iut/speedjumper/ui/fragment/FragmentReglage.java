@@ -24,15 +24,10 @@ public class FragmentReglage extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         activiteParente = (ActiviteMenuPrincipal) getContext();
 
-        view.findViewById(R.id.bouton_retour).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                activiteParente.getSupportFragmentManager().beginTransaction()
-                        .setReorderingAllowed(true)
-                        .replace(R.id.fragmentMenu, FragmentMenu.class, null)
-                        .commit();
-            }
-        });
+        view.findViewById(R.id.bouton_retour).setOnClickListener(view1 -> activiteParente.getSupportFragmentManager().beginTransaction()
+                .setReorderingAllowed(true)
+                .replace(R.id.fragmentMenu, FragmentMenu.class, null)
+                .commit());
 
         SeekBar volumeMusique = view.findViewById(R.id.reglageMusique);
         TextView affichageMusique = view.findViewById(R.id.valeurMusique);
