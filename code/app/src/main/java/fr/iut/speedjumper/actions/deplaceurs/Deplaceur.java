@@ -1,5 +1,7 @@
 package fr.iut.speedjumper.actions.deplaceurs;
 
+import android.util.Log;
+
 import fr.iut.speedjumper.actions.collisionneurs.CollisionneurCarte;
 import fr.iut.speedjumper.entites.Entite;
 import fr.iut.speedjumper.jeu.BoucleDeJeu;
@@ -44,11 +46,16 @@ public class Deplaceur {
         Carte2D carteCourante = tableauJeu.getNiveauCourant().getCarte();
         double increment;
 
+        //Log.d("SpeedJumper", "DANS DEPLACEUR");
+        //Log.d("SpeedJumper", "COLLISION ENTITE :" + entite.getCollision().toString());
+
         if (entite.isSurSol()) {
-            increment = entite.getVelocite() * (temps / BoucleDeJeu.NOMBRE_NANOSECONDES_AVANT_NOTIFICATION);
+            //Log.d("SpeedJumper", "TEMPS :" + temps);
+            increment = entite.getVelocite() * (temps / BoucleDeJeu.TEMPS_AVANT_NOTIFICATION);
+            //Log.d("SpeedJumper", "TEMPS :" + increment);
         }
         else {
-            increment = entite.getVelocite() * (temps / BoucleDeJeu.NOMBRE_NANOSECONDES_AVANT_NOTIFICATION) / VELOCITE_DANS_LES_AIRS;
+            increment = entite.getVelocite() * (temps / BoucleDeJeu.TEMPS_AVANT_NOTIFICATION) / VELOCITE_DANS_LES_AIRS;
         }
 
         switch (direction) {
@@ -66,36 +73,36 @@ public class Deplaceur {
                 break;
         }
 
-        Rectangle nouvelleCollision = new Rectangle(nouvellePosition.getX()
-                + entite.getCollision().getPosition().getX(),
-                nouvellePosition.getY() + entite.getCollision().getPosition().getY(),
+        //Log.d("SpeedJumper", "NOUVELLE POSITION : " + nouvellePosition.toString());
+
+        Rectangle nouvelleCollision = new Rectangle(nouvellePosition.getX(),
+                nouvellePosition.getY(),
                 entite.getCollision().getDimension());
+
+        //Log.d("SpeedJumper", "NOUVELLE COLLISION :" + nouvelleCollision.toString());
 
         Position2D nouvellePositionSuperieure = new Position2D(nouvellePosition.getX(),
                 nouvellePosition.getY() + decalagePixelParMouvement);
 
-        Rectangle nouvelleCollisionSuperieure = new Rectangle(nouvellePositionSuperieure.getX()
-                + entite.getCollision().getPosition().getX(),
-                nouvellePositionSuperieure.getY() + entite.getCollision().getPosition().getY(),
+        Rectangle nouvelleCollisionSuperieure = new Rectangle(nouvellePositionSuperieure.getX(),
+                nouvellePositionSuperieure.getY(),
                 entite.getCollision().getDimension());
 
-        if (nouvellePosition.getX() >= 0 && nouvellePosition.getY() >= 0
-                && nouvellePosition.getX() <= carteCourante.getDimensionCarte().getLargeur() * carteCourante.getDimensionTuiles().getLargeur()
-                && nouvellePosition.getY() <= carteCourante.getDimensionCarte().getHauteur() * carteCourante.getDimensionTuiles().getHauteur()) {
-            if (!collisionneur.collisionne(nouvelleCollision, carteCourante)) {
-                entite.setPosition(nouvellePosition);
-                detectionVide(entite);
-            }
-            else if (!collisionneur.collisionne(nouvelleCollisionSuperieure, carteCourante)) {
-                entite.setPosition(nouvellePositionSuperieure);
-                detectionVide(entite);
-            }
+        if (!collisionneur.collisionne(nouvelleCollision, carteCourante)) {
+            //Log.d("SpeedJumper", "DEPLACEMENT VERS 1 :" + nouvellePosition.toString());
+            entite.setPosition(nouvellePosition);
+            detectionVide(entite);
+        }
+        else if (!collisionneur.collisionne(nouvelleCollisionSuperieure, carteCourante)) {
+            //Log.d("SpeedJumper", "DEPLACEMENT VERS 1 :" + nouvellePosition.toString());
+            entite.setPosition(nouvellePositionSuperieure);
+            detectionVide(entite);
         }
     }
 
     private void detectionVide(Entite entite) {
-        Position2D positionBas = new Position2D(entite.getPosition().getX() + entite.getCollision().getPosition().getX(),
-                entite.getPosition().getY() + entite.getCollision().getPosition().getY() + NOMBRE_PIXEL_VERIFICATION_VIDE);
+        Position2D positionBas = new Position2D(entite.getPosition().getX(),
+                entite.getPosition().getY() + NOMBRE_PIXEL_VERIFICATION_VIDE);
 
         Rectangle nouvelleCollision = new Rectangle(positionBas, entite.getCollision().getDimension());
 

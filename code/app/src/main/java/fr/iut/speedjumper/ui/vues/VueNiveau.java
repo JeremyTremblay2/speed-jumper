@@ -63,6 +63,7 @@ public class VueNiveau extends ViewGroup {
                     child,
                     MeasureSpec.makeMeasureSpec(parentWidth, MeasureSpec.EXACTLY),
                     MeasureSpec.makeMeasureSpec(parentHeight, MeasureSpec.EXACTLY));
+            child.postInvalidate();
         }
     }
 

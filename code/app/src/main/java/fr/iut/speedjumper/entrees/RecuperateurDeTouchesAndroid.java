@@ -40,12 +40,13 @@ public class RecuperateurDeTouchesAndroid extends RecuperateurDeTouches {
     private void genererEcouteur(ImageButton bouton, Touche typeTouche) {
         bouton.setOnTouchListener((view, motionEvent) -> {
             if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                lesTouchesPressees.add(typeTouche);
+                if (!lesTouchesPressees.contains(typeTouche)) {
+                    lesTouchesPressees.add(typeTouche);
+                }
             }
             else if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
                 lesTouchesPressees.remove(typeTouche);
             }
-            System.out.println(lesTouchesPressees);
             return true;
         });
     }

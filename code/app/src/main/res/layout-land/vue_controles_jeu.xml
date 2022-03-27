@@ -7,7 +7,7 @@
     tools:ignore="MissingDefaultResource">
 
     <ImageButton
-        android:id="@+id/bouton_fleche_saut"
+        android:id="@+id/bouton_fleche_gauche"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -24,7 +24,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
-        android:id="@+id/bouton_fleche_droite"
+        android:id="@+id/bouton_fleche_saut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"

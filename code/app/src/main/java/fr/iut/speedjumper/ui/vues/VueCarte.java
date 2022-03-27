@@ -57,6 +57,7 @@ public class VueCarte extends ViewGroup {
                 child.layout((int) (x * tuile.getDimension().getLargeur()),
                         (int) (y * tuile.getDimension().getHauteur()),
                         child.getMeasuredWidth(), child.getMeasuredHeight());
+                child.postInvalidate();
 
         }
     }

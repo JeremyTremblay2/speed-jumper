@@ -12,16 +12,16 @@ public class GestionnaireDeJeu {
         jeu = new Jeu(recuperateurDeTouches, gestionnaireDeRessources);
     }
 
-    public void initialise() {
-        jeu.initialise();
+    public TableauJeu getTableaJeu() {
+        return jeu.getTableauJeu();
     }
 
-    public void lance() {
-        jeu.lance();
+    public void lance() throws IllegalArgumentException {
+        jeu.lancerJeu();
     }
 
     public void ferme() {
-        jeu.ferme();
+        jeu.arreterJeu();
     }
 
     public void setPause(boolean pause) {

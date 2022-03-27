@@ -1,56 +1,70 @@
 package fr.iut.speedjumper.jeu;
 
+import static java.lang.Thread.sleep;
+
 import fr.iut.speedjumper.observateurs.Sujet;
+import fr.iut.speedjumper.observateurs.SujetTemporel;
 
 /**
  * Classe de la boucle du jeu
  */
-public class BoucleDeJeu extends Sujet implements Runnable {
-    private static final long SECONDE_EN_NANOSECONDE = 1000000000;
-    public static final long FPS_CIBLE = 60;
-    public static final long NOMBRE_NANOSECONDES_AVANT_NOTIFICATION =  SECONDE_EN_NANOSECONDE / FPS_CIBLE;
-    private boolean enCours;
+public class BoucleDeJeu extends SujetTemporel implements Runnable {
+    public static final int FPS_CIBLE = 60;
+    public final long tempsLancement;
+    private static final long TEMPS_NANOSECONDE = 1000000000;
+    private static final long TEMPS_MILLISECONDE = 1000000;
+    public static final long TEMPS_AVANT_NOTIFICATION = TEMPS_NANOSECONDE / FPS_CIBLE;
+
+    private boolean actif;
+    private long tempsCourant;
+    private long dernierTemps;
     private long tempsEcoule;
+    private long tempsEcouleTotal;
 
-    /**
-     * Constructeur de la boucle et passe en cours en true
-     */
     public BoucleDeJeu() {
-        enCours = true;
+        tempsLancement = System.nanoTime();
+        tempsEcouleTotal = 0;
+        actif = false;
     }
 
-    /**
-     * set la boucle de jeu comme étant en cour
-     * @param enCours
-     */
-    public void setEnCours(boolean enCours) {
-        this.enCours = enCours;
+    public long getTempsEcouleTotal() {
+        return tempsEcouleTotal;
     }
 
-
-    /**
-     * retourne le temps écoulé depuis le lancement de la boucle
-     * @return
-     */
-    public long getTempsEcoule() {
-        return tempsEcoule;
+    public boolean isActif() {
+        return actif;
     }
 
-    /**
-     * Methode pour lancer la boucle de jeu
-     */
+    public void setActif(boolean actif) {
+        this.actif = actif;
+    }
+
     @Override
     public void run() {
-        long tempsCourant, ecoule;
-        long tempsDerniereIteration = System.nanoTime();
-        while (enCours) {
+        actif = true;
+        dernierTemps = System.nanoTime();
+        long tempsAttente;
+
+        while(actif) {
             tempsCourant = System.nanoTime();
-            ecoule = tempsCourant - tempsDerniereIteration;
-            if (ecoule >= NOMBRE_NANOSECONDES_AVANT_NOTIFICATION) {
-                tempsEcoule = ecoule;
-                notifier();
-                tempsDerniereIteration = tempsCourant;
+            tempsEcoule = tempsCourant - dernierTemps;
+            if (tempsEcoule >= TEMPS_AVANT_NOTIFICATION) {
+                ticker(tempsEcoule);
+                tempsEcouleTotal += tempsEcoule;
+                dernierTemps = tempsCourant;
+            }
+            else {
+                tempsAttente = TEMPS_AVANT_NOTIFICATION - tempsEcoule;
+                try {
+                    sleep(tempsAttente / TEMPS_MILLISECONDE, (int) (tempsAttente % TEMPS_MILLISECONDE));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
+    }
+
+    public void ticker(double timer) {
+        notifier(timer);
     }
 }

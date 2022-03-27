@@ -1,5 +1,9 @@
 package fr.iut.speedjumper.jeu;
 
+import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
+
 import java.util.List;
 
 import fr.iut.speedjumper.actions.Chuteur;
@@ -12,14 +16,16 @@ import fr.iut.speedjumper.entites.Entite;
 import fr.iut.speedjumper.entrees.Commande;
 import fr.iut.speedjumper.entrees.GestionnaireActionUtilisateur;
 import fr.iut.speedjumper.entrees.GestionnaireActionUtilisateurDebug;
+import fr.iut.speedjumper.entrees.GestionnaireActionUtilisateurJeu;
 import fr.iut.speedjumper.entrees.RecuperateurDeTouches;
 import fr.iut.speedjumper.observateurs.Observateur;
+import fr.iut.speedjumper.observateurs.ObservateurTemporel;
 import fr.iut.speedjumper.observateurs.Sujet;
 
 /**
  * Classe gerant le jeu
  */
-public class Jeu extends Sujet implements Observateur {
+public class Jeu extends Sujet implements ObservateurTemporel {
     private boolean pause;
     private Chuteur chuteur;
     private GestionnaireActionUtilisateur gestionnaireActions;
@@ -36,12 +42,14 @@ public class Jeu extends Sujet implements Observateur {
     public Jeu(RecuperateurDeTouches recuperateur, GestionnaireDeRessources gestionnaireDeRessources)
             throws IllegalArgumentException {
         tableauJeu = new TableauJeu(gestionnaireDeRessources);
-        gestionnaireActions = new GestionnaireActionUtilisateurDebug(recuperateur, tableauJeu);
+        gestionnaireActions = new GestionnaireActionUtilisateurJeu(recuperateur, tableauJeu);
         VisiteurCollisions visiteur = new VisiteurCollisionsBasique(tableauJeu);
         gestionnaireDeCollisions = new GestionnaireDeCollisions(tableauJeu, visiteur);
         collisionneurPointRectangle = new CollisionneurPointRectangle();
         chuteur = new Chuteur(tableauJeu);
-        pause = false;
+        boucleDeJeu = new BoucleDeJeu();
+        boucleDeJeu.attacher(this);
+        pause = true;
     }
 
     public boolean isPause() {
@@ -52,19 +60,35 @@ public class Jeu extends Sujet implements Observateur {
         this.pause = pause;
     }
 
-    public void initialise() {
-        //Si des chargements particuliers ont lieux ici.
+    public boolean isLance() {
+        return processus != null && processus.isAlive();
     }
 
     public TableauJeu getTableauJeu() {
         return tableauJeu;
     }
 
-    public void lance() {
-        boucleDeJeu = new BoucleDeJeu();
-        boucleDeJeu.attacher(this);
+    public void lancerJeu() throws IllegalStateException {
+        if (processus != null && processus.isAlive()) {
+            throw new IllegalStateException("Le thread du jeu est déjà lancé et doit d'abord être interrompu.");
+        }
+        boucleDeJeu.setActif(true);
+        pause = false;
         processus = new Thread(boucleDeJeu, "Speed Jumper Thread");
         processus.start();
+        Log.d("SpeedJumper", tableauJeu.getJoueur().getPosition().toString());
+    }
+
+    public void arreterJeu() {
+        boucleDeJeu.setActif(false);
+        try {
+            if (isLance()) {
+                processus.join();
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        pause = true;
     }
 
     public void changerNiveau(int niveau) {
@@ -74,22 +98,14 @@ public class Jeu extends Sujet implements Observateur {
         }
     }
 
-    public void ferme() {
-        //Eventuellement sauvegarde, etc avant de quitter.
-        boucleDeJeu.setEnCours(false);
-        try {
-            processus.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
     @Override
-    public void miseAJour() {
-        double temps = boucleDeJeu.getTempsEcoule();
+    public void miseAJour(double temps) {
+        if (pause) {
+            return;
+        }
         entreeUtilisateur(temps);
-
         gestionEntites(temps);
+        notifier();
 
         /*double positionPersonnageY = joueur.getPosition().getY() / niveauCourant.getCarte().getDimensionTuiles().getHauteur();
         if (positionPersonnageY >= niveauCourant.getCarte().getDimensionCarte().getHauteur() - 1) {
@@ -98,14 +114,13 @@ public class Jeu extends Sujet implements Observateur {
     }
 
     private void entreeUtilisateur(double temps) {
+        if (tableauJeu.isGameOver()) {
+            gestionnaireActions.setPause(true);
+        }
+
         List<Commande> actions = gestionnaireActions.attribuerAction();
         for (Commande commande : actions) {
             commande.execute(tableauJeu.getJoueur(), temps);
-        }
-
-        if (tableauJeu.isGameOver()) {
-            gestionnaireActions.setPause(true);
-            notifier();
         }
     }
 
@@ -117,5 +132,6 @@ public class Jeu extends Sujet implements Observateur {
             entite.miseAJour(temps);
         }
         chuteur.miseAJourEtatDeJeu(tableauJeu.getJoueur(), temps);
+        new Thread(chuteur).start();
     }
 }

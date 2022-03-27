@@ -3,6 +3,7 @@ package fr.iut.speedjumper.ui.vues;
 import android.content.Context;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,10 +40,12 @@ public class VueJeu extends ViewGroup {
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        Log.d("SpeedJumper", "Affichage du jeu");
         int count = this.getChildCount();
         for (int i = 0; i < count; i++) {
             View child = this.getChildAt(i);
             child.layout(0, 0, child.getMeasuredWidth(), child.getMeasuredHeight());
+            child.postInvalidate();
         }
     }
 
@@ -61,6 +64,11 @@ public class VueJeu extends ViewGroup {
                     MeasureSpec.makeMeasureSpec(parentHeight, MeasureSpec.EXACTLY));
         }
     }
+
+    /*@Override
+    public void postInvalidate() {
+        super.postInvalidate();
+    }*/
 
     private void initialisation(TableauJeu tableauJeu) throws IllegalArgumentException {
         if (tableauJeu == null) {

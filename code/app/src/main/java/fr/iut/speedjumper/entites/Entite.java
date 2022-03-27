@@ -47,8 +47,22 @@ public abstract class Entite extends SujetEntite {
     }
 
     public void setPosition(Position2D position) {
+        double positionX = 0;
+        double positionY = 0;
+        if (this.position.getX() < position.getX()) {
+            positionX = position.getX() - this.position.getX();
+        }
+        else {
+            positionX = - (this.position.getX() - position.getX());
+        }
+        if (this.position.getY() < position.getY()) {
+            positionY = position.getY() - this.position.getY();
+        }
+        else {
+            positionY = - (this.position.getY() - position.getY());
+        }
+        collision.getPosition().ajouterPosition(new Position2D(positionX, positionY));
         this.position = position;
-        collision.getPosition().ajouterPosition(position);
         notifier(this, TypeNotification.MODIFICATION);
     }
 

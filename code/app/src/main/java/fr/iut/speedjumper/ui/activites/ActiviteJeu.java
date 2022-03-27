@@ -35,7 +35,7 @@ public class ActiviteJeu extends AppCompatActivity implements Observateur {
         setContentView(R.layout.vue_jeu_complete);
         FrameLayout parent = findViewById(R.id.parent);
 
-        orientationEventListener = new OrientationEventListener((Context)this) {
+        /*orientationEventListener = new OrientationEventListener((Context)this) {
             @Override
             public void onOrientationChanged(int orientation) {
                 if (orientation >= 100 && orientation < 180) {
@@ -47,7 +47,7 @@ public class ActiviteJeu extends AppCompatActivity implements Observateur {
                 }
             }
         };
-        orientationEventListener.enable();
+        orientationEventListener.enable();*/
         View vueBoutons = LayoutInflater.from(getApplicationContext()).inflate(R.layout.vue_controles_jeu, null);
 
         collectionRessources = new CollectionRessources(getApplicationContext());
@@ -61,24 +61,30 @@ public class ActiviteJeu extends AppCompatActivity implements Observateur {
         parent.addView(vueJeu);
         parent.addView(vueBoutons);
         jeu.attacher(this);
-        jeu.lance();
+        jeu.lancerJeu();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        orientationEventListener.disable();
+        //orientationEventListener.disable();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        orientationEventListener.enable();
+        //orientationEventListener.enable();
     }
 
     @Override
     public void miseAJour() {
         Log.d("SpeedJumper", "Passage dans la boucle");
-        vueJeu.postInvalidate();
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                vueJeu.postInvalidate();
+                vueJeu.requestLayout();
+            }
+        });
     }
 }

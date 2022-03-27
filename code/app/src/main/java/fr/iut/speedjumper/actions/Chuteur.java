@@ -1,5 +1,7 @@
 package fr.iut.speedjumper.actions;
 
+import android.util.Log;
+
 import fr.iut.speedjumper.actions.collisionneurs.CollisionneurCarte;
 import fr.iut.speedjumper.entites.Entite;
 import fr.iut.speedjumper.jeu.BoucleDeJeu;
@@ -22,7 +24,6 @@ public class Chuteur implements Simulation, Runnable {
 
     /**
      * Constructeur de la classe
-     * @param carteCourante carte courrante
      * @throws IllegalArgumentException
      */
     public Chuteur(TableauJeu tableauJeu) throws IllegalArgumentException {
@@ -49,7 +50,9 @@ public class Chuteur implements Simulation, Runnable {
      */
     @Override
     public void run() {
+
         if (!entite.isChute() || entite.isSurSol()) {
+            System.out.println("je chute pas");
             return;
         }
 
@@ -72,6 +75,8 @@ public class Chuteur implements Simulation, Runnable {
                     entite.getCollision().getDimension());
 
             if (collisionneur.collisionne(collisionFuture, tableauJeu.getNiveauCourant().getCarte())) {
+                //Log.d("SpeedJumper", "COLISION AVEC SOL ET CHUTE");
+                //Log.d("SpeedJumper", entite.toString());
                 entite.setChute(false);
                 entite.setSurSol(true);
                 return;

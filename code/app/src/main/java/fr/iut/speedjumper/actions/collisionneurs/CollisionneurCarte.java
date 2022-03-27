@@ -1,5 +1,7 @@
 package fr.iut.speedjumper.actions.collisionneurs;
 
+import android.util.Log;
+
 import fr.iut.speedjumper.logique.Rectangle;
 import fr.iut.speedjumper.monde.Carte2D;
 
@@ -23,6 +25,7 @@ public class CollisionneurCarte {
      * @return
      */
     public boolean collisionne(Rectangle collision, Carte2D carte) {
+        Log.d("SpeedJumper", "DANS COLLISIONNEUR");
         if (collision == null || carte == null || carte.getLesTuiles() == null) {
             return false;
         }
@@ -46,6 +49,8 @@ public class CollisionneurCarte {
                 || coinSuperieur >= hauteurCarte || coinSuperieur < 0
                 || coinDroite >= largeurCarte || coinDroite < 0
                 || coinGauche >= largeurCarte || coinGauche < 0) {
+            Log.d("SpeedJumper", "COLISION PAR SORTIE DE CARTE");
+            Log.d("SpeedJumper", collision.toString());
             return true;
         }
 
@@ -57,13 +62,13 @@ public class CollisionneurCarte {
                             collisionTuileRelative.getPosition().getY() + y * hauteurTuile,
                             collisionTuileRelative.getDimension());
                     if (collisionneur.collisionne(collision, collisionTuileAbsolue)) {
-                        //System.out.println("COLLISION PAR FRICTION");
+                        Log.d("SpeedJumper", "COLISION PAR FRICTION");
                         return true;
                     }
                 }
             }
         }
-        //System.out.println("PAS DE COLLISION");
+        Log.d("SpeedJumper", "PAS DE COLLISION");
         return false;
     }
 }
