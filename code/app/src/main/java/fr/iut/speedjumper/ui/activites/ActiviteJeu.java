@@ -8,6 +8,7 @@ import android.view.OrientationEventListener;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import fr.iut.speedjumper.R;
@@ -19,6 +20,7 @@ import fr.iut.speedjumper.donnees.GestionnaireDeRessources;
 import fr.iut.speedjumper.entrees.RecuperateurDeTouchesAndroid;
 import fr.iut.speedjumper.jeu.Jeu;
 import fr.iut.speedjumper.jeu.TableauJeu;
+import fr.iut.speedjumper.monde.Tuile;
 import fr.iut.speedjumper.observateurs.Observateur;
 import fr.iut.speedjumper.ui.vues.VueJeu;
 
@@ -28,9 +30,16 @@ public class ActiviteJeu extends AppCompatActivity implements Observateur {
     private CollectionRessources collectionRessources;
     private Jeu jeu;
     private View vueJeu;
+    private int numeroNiveau;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if (savedInstanceState == null) {
+            numeroNiveau = 0;
+        }
+        else {
+            numeroNiveau = (int) savedInstanceState.get(ActiviteMenuPrincipal.NUMERO_NIVEAU);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vue_jeu_complete);
         FrameLayout parent = findViewById(R.id.parent);
@@ -50,18 +59,40 @@ public class ActiviteJeu extends AppCompatActivity implements Observateur {
         orientationEventListener.enable();*/
         View vueBoutons = LayoutInflater.from(getApplicationContext()).inflate(R.layout.vue_controles_jeu, null);
 
+        Tuile.resetTuiles();
         collectionRessources = new CollectionRessources(getApplicationContext());
         GestionnaireDeRessources gestionnaireDeRessources = new GestionnaireDeRessources(
                 new AdaptateurChargeurDeCarteTiledCSV(","),
                 new ChargeurDeJeuxDeTuilesTextuel(),
                 new ChargeurScoreTextuel());
         jeu = new Jeu(new RecuperateurDeTouchesAndroid(vueBoutons), gestionnaireDeRessources);
+        jeu.changerNiveau(numeroNiveau);
         tableauJeu = jeu.getTableauJeu();
         vueJeu = new VueJeu(this, tableauJeu);
         parent.addView(vueJeu);
         parent.addView(vueBoutons);
         jeu.attacher(this);
-        jeu.lancerJeu();
+        if (!jeu.isLance()) {
+            jeu.lancerJeu();
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(ActiviteMenuPrincipal.NUMERO_NIVEAU, numeroNiveau);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        numeroNiveau = (Integer) savedInstanceState.get(ActiviteMenuPrincipal.NUMERO_NIVEAU);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        jeu.arreterJeu();
     }
 
     @Override
@@ -78,13 +109,9 @@ public class ActiviteJeu extends AppCompatActivity implements Observateur {
 
     @Override
     public void miseAJour() {
-        Log.d("SpeedJumper", "Passage dans la boucle");
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                vueJeu.postInvalidate();
-                vueJeu.requestLayout();
-            }
+        runOnUiThread(() -> {
+            vueJeu.postInvalidate();
+            vueJeu.requestLayout();
         });
     }
 }

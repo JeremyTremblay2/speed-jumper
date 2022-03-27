@@ -14,6 +14,7 @@ import fr.iut.speedjumper.R;
 
 public class FragmentChoixDifficulte extends Fragment {
     private ActiviteMenuPrincipal activiteParente ;
+
     public FragmentChoixDifficulte() {
         super(R.layout.fragment_choix_difficulte);
     }
@@ -21,7 +22,7 @@ public class FragmentChoixDifficulte extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        activiteParente= (ActiviteMenuPrincipal) getContext();
+        activiteParente = (ActiviteMenuPrincipal) getContext();
 
         TextView Niveau = (TextView) view.findViewById(R.id.niveauChoisi);
         Niveau.setText(activiteParente.getNiveauChoisi());
@@ -34,7 +35,7 @@ public class FragmentChoixDifficulte extends Fragment {
                 activiteParente.goToJouer(view);
             }
         });
-        Button difficulteSpeed=(Button) view.findViewById(R.id.difficulteSpeed) ;
+        Button difficulteSpeed = (Button) view.findViewById(R.id.difficulteSpeed) ;
         difficulteSpeed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

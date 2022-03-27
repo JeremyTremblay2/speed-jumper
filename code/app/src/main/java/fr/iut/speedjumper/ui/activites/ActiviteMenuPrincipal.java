@@ -20,10 +20,11 @@ import fr.iut.speedjumper.ui.fragment.FragmentReglage;
 
 public class ActiviteMenuPrincipal extends AppCompatActivity {
     public static final String LES_REGLAGE = "lesEtudiants";
+    public static final String NUMERO_NIVEAU = "num_niveau";
     private int volumeSon = 100;
     private int volumeMusique = 100;
-    private String niveauChoisi =null;
-    private String difficulteChoisi=null;
+    private String niveauChoisi = null;
+    private String difficulteChoisi = null;
     private ChargeurReglage leChargeur;
     private SauvegardeReglage laSauvegarde = new SauvegardeReglage();
 
@@ -67,7 +68,8 @@ public class ActiviteMenuPrincipal extends AppCompatActivity {
             String[] reglageTab = reglage.split("_");
             setVolumeMusique(Integer.parseInt(reglageTab[0]));
             setVolumeSon(Integer.parseInt(reglageTab[1]));
-        } catch (FileNotFoundException e) {
+        }
+        catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
@@ -86,6 +88,7 @@ public class ActiviteMenuPrincipal extends AppCompatActivity {
 
     public void goToJouer(View view) {
         Intent intent = new Intent(this, ActiviteJeu.class);
+        intent.putExtra(NUMERO_NIVEAU, Integer.parseInt(niveauChoisi.substring(niveauChoisi.length() - 1)));
         startActivity(intent);
     }
     public void gotoReglage(View view){

@@ -61,8 +61,8 @@ public class Sauteur implements Simulation, Runnable {
             velocite += gravite * DELTA;
             position += velocite * DELTA;
 
-            collisionFuture = new Rectangle(entite.getPosition().getX() + entite.getCollision().getPosition().getX(),
-                    entite.getPosition().getY() + entite.getCollision().getPosition().getY() + (position - positionPrecedente),
+            collisionFuture = new Rectangle(entite.getCollision().getPosition().getX(),
+                    entite.getCollision().getPosition().getY() + (position - positionPrecedente),
                     entite.getCollision().getDimension());
 
             if (collisionneur.collisionne(collisionFuture, tableauJeu.getNiveauCourant().getCarte())) {

@@ -22,28 +22,28 @@ public class VueTuile extends View {
     private Bitmap image;
     private Tuile tuile;
 
-    public VueTuile(Context context, Tuile tuile) throws IllegalArgumentException {
+    public VueTuile(Context context, Tuile tuile, Bitmap image) throws IllegalArgumentException {
         super(context);
-        initialisation(tuile);
+        initialisation(tuile, image);
     }
 
-    public VueTuile(Context context, @Nullable AttributeSet attrs, Tuile tuile)
+    public VueTuile(Context context, @Nullable AttributeSet attrs, Tuile tuile, Bitmap image)
             throws IllegalArgumentException {
         super(context, attrs);
-        this.tuile = tuile;
+        initialisation(tuile, image);
     }
 
-    public VueTuile(Context context, @Nullable AttributeSet attrs, int defStyleAttr, Tuile tuile)
-            throws IllegalArgumentException {
+    public VueTuile(Context context, @Nullable AttributeSet attrs, int defStyleAttr, Tuile tuile,
+                    Bitmap image) throws IllegalArgumentException {
         super(context, attrs, defStyleAttr);
-        this.tuile = tuile;
+        initialisation(tuile, image);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public VueTuile(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes,
-                    Tuile tuile) throws IllegalArgumentException {
+                    Tuile tuile, Bitmap image) throws IllegalArgumentException {
         super(context, attrs, defStyleAttr, defStyleRes);
-        this.tuile = tuile;
+        initialisation(tuile, image);
     }
 
     @Override
@@ -52,16 +52,15 @@ public class VueTuile extends View {
         canvas.drawBitmap(image, 0, 0, paint);
     }
 
-    private void initialisation(Tuile tuile) throws IllegalArgumentException {
+    private void initialisation(Tuile tuile, Bitmap image) throws IllegalArgumentException {
         if (tuile == null) {
             throw new IllegalArgumentException("La tuille passée en paramètre ne peut pas être nulle.");
         }
+        if (image == null) {
+            throw new IllegalArgumentException("L'image passée en paramètre ne peut pas être nulle.");
+        }
         this.tuile = tuile;
-        String id = String.format(Locale.getDefault(), "tuile_%d", tuile.getIdTuile());
-        int tuileId = getResources().getIdentifier(id, "drawable", getContext().getPackageName());
-        image = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(
-                getContext().getResources(), tuileId), (int) tuile.getDimension().getLargeur(),
-                (int) tuile.getDimension().getHauteur(), false);
+        this.image = image;
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         paint.setTextSize(250);
     }

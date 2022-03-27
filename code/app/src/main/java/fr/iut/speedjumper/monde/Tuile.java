@@ -68,6 +68,10 @@ public class Tuile implements Comparable<Tuile> {
         return TUILE_IGNOREE;
     }
 
+    public static void resetTuiles() {
+        nombreTuiles = 0;
+    }
+
     /**
      * Methode pour comparer deux tuiles entre elles
      * @param o objet ici une tuile

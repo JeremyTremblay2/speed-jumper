@@ -46,13 +46,8 @@ public class Deplaceur {
         Carte2D carteCourante = tableauJeu.getNiveauCourant().getCarte();
         double increment;
 
-        //Log.d("SpeedJumper", "DANS DEPLACEUR");
-        //Log.d("SpeedJumper", "COLLISION ENTITE :" + entite.getCollision().toString());
-
         if (entite.isSurSol()) {
-            //Log.d("SpeedJumper", "TEMPS :" + temps);
             increment = entite.getVelocite() * (temps / BoucleDeJeu.TEMPS_AVANT_NOTIFICATION);
-            //Log.d("SpeedJumper", "TEMPS :" + increment);
         }
         else {
             increment = entite.getVelocite() * (temps / BoucleDeJeu.TEMPS_AVANT_NOTIFICATION) / VELOCITE_DANS_LES_AIRS;
@@ -73,13 +68,9 @@ public class Deplaceur {
                 break;
         }
 
-        //Log.d("SpeedJumper", "NOUVELLE POSITION : " + nouvellePosition.toString());
-
         Rectangle nouvelleCollision = new Rectangle(nouvellePosition.getX(),
                 nouvellePosition.getY(),
                 entite.getCollision().getDimension());
-
-        //Log.d("SpeedJumper", "NOUVELLE COLLISION :" + nouvelleCollision.toString());
 
         Position2D nouvellePositionSuperieure = new Position2D(nouvellePosition.getX(),
                 nouvellePosition.getY() + decalagePixelParMouvement);
@@ -89,12 +80,10 @@ public class Deplaceur {
                 entite.getCollision().getDimension());
 
         if (!collisionneur.collisionne(nouvelleCollision, carteCourante)) {
-            //Log.d("SpeedJumper", "DEPLACEMENT VERS 1 :" + nouvellePosition.toString());
             entite.setPosition(nouvellePosition);
             detectionVide(entite);
         }
         else if (!collisionneur.collisionne(nouvelleCollisionSuperieure, carteCourante)) {
-            //Log.d("SpeedJumper", "DEPLACEMENT VERS 1 :" + nouvellePosition.toString());
             entite.setPosition(nouvellePositionSuperieure);
             detectionVide(entite);
         }

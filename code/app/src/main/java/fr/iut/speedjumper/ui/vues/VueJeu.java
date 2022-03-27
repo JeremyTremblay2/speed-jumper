@@ -40,7 +40,6 @@ public class VueJeu extends ViewGroup {
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        Log.d("SpeedJumper", "Affichage du jeu");
         int count = this.getChildCount();
         for (int i = 0; i < count; i++) {
             View child = this.getChildAt(i);

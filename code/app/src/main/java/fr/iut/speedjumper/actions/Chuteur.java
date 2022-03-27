@@ -52,7 +52,6 @@ public class Chuteur implements Simulation, Runnable {
     public void run() {
 
         if (!entite.isChute() || entite.isSurSol()) {
-            System.out.println("je chute pas");
             return;
         }
 
@@ -70,13 +69,11 @@ public class Chuteur implements Simulation, Runnable {
             velocite += gravite * DELTA;
             position += velocite * DELTA;
 
-            collisionFuture = new Rectangle(entite.getPosition().getX() + entite.getCollision().getPosition().getX(),
-                    entite.getPosition().getY() + entite.getCollision().getPosition().getY() + 2 * (position - positionPrecedente),
+            collisionFuture = new Rectangle(entite.getCollision().getPosition().getX(),
+                    entite.getCollision().getPosition().getY() + 2 * (position - positionPrecedente),
                     entite.getCollision().getDimension());
 
             if (collisionneur.collisionne(collisionFuture, tableauJeu.getNiveauCourant().getCarte())) {
-                //Log.d("SpeedJumper", "COLISION AVEC SOL ET CHUTE");
-                //Log.d("SpeedJumper", entite.toString());
                 entite.setChute(false);
                 entite.setSurSol(true);
                 return;

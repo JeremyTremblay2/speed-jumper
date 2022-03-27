@@ -77,5 +77,6 @@ public class VueNiveau extends ViewGroup {
         for (Entite entite : niveau.getLesEntites()) {
             addView(new VueEntite(getContext(), entite, R.drawable.slime));
         }
+        setBackgroundResource(R.drawable.fond_jeu);
     }
 }

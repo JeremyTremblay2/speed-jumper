@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:alpha="128"
     tools:ignore="MissingDefaultResource">
 
     <ImageButton
@@ -16,9 +17,12 @@
         android:layout_marginStart="48dp"
         android:layout_marginLeft="48dp"
         android:layout_marginBottom="48dp"
+        android:alpha="128"
         android:contentDescription="@string/gauche"
-        android:minHeight="64dp"
         android:minWidth="64dp"
+        android:minHeight="64dp"
+        android:background="#70FF0000"
+        android:scaleType="fitCenter"
         android:src="@drawable/fleche_gauche_jeu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -32,9 +36,12 @@
         android:layout_marginEnd="48dp"
         android:layout_marginRight="48dp"
         android:layout_marginBottom="48dp"
+        android:alpha="128"
         android:contentDescription="@string/saut"
-        android:minHeight="64dp"
         android:minWidth="64dp"
+        android:minHeight="64dp"
+        android:background="#70FF0000"
+        android:scaleType="fitCenter"
         android:src="@drawable/fleche_saut_jeu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -51,6 +58,8 @@
         android:contentDescription="@string/droite"
         android:minWidth="64dp"
         android:minHeight="64dp"
+        android:background="#70FF0000"
+        android:scaleType="fitCenter"
         android:src="@drawable/fleche_droite_jeu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/bouton_fleche_gauche" />

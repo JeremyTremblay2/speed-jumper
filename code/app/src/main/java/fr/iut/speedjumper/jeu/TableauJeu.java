@@ -148,7 +148,7 @@ public class TableauJeu {
         joueur = new PersonnageJouable(new Position2D(0, 0),
                 new Rectangle(22, 12, 41, 112),
                 new Dimension(85, 128),
-                2,
+                6,
                 4,
                 3);
 

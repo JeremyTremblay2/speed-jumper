@@ -36,6 +36,10 @@ public class FragmentChoixNiveau extends Fragment {
         listNiveau.add("Niveau 8");
         listNiveau.add("Niveau 9");
         listNiveau.add("Niveau 10");
+        listNiveau.add("Niveau 11");
+        listNiveau.add("Niveau 12");
+        listNiveau.add("Niveau 13");
+        listNiveau.add("Niveau 14");
         super.onViewCreated(view, savedInstanceState);
         activiteParente= (ActiviteMenuPrincipal) getContext();
         RecyclerView laListView = view.findViewById(R.id.recycleView);
