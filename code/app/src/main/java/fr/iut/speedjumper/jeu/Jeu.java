@@ -76,7 +76,6 @@ public class Jeu extends Sujet implements ObservateurTemporel {
         pause = false;
         processus = new Thread(boucleDeJeu, "Speed Jumper Thread");
         processus.start();
-        Log.d("SpeedJumper", tableauJeu.getJoueur().getPosition().toString());
     }
 
     public void arreterJeu() {

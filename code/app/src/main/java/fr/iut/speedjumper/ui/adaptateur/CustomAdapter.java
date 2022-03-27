@@ -21,7 +21,7 @@ public class CustomAdapter extends RecyclerView.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        LinearLayout leLayout =(LinearLayout) LayoutInflater.from(viewGroup.getContext())
+        LinearLayout leLayout = (LinearLayout) LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.cellule_niveau, viewGroup, false);
         return new MonViewHolder(leLayout);
     }

@@ -24,7 +24,8 @@ public class FragmentReglage extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         activiteParente = (ActiviteMenuPrincipal) getContext();
 
-        view.findViewById(R.id.bouton_retour).setOnClickListener(view1 -> activiteParente.getSupportFragmentManager().beginTransaction()
+        view.findViewById(R.id.bouton_retour).setOnClickListener(view1
+                -> activiteParente.getSupportFragmentManager().beginTransaction()
                 .setReorderingAllowed(true)
                 .replace(R.id.fragmentMenu, FragmentMenu.class, null)
                 .commit());
@@ -33,6 +34,7 @@ public class FragmentReglage extends Fragment {
         TextView affichageMusique = view.findViewById(R.id.valeurMusique);
         volumeMusique.setProgress(activiteParente.getVolumeMusique());
         affichageMusique.setText(String.valueOf(activiteParente.getVolumeMusique()));
+        // Même chose pour la seconde seekbar, et ajout des listeners sur les seekbar.
 
         SeekBar volumeSon = view.findViewById(R.id.reglageSon);
         TextView affichageSon = view.findViewById(R.id.valeurSon);

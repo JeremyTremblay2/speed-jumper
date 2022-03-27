@@ -56,7 +56,8 @@ public class BoucleDeJeu extends SujetTemporel implements Runnable {
             else {
                 tempsAttente = TEMPS_AVANT_NOTIFICATION - tempsEcoule;
                 try {
-                    sleep(tempsAttente / TEMPS_MILLISECONDE, (int) (tempsAttente % TEMPS_MILLISECONDE));
+                    sleep(tempsAttente / TEMPS_MILLISECONDE,
+                            (int) (tempsAttente % TEMPS_MILLISECONDE));
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
