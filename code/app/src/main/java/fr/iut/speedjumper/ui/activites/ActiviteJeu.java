@@ -34,12 +34,7 @@ public class ActiviteJeu extends AppCompatActivity implements Observateur {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        if (savedInstanceState == null) {
-            numeroNiveau = 0;
-        }
-        else {
-            numeroNiveau = (int) savedInstanceState.get(ActiviteMenuPrincipal.NUMERO_NIVEAU);
-        }
+        numeroNiveau = (int) getIntent().getExtras().getInt(ActiviteMenuPrincipal.NUMERO_NIVEAU);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vue_jeu_complete);
         FrameLayout parent = findViewById(R.id.parent);
@@ -66,7 +61,8 @@ public class ActiviteJeu extends AppCompatActivity implements Observateur {
                 new ChargeurDeJeuxDeTuilesTextuel(),
                 new ChargeurScoreTextuel());
         jeu = new Jeu(new RecuperateurDeTouchesAndroid(vueBoutons), gestionnaireDeRessources);
-        jeu.changerNiveau(numeroNiveau);
+        Log.d("SpeedJumper", "NUMERO NIVEAU : " + numeroNiveau);
+        jeu.changerNiveau(numeroNiveau % 3);
         tableauJeu = jeu.getTableauJeu();
         vueJeu = new VueJeu(this, tableauJeu);
         parent.addView(vueJeu);

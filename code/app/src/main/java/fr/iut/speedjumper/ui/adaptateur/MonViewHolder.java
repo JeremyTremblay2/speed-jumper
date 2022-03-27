@@ -1,4 +1,4 @@
-package fr.iut.speedjumper.adaptateur;
+package fr.iut.speedjumper.ui.adaptateur;
 
 import android.widget.Button;
 import android.widget.LinearLayout;

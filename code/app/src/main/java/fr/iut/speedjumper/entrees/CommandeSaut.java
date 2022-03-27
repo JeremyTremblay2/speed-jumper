@@ -22,7 +22,9 @@ public class CommandeSaut implements Commande {
      */
     @Override
     public void execute(Entite entite, double temps) {
-        sauteur.miseAJourEtatDeJeu(entite, temps);
-        new Thread(sauteur).start();
+        if (entite.isSurSol()) {
+            sauteur.miseAJourEtatDeJeu(entite, temps);
+            new Thread(sauteur).start();
+        }
     }
 }

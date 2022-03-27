@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-import fr.iut.speedjumper.adaptateur.CustomAdapter;
+import fr.iut.speedjumper.ui.adaptateur.CustomAdapter;
 import fr.iut.speedjumper.ui.activites.ActiviteMenuPrincipal;
 import fr.iut.speedjumper.R;
 

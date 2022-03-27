@@ -88,7 +88,9 @@ public class ActiviteMenuPrincipal extends AppCompatActivity {
 
     public void goToJouer(View view) {
         Intent intent = new Intent(this, ActiviteJeu.class);
-        intent.putExtra(NUMERO_NIVEAU, Integer.parseInt(niveauChoisi.substring(niveauChoisi.length() - 1)));
+        int numeroNiveau = Integer.parseInt(niveauChoisi.substring(niveauChoisi.length() - 1));
+        Log.d("SpeedJumper", "NUMERO NIVEAU AVANT TP : " + numeroNiveau);
+        intent.putExtra(NUMERO_NIVEAU, numeroNiveau);
         startActivity(intent);
     }
     public void gotoReglage(View view){

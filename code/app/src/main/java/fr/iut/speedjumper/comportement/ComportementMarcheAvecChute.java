@@ -22,6 +22,7 @@ public class ComportementMarcheAvecChute extends Comportement {
         if (entite.getPosition() == dernierePosition) {
             inverseDirection(entite);
         }
+        deplaceur = new AdaptateurDeplaceur(entite.getDirection(), tableauJeu);
 
         deplaceur.miseAJourEtatDeJeu(entite, temps);
         dernierePosition = entite.getPosition();
