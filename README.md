@@ -2,28 +2,28 @@
 
 ## Description
 
-Notre projet est une speedjumper mobile ou le but est de ce déplacer dans un environnement afin d'atteindre l'arrivé.
+Ce projet est un jeu de plateforme sur Android dont le but est de se déplacer dans un environnement afin d'atteindre l'arrivée de chaque niveau. Ce projet a été réalisé dans le cadre de la deuxième année de DUT informatique. Les cartes sont élégantes et sont générées avec un système de Tile-Mapping depuis le logiciel Tiled, et sont ensuite chargées directement dans le jeu. Vous pouvez ajouter les vôtres !
 
 ## Lancement
 
-Tout d'abord, il faut faire un git clone https://gitlab.iut-clermont.uca.fr/jetremblay/speed-jumper.git
+Tout d'abord, il faut commencer par cloner ce projet (https://gitlab.iut-clermont.uca.fr/jetremblay/speed-jumper.git).  
+La branche principale est `master`.  
+Ouvrir le projet depuis Android Studio. Vous pouvez compiler et vous amuser (et l'installer sur votre téléhone) ! 😄
 
-Puis rentrer dans le dossier avec : ```cd speed-jumper```
+# Elements importants dans le code
+* Respect des principes SOLID.
+* Une responsabilité par classe.
+* Un gros travail de conception (patrons, cohérence...).
+* Création d'une boucle de jeu threadée observable.
+* Moteur de jeu complet (chargement des cartes créées depuis Tiled, affichage, création de nos propres collisions, déplacements...).
+* Travail pour adaptation de ce jeu sur Android (poids en mémoire des images, création de nos propres `View`s plutôt que l'utilisation de `SurfaceView`, fragments, `Toast`s, déplacement entre les fenêtres, `RecyclerView`...)
 
-Une fois dans le dossier, il faut aller dans la branche master avec ```git checkout master```
+> Voir la documentation (fichier `preuves.pdf`) pour plus d'informations.
 
-Puis ouvrir Android Studio, ouvrir le fichier code.
+## Language utilisé
+* Java
 
-Attendre que Gradle travaille se synchronise, il faut ensuite séléctionner le device voulu puis il suffit de lancer l'application.
+## Auteurs
 
-## Auteur 
-
-Le projet à été fait par Jeremy Tremblay et Guillaume Toumazet.
-
-## Branche 
-
-La branche ``Main`` n'as pas était beaucoup utilisé et le jeux n'est pas fonctionnelle dessus.
-
-La branche ``Master `` est celle où le jeux fonctionne et il faut donc bien se trouver dans cette branche pour utiliser l'application.
-
-La branche ``Dev`` est celle qui à servi au développement.
+Jeremy Tremblay  
+Guillaume Toumazet
