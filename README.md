@@ -2,7 +2,11 @@
 
 ## Description
 
-Ce projet est un jeu de plateforme sur Android dont le but est de se déplacer dans un environnement afin d'atteindre l'arrivée de chaque niveau. Ce projet a été réalisé dans le cadre de la deuxième année de DUT informatique. Les cartes sont élégantes et sont générées avec un système de Tile-Mapping depuis le logiciel Tiled, et sont ensuite chargées directement dans le jeu. Vous pouvez ajouter les vôtres !
+Ce projet est un jeu de plateforme sur Android dont le but est de se déplacer dans un environnement afin d'atteindre l'arrivée de chaque niveau. Ce projet a été réalisé dans le cadre de la deuxième année de DUT informatique.  
+Les cartes de ce jeu sont élégantes et sont générées avec un système de Tile-Mapping depuis le logiciel Tiled, et sont ensuite chargées directement dans le jeu. Vous pouvez ajouter les vôtres sans devoir modifier le code ! Chaque carte peut être composée de plusieurs *tilesets* différents, et vous pouvez créer des cartes de la taille que vous souhaitez.
+
+![Capture d'écran](documentation/screenshot.jpg)  
+*Capture d'écran du jeu sur un Xiaomi Redmi Note 10 Pro.*
 
 ## Lancement
 
